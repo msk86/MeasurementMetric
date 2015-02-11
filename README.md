@@ -12,7 +12,7 @@ MeasureEmperor is this tool which can easily:
 * Analyzing metric
 * A great visualization
 
-## User Story Walkthrough
+## User Journey
 
 Jie is a team manager, her main work is collecting
 all kind of data, and find out how the performance of
@@ -22,6 +22,7 @@ the team.
 * Click `New Metric` button
 * Fill form and submit:
   * `Metric Name`:`<input value="Session">`
+  * `Metric category`:`<radio value="Normal" selected><radio value="Schedule">`
   * `Metric Type`:`<input value="Team;Office">`
   * `Other Infos`:`<input value="Runner;Feedback">`
   * `Week start`:`<select><option>Monday</option><option>...</option><option>Sunday</option></select>`
@@ -47,3 +48,17 @@ button.
 * Click on `List` button on the right side of the panel
 * See a full list of `Session` metric, with `Metric Type`, `Runner`, `Created At`
 * Click `Delete` in a row to delete a metric
+* Click `New Metric` button again, to add a new metric
+* Fill form and submit:
+  * `Metric Name`:`<input value="Commits">`
+  * `Metric category`:`<radio value="Normal"><radio value="Schedule" selected>`
+  * `API`:`<input value="https://api.github.com">`
+  * `User Name`:`<input value="username">`
+  * `Password`:`<input value="password">`
+  * `Metric function`:`<textarea>function(apiResult) {return apiResult.metric; }</textarea>`
+  * `Frequency(Day)`:`<input value="1">`
+  * `Trigger Time`:`<input type="time" value="10:00">`
+  * `Week start`:`<select><option>Monday</option><option>...</option><option>Sunday</option></select>`
+  * `Time Frame`:`<select><option>Daily</option><option>Weekly</option><option>Fortnightly</option><option>Monthly</option></select>`
+* See `New metric "Commits" is created successfully!`
+* See the `commits` metric changes at every 10:00am
