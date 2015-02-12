@@ -1,17 +1,13 @@
 div
     div
         label MetricName
-        input(name="metricName")
+        input(ng-model="form.metricName")
     div
         label MetricTypes
-        input(name="metricType" placeholder="type1;type2")
+        input(ng-model="form.metricType" placeholder="type1;type2")
     div
         label OtherFields
-        input(name="fields" placeholder="field1;field2")
+        input(ng-model="form.fields" placeholder="field1;field2")
     div
         label TimeFrame
-        select(name="timeFrame")
-            option(value="day") Day
-            option(value="week" selected) Week
-            option(value="fortnight") Fortnight
-            option(value="month") Month
+        select(ng-model="form.timeFrame" ng-options="frame for frame in timeFrames")

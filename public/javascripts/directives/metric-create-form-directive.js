@@ -3,17 +3,13 @@
         [function () {
             function link($scope, element) {
                 $scope.categories = ['normal', 'schedule'];
-                $scope.form = {};
-                $scope.form.category = 'normal';
-
-                $scope.$watch('form.category', function() {
-                    console.log($scope.form.category);
-                })
+                $scope.timeFrames = ['Day', 'Week', 'Fortnight', 'Month'];
             }
 
             return {
                 link: link,
                 scope: true,
+                controller: 'MetricCreateController',
                 restrict: 'E',
                 templateUrl: '/templates/metric-create-form',
                 replace: true

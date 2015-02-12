@@ -1,29 +1,25 @@
 div
     div
         label MetricName
-        input(name="metricName")
+        input(ng-model="form.metricName")
     div
         label MetricTypes
-        input(name="metricType" placeholder="type1;type2")
+        input(ng-model="form.metricType" placeholder="type1;type2")
     div
         label API
-        input(name="metricType")
+        input(ng-model="form.metricType")
     div
         label Username
-        input(name="username")
+        input(ng-model="form.username")
     div
         label Password
-        input(name="password" type="password")
+        input(ng-model="form.password" type="password")
     div
         label JS Method
-        textarea function(apiResult) { return {field1: 'A', field2: 'B', metricType: 'type1'}; }
+        textarea(ng-model='form.apiMethod' placeholder="function(apiResult) { return {metricType: 'type1', field1: 'A', field2: 'B'};}")
     div
         label Frequency(Cron)
-        input(name="frequency" placeholder="MIN HOUR DAY MONTH DAY-OF-WEEK")
+        input(ng-model="form.frequency" placeholder="MIN HOUR DAY MONTH DAY-OF-WEEK")
     div
         label TimeFrame
-        select(name="timeFrame")
-            option(value="day") Day
-            option(value="week" selected) Week
-            option(value="fortnight") Fortnight
-            option(value="month") Month
+        select(ng-model="form.timeFrame" ng-options="frame for frame in timeFrames")
