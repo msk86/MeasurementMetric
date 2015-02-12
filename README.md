@@ -62,3 +62,6 @@ button.
   * `Time Frame`:`<select><option>Daily</option><option>Weekly</option><option>Fortnightly</option><option>Monthly</option></select>`
 * See `New metric "Commits" is created successfully!`
 * See the `commits` metric changes at every 10:00am
+
+## To run app
+`node app.js`
