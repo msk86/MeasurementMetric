@@ -1,11 +1,11 @@
-# MeasureEmperor
+# Measurement & Metric
 
-## What's MeasureEmperor
+## What's Measurement & Metric
 Since we are focusing on measuring, we need a tool
 to help us collect metric data, also provide analytics
 and visualization.
 
-MeasureEmperor is this tool which can easily:
+Measurement & Metric is this tool which can easily:
 * Creating a new metric
 * Choosing a metric type
 * Collecting data(Manually & Automatically)
@@ -18,7 +18,7 @@ Jie is a team manager, her main work is collecting
 all kind of data, and find out how the performance of
 the team.
 
-* Login in to `http://measure-emperor.com`
+* Login in to `http://mm.com`
 * Click `New Metric` button
 * Fill form and submit:
   * `Metric Name`:`<input value="Session">`
@@ -28,7 +28,7 @@ the team.
   * `Week start`:`<select><option>Monday</option><option>...</option><option>Sunday</option></select>`
   * `Time Frame`:`<select><option>Daily</option><option>Weekly</option><option>Fortnightly</option><option>Monthly</option></select>`
 * See `New metric "Session" is created successfully!`
-* Go back to `http://measure-emperor.com`
+* Go back to `http://mm.com`
 * See the `Session` metric is on the dashboard now, the value is `0/Day`
 * Hover on the `Session` metric panel, I can see `Increase`
 button.
