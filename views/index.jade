@@ -1,6 +1,36 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div.chart
+	header
+		div.container
+			div.logo
+				span.rui-icon.rui-icon-home 
+				span Measure Metrics
+			div.user
+				a Log in
+				a Sign up
+
+	div.metrics
+		div.container
+			div.metric
+				div.left-part
+					div.rui-select-wrapper
+						div.rui-input.rui-select.rui-select-link
+							span Stories
+							input(type="text")
+							i.rui-icon.rui-icon-arrow-down
+						ul.rui-select-menu
+							li.rui-select-list.rui-selected.rui-current-list Stories
+							li.rui-select-list Bugs
+							li.rui-select-list Tech tasks
+					img(src='/images/fake-graph.png')
+				div.actions
+					span.rui-icon.rui-icon-listview
+					span.rui-icon.rui-icon-cog
+					span.rui-icon.rui-icon-calendar
+					span.rui-icon.rui-icon-link
+
+			div.metric
+				div a metric here
+			div.metric
+				div a metric here								

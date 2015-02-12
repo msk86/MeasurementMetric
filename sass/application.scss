@@ -1,0 +1,47 @@
+body {
+	padding-top: 0;
+}
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+header {
+	background-color: #333;
+	color: white;
+	padding: 10px 0;
+	margin-bottom: 20px;
+	.logo {
+		font-size: 1.5em;
+	}
+	.user {
+		float: right;
+		margin-top: -30px;
+		a:first-child {
+			margin-right: 20px;
+		}
+		a {
+			color: white;
+			text-decoration: none;
+		}
+	}
+}
+.metric {
+	display: flex;
+	width: 31.333%;
+	margin-right: 2%;
+	float: left;
+	.left-part {
+		flex: 4;
+	}
+	img {
+		width: 90%;
+	}
+	.actions {
+		flex: 1;
+		font-size: 1.2em;
+		padding-top: 50px;
+		span.rui-icon {
+			display: block;
+		}
+	}
+}
