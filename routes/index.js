@@ -3,11 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Measuresdffd Metric' });
-});
-
-router.get('/form', function(req, res, next) {
-  res.render('form');
+  res.render('index', { title: 'Measurement Metric' });
 });
 
 module.exports = router;
