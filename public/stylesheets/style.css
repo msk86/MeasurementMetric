@@ -1,15 +1,28 @@
 body {
   padding-top: 0; }
 
+p {
+  margin: 0; }
+
 .container {
   width: 80%;
   margin: 0 auto; }
 
+.rui-select-menu, .rui-input {
+  border-width: 1px;
+  border-radius: 0; }
+
+.rui-select-menu li {
+  margin: 0; }
+  .rui-select-menu li.rui-current-list {
+    background-color: #00c694;
+    border-radius: 0; }
+
 header {
-  background-color: #333;
+  background-color: #00beb3;
   color: white;
   padding: 10px 0;
-  margin-bottom: 20px; }
+  margin-bottom: 40px; }
   header .logo {
     font-size: 1.5em; }
   header .user {
@@ -21,18 +34,40 @@ header {
       color: white;
       text-decoration: none; }
 
+.metrics {
+  margin-bottom: 150px; }
+
 .metric {
-  display: flex;
   width: 31.333%;
   margin-right: 2%;
   float: left; }
   .metric .left-part {
     flex: 4; }
-  .metric img {
-    width: 90%; }
+  .metric .img-wrapper {
+    height: 231px; }
+    .metric .img-wrapper img {
+      width: 100%; }
+  .metric .metric-content {
+    display: flex;
+    border: 1px solid #c3c8ce; }
+    .metric .metric-content .infomation {
+      border-top: 1px solid #c3c8ce;
+      font-size: 0.8em;
+      padding: 8px; }
+  .metric .rui-select-wrapper .rui-input {
+    border-bottom-width: 0; }
   .metric .actions {
+    text-align: center;
     flex: 1;
-    font-size: 1.2em;
-    padding-top: 50px; }
+    border-left: 1px solid #c3c8ce;
+    font-size: 1.2em; }
     .metric .actions span.rui-icon {
-      display: block; }
+      display: block;
+      font-size: 1.5em;
+      padding: 5px;
+      border-bottom: 1px solid #c3c8ce;
+      transition: all 0.3s; }
+      .metric .actions span.rui-icon:last-child {
+        border-bottom: none; }
+      .metric .actions span.rui-icon:hover {
+        color: #00c694; }

@@ -1,15 +1,31 @@
+$border-color: #c3c8ce;
 body {
 	padding-top: 0;
+}
+p {
+	margin: 0;
 }
 .container {
 	width: 80%;
 	margin: 0 auto;
 }
+.rui-select-menu,
+.rui-input {
+	border-width: 1px;
+	border-radius: 0;
+}
+.rui-select-menu li {
+	margin: 0;
+	&.rui-current-list {
+		background-color: #00c694;
+		border-radius: 0;
+	}
+}
 header {
-	background-color: #333;
+	background-color: #00beb3;
 	color: white;
 	padding: 10px 0;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	.logo {
 		font-size: 1.5em;
 	}
@@ -25,23 +41,53 @@ header {
 		}
 	}
 }
+.metrics {
+	margin-bottom: 150px;
+}
 .metric {
-	display: flex;
 	width: 31.333%;
 	margin-right: 2%;
 	float: left;
 	.left-part {
 		flex: 4;
 	}
-	img {
-		width: 90%;
+	.img-wrapper {
+		height: 231px;
+		img {
+			width: 100%;
+		}
+	}
+	.metric-content {
+		display: flex;
+		border: 1px solid $border-color;
+		.infomation {
+			border-top: 1px solid $border-color;
+			font-size: 0.8em;
+			padding: 8px;
+		}
+	}
+	.rui-select-wrapper .rui-input{
+		border-bottom-width: 0;
 	}
 	.actions {
+		text-align: center;
 		flex: 1;
+		border-left: 1px solid $border-color;
 		font-size: 1.2em;
-		padding-top: 50px;
 		span.rui-icon {
 			display: block;
+			font-size: 1.5em;
+			padding: 5px;
+			border-bottom: 1px solid $border-color;
+			transition: all 0.3s;
+			&:last-child {
+				border-bottom: none;
+			}
+			&:hover {
+				color: #00c694;
+			}
+			// background-color: #efefef;
 		}
+
 	}
 }
