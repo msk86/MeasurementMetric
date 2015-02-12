@@ -65,3 +65,4 @@ button.
 
 ## To run app
 `node app.js`
+then open `localhost:4000`
