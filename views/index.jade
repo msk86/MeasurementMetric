@@ -1,38 +1,13 @@
 extends layout
 
 block content
-    header
-        div.container
-            div.logo
-                span.rui-icon.rui-icon-home
-                span Measure Metrics
-            div.user
-                a Log in
-                a Sign up
-	div.metrics.rui-clearfix
+	header
 		div.container
-			div.metric
-				div.rui-select-wrapper
-					div.rui-input.rui-select.rui-select-link
-						span Stories
-						input(type="text")
-						i.rui-icon.rui-icon-arrow-down
-					ul.rui-select-menu
-						li.rui-select-list.rui-selected.rui-current-list Stories
-						li.rui-select-list Bugs
-						li.rui-select-list Tech tasks
-				div.metric-content		
-					div.left-part
-						div.img-wrapper
-							img(src='/images/fake-graph.png')
-						div.infomation
-							p The team delivered 12 stories this fortnight 
-							p Last fortnight the team delivered 6 stories.
-					div.actions
-						span.rui-icon.rui-icon-listview
-						span.rui-icon.rui-icon-cog
-						span.rui-icon.rui-icon-calendar
-						span.rui-icon.rui-icon-link
-						span.rui-icon.rui-icon-cog
-        div.chart
-             line-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()")
+			div.logo
+				span.rui-icon.rui-icon-home 
+				span Measure Metrics
+			div.user
+				a Log in
+				a Sign up
+
+	include ./templates/metric.jade

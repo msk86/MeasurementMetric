@@ -52,11 +52,48 @@ header {
 	.left-part {
 		flex: 4;
 	}
-	.img-wrapper {
-		height: 231px;
-		img {
-			width: 100%;
+	.graph-header {
+		font-size: 0.8em;
+		padding: 6px;
+	}
+	.filters {
+		float: right;
+		margin-right: 6px;
+		span {
+			color: white;
+			cursor: pointer;
+			background-color: #00e6ac;
+			border-right: 1px solid #c8c9c7;
+			padding: 2px 6px;
+			&:last-child {
+				border-right: none;
+			}
+			&.active {
+				background-color: #00c694;
+			}
 		}
+	}
+
+	.graph-body {
+		text-align: center;
+		height: 200px;
+	}
+	.graph-body .content {
+		width: 180px;
+		height: 180px;
+		margin: 0 auto;
+		border: 3px solid #00c694;
+		border-radius: 100%;
+	}
+	.number {
+		margin-top: 55px;
+		line-height: 1em;
+		font-size: 3em;
+		color: #00c694;
+	}
+	.description {
+		font-size: 0.8em;
+		color: #00c694;
 	}
 	.metric-content {
 		display: flex;
