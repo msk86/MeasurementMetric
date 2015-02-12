@@ -2,6 +2,10 @@
   "metricName": "Stories",
   "metricDesc": "Finished stories in current iteration",
   "timeFrame": "week",
+  "timeRange": {
+    "start": "15/02/09",
+    "end": "15/02/15"
+  },
   "value": {
     "all": 8,
     "userStory": 5,
