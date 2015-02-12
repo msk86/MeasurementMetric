@@ -5,7 +5,8 @@
             function ($scope, MetricCreateService) {
                 var defaultFormValue = {
                     category: 'normal',
-                    timeFrame: 'Week'
+                    timeFrame: 'week',
+                    processMethod: 'total'
                 };
 
                 function resetForm() {

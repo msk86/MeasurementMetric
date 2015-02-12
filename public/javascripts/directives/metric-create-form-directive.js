@@ -2,8 +2,22 @@
     angular.module('metric').directive('metricCreateForm',
         [function () {
             function link($scope, element) {
-                $scope.categories = ['normal', 'schedule'];
-                $scope.timeFrames = ['Day', 'Week', 'Fortnight', 'Month'];
+                $scope.categories = [
+                    {display: 'Normal', category: 'normal'},
+                    {display: 'Schedule', category: 'schedule'}
+                ];
+                $scope.timeFrames = [
+                    {display: 'Week', frame: 'week'},
+                    {display: 'Fortnight', frame: 'fortnight'},
+                    {display: 'Month', frame: 'month'},
+                    {display: 'Year', frame: 'year'}
+                ];
+                $scope.processMethods = [
+                    {display:'Total()', method:'total'},
+                    {display:'Avg()', method:'avg'},
+                    {display:'Max()', method:'max'},
+                    {display:'Min()', method:'min'}
+                ];
 
                 $scope.submit = function() {
                     var metricName = $scope.form.metricName;
