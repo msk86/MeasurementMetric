@@ -25,7 +25,6 @@
                 };
 
                 $scope.currentTrend = function (storyType, trendControls) {
-                    console.log($scope.allData[trendControls.dataType]);
                     return {
                         "seriesLabel": storyType.seriesLabel,
                         "xLabelData": dateFormatter(trendControls.intervalType),
@@ -35,17 +34,30 @@
                 };
 
                 function dateFormatter(intervalType) {
-                    var weekly = function (date) {
-                        return moment(date).toDate().format('dddd YYYY-MM-DD');
-                    };
                     return {"weekly": weekly}[intervalType];
                 }
 
                 $scope.$on('LINE_CHART_DATA_CHANGE', function (e, data) {
-                    console.log(data)
                     $scope.allData = data["trends"];
+                    transformToDate($scope.trendControls.dataType);
                     $scope.$broadcast('TREND_DATA_CHANGE');
                 });
+
+                function transformToDate(dataType) {
+                    var data = $scope.allData[dataType];
+                    var convertXtoDate = [];
+                    for (var i = 0; i < data.length; i++) {
+                        convertXtoDate.push({x: toDate(data[i].x), y: data[i].y});
+                    }
+                    $scope.allData[dataType] = convertXtoDate;
+                }
+
+                function toDate(date){
+                    return moment(date).toDate();
+                }
+                function weekly(date) {
+                    return moment(date).format('dddd YYYY-MM-DD');
+                }
             }
         ]);
 

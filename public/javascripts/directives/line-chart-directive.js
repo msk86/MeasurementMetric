@@ -11,8 +11,6 @@
                 $scope.updateChart = function () {
                     $scope.trendData = $scope.seriesData();
 
-                    console.log("trend data")
-                    console.log($scope.trendData)
                     var chartSeries = formatSeries($scope.trendData),
                         series = chartSeries.series,
                         colors = chartSeries.colors;
