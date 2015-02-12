@@ -1,12 +1,24 @@
 (function (angular) {
 
     angular.module('metric').controller('MetricCreateController',
-        ['$scope',
-            function ($scope) {
-                $scope.form = {
+        ['$scope', 'MetricCreateService',
+            function ($scope, MetricCreateService) {
+                var defaultFormValue = {
                     category: 'normal',
                     timeFrame: 'Week'
                 };
+
+                function resetForm() {
+                    $scope.form = angular.extend({}, defaultFormValue);
+                }
+
+                resetForm();
+
+                $scope.create = function() {
+                    return MetricCreateService.createMetric($scope.form).then(function() {
+                        resetForm();
+                    });
+                }
             }
         ]);
 

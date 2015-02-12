@@ -5,6 +5,6 @@ form
     normal-metric-form(ng-if="form.category=='normal'")
     schedule-metric-form(ng-if="form.category=='schedule'")
     div
-        button Submit
+        button(ng-click="submit") Submit
         button Close
 
