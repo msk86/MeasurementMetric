@@ -75,6 +75,14 @@ Then open `localhost:4000`
 
 
 ## API
-* Get data for number view: `/metrics/:metric/types/:type/timeframe/:frames.json`
+* Get data for number view: `/metrics/:metric/timeframes/:frame.json`
 
-    Such as `/metrics/story/types/all/timeframes/fortnight.json`
+    Such as `/metrics/story/timeframes/fortnight.json`
+
+* Get data for line chart view: `/metrics/:metric/timeframes/:frame/trends.json`
+
+    Such as `/metrics/story/timeframes/week/trends.json`
+
+* Get data for pie chart view: `/metrics/:metric/timeframes/:frame/pie.json`
+
+    Such as `/metrics/story/timeframes/week/pie.json`

@@ -2,34 +2,34 @@
   {
     "request": {
       "uri": {
-        "match": "/metrics/stories/types/all/timeframes/fortnight.json"
+        "match": "/metrics/story/timeframes/week.json"
       },
       "method": "get"
     },
     "response": {
-      "file": "mock-data/data/iteration_stories.json"
+      "file": "mock-data/data/story_week.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/metrics/stories/types/userstory/timeframes/month.json"
+        "match": "/metrics/story/timeframes/week/trends.json"
       },
       "method": "get"
     },
     "response": {
-      "file": "mock-data/data/month_stories.json"
+      "file": "mock-data/data/story_week_trends.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/metrics/stories/types/all/timeframes/month/trends.json"
+        "match": "/metrics/story/timeframes/week/pie.json"
       },
       "method": "get"
     },
     "response": {
-      "file": "mock-data/data/week_stories_trends.json"
+      "file": "mock-data/data/story_week_pie.json"
     }
   }
 ]
