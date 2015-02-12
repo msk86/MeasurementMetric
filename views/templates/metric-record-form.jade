@@ -1,0 +1,17 @@
+form
+    div {{settings.metricName}}
+    div
+        label MetricValue
+        input(ng-model="metric.metricValue")
+        span {{settings.metricUnit}}
+    div(ng-if="settings.metricTypes.length")
+        label MetricType
+        select(ng-model="metric.metricType" ng-options="t for t in settings.metricTypes")
+    div(ng-repeat="field in settings.fields")
+        label {{field}}
+        input(ng-model="metric[field]")
+    div
+        button(ng-click="submit") Submit
+        button Close
+
+

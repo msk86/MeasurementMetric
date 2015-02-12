@@ -1,6 +1,6 @@
 (function (angular, $) {
 
-    angular.module('metric').factory('MetricCreateService', ['$timeout', '$q', function ($timeout, $q) {
+    angular.module('metric').factory('MetricRecordService', ['$timeout', '$q', function ($timeout, $q) {
         function dataPromise(url, data) {
             var deferred = $q.defer();
             $.ajax({
@@ -13,19 +13,19 @@
                 });
             }).error(function () {
                 $timeout(function () {
-                    deferred.reject("An error occurred while create metric");
+                    deferred.reject("An error occurred while record metric");
                 });
             });
             return deferred.promise;
         }
 
-        function createMetricUrl(metricName) {
-            return encodeURI("/metrics/" + metricName + "/settings");
+        function recordMetricUrl(metricName) {
+            return encodeURI("/metrics/" + metricName);
         }
 
         return {
-            createMetric: function (data) {
-                return dataPromise(createMetricUrl(data.metricName), data);
+            recordMetric: function (data) {
+                return dataPromise(recordMetricUrl(data.metricName), data);
             }
         }
 

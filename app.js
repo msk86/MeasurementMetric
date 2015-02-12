@@ -8,6 +8,7 @@ var mongojs = require('mongojs');
 
 var routes = require('./routes/index');
 var templates = require('./routes/templates');
+var metrics = require('./routes/metrics');
 
 var databaseUrl = "mydb";
 var collections = ["users", "reports"]
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/templates', templates);
+app.use('/metrics', metrics);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
