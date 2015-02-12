@@ -93,4 +93,6 @@ Then open `localhost:4000`
 * Command to use mongo:
       mongo
       show dbs
+      use mydb
+      db.metric.find()
       ...

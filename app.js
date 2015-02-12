@@ -4,16 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongojs = require('mongojs');
 
 var routes = require('./routes/index');
 var templates = require('./routes/templates');
 var metrics = require('./routes/metrics');
-
-var databaseUrl = "mydb";
-var collections = ["users", "reports"]
-var db = mongojs.connect(databaseUrl, collections);
-//db.runCommand("mongo");  Use this line to make sure connect mongodb successfully!!!
 
 var app = express();
 
