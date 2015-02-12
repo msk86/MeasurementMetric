@@ -1,24 +1,35 @@
 [
-{
-  "request": {
-    "uri":  {
-      "match" :  "/metrics/stories/type/all/timeframe/fortnight"
+  {
+    "request": {
+      "uri": {
+        "match": "/metrics/stories/types/all/timeframes/fortnight.json"
+      },
+      "method": "get"
     },
-    "method": "get"
+    "response": {
+      "file": "mock-data/data/iteration_stories.json"
+    }
   },
-  "response": {
-    "file": "mock-data/data/iteration_stories.json"
-  }
-},
-{
-  "request": {
-    "uri":  {
-      "match" :  "/metrics/stories/type/userstory/timeframe/month"
+  {
+    "request": {
+      "uri": {
+        "match": "/metrics/stories/types/userstory/timeframes/month.json"
+      },
+      "method": "get"
     },
-    "method": "get"
+    "response": {
+      "file": "mock-data/data/month_stories.json"
+    }
   },
-  "response": {
-    "file": "mock-data/data/month_stories.json"
+  {
+    "request": {
+      "uri": {
+        "match": "/metrics/stories/types/all/timeframes/month/trends.json"
+      },
+      "method": "get"
+    },
+    "response": {
+      "file": "mock-data/data/week_stories_trends.json"
+    }
   }
-}
 ]

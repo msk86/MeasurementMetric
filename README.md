@@ -77,4 +77,4 @@ Then open `localhost:4000`
 ## API
 * Get data for number view: `/metrics/:metric/types/:type/timeframe/:frames.json`
 
-    Such as `/metrics/story/types/all/timeframe/fortnight.json`
+    Such as `/metrics/story/types/all/timeframes/fortnight.json`
