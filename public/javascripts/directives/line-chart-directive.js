@@ -4,22 +4,52 @@
             var link = function ($scope, element) {
                 var chart;
 
-                function drawGraph(seriesArray, colorsArray) {
+                $scope.$on('TREND_DATA_CHANGE', function () {
+                    $scope.updateChart();
+                });
+
+                $scope.updateChart = function () {
+                    $scope.trendData = $scope.seriesData();
+
+                    console.log("trend data")
+                    console.log($scope.trendData)
+                    var chartSeries = formatSeries($scope.trendData),
+                        series = chartSeries.series,
+                        colors = chartSeries.colors;
+
+                    drawGraph(series, colors);
+                };
+
+                function formatSeries(trendData) {
+                    var series = [],
+                        colors = [];
+                    for (var i = 0; i < trendData.length; i++) {
+                        series.push({
+                            name: trendData[i].seriesLabel,
+                            data: trendData[i].yData
+                        });
+                        colors.push(trendData[i].color);
+                    }
+                    return {series: series, colors: colors};
+                }
+
+                function drawGraph(series, colors) {
                     if (element.is(":hidden")) {
                         element.show();
                     }
 
+                    console.log(series)
                     var xAxisTickPixelInterval = 68;
 
                     chart = RuiCharts.lineChart({
                         renderTo: 'line-chart',
                         height: 300,
-                        series: seriesArray,
+                        series: series,
                         //yAxisLabelFormatter: trendChartFormatterFactory.yAxisLabelFormatter(),
                         xAxisTickPixelInterval: xAxisTickPixelInterval,
                         //pointFormatter: trendChartFormatterFactory.pointFormatter(),
                         //legendFooterFormatter: trendChartFormatterFactory.legendFooterFormatter(),
-                        colors: colorsArray
+                        colors: colors
                     });
                     chart.draw();
                 }
@@ -29,14 +59,12 @@
                 link: link,
                 restrict: 'E',
                 scope: {
-                    //dataType: '@sourceType',
-                    //intervalType: '@',
-                    //graphType: '@',
-                    //chartTitle: '@',
-                    //propertyConfig: '=',
-                    //location: '=',
+                    dataType: '@sourceType',
+                    intervalType: '@',
+                    graphType: '@',
+                    chartTitle: '@',
                     //currentTrend: '&',
-                    //seriesData: '&'
+                    seriesData: '&'
                 },
                 templateUrl: '/templates/chart.html',
                 controller: 'ChartsController',
