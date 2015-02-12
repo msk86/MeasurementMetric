@@ -1,0 +1,10 @@
+form
+    div(class="form-category")
+        span {{form.category}}
+        select(ng-model="form.category" ng-options="category for category in categories")
+    normal-metric-form(ng-if="form.category=='normal'")
+    schedule-metric-form(ng-if="form.category=='schedule'")
+    div
+        button Submit
+        button Close
+
