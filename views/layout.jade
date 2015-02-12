@@ -1,11 +1,16 @@
 doctype html
-html
+html('id'='ng-app', 'ng-app'='metric')
   head
+    script(src='vendor/jquery/jquery.js')
     script(src='http://s1.rui.au.reastatic.net/rui-1.7.2/js/rui-all.js')
-    script(src='vendor/angularjs/angular.min.js')
+    script(src='vendor/angularjs/angular.js')
     script(src='vendor/highcharts/highcharts.js')
     script(src='vendor/moment/moment.js')
-    script(src='vendor/jquery/jquery.js')
+    script(src='javascripts/metricApp.js')
+    script(src='javascripts/services/api-service.js')
+    script(src='javascripts/services/chart-data-service.js')
+    script(src='javascripts/directives/line-chart-directive.js')
+    script(src='javascripts/controllers/charts-controller.js')
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='http://s1.rui.au.reastatic.net/rui-1.7.2/css/rui-all.min.css')

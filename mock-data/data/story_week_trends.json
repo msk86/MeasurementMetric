@@ -1,4 +1,4 @@
-{
+[{
   "metricName": "Stories",
   "metricDesc": "Finished stories in current iteration",
   "timeFrame": "week",
@@ -40,4 +40,4 @@
       {"x": "Sun", "y": 1, "date": "2015-02-15"}
     ]
   }
-}
+}]

@@ -1,4 +1,4 @@
-{
+[{
   "metricName": "Stories",
   "metricDesc": "Finished stories in current iteration",
   "timeFrame": "week",
@@ -8,4 +8,4 @@
     "bug": 2,
     "techTask": 1
   }
-}
+}]
