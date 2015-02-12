@@ -70,10 +70,6 @@ button.
 
 Then open `localhost:4000`
 
-
-
-
-
 ## API
 * Get data for number view: `/metrics/:metric/timeframes/:frame.json`
 
@@ -86,3 +82,15 @@ Then open `localhost:4000`
 * Get data for pie chart view: `/metrics/:metric/timeframes/:frame/pie.json`
 
     Such as `/metrics/story/timeframes/week/pie.json`
+
+## MongoDB
+* Installation: `brew install mongodb`
+* Configuration for **dbpath**:
+      sudo mkdir -p /data/db
+      sudo chmod 0755 /data/db
+      sudo chown {userName}:staff /data/db
+* Start MongoDB server: `mongod`
+* Command to use mongo:
+      mongo
+      show dbs
+      ...
