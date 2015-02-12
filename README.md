@@ -65,4 +65,10 @@ button.
 
 ## To run app
 `node app.js`
-then open `localhost:4000`
+
+Then open `localhost:4000`
+
+## API
+* Get data for number view: `/metrics/:metric/types/:type/timeframes/:frames.json`
+
+    Such as `/metrics/story/types/_all/timeframes/fortnight.json`
