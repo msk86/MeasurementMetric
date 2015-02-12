@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask('compile-assets', ['shell:compile', 'shell:css2js']);
-    grunt.registerTask('package', ['compile-assets', 'concat', 'uglify']);
+    grunt.registerTask('package', ['compile-assets', 'uglify']);
 
 
     // Default task(s).
