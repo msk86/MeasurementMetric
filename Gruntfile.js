@@ -45,8 +45,14 @@ module.exports = function(grunt) {
                     'public/stylesheets/style.css' : 'sass/style.scss'
                 }
             }
+        },
+        bower: {
+            install: {
+                options: {
+                    targetDir: 'public/vendor/'
+                }
+            }
         }
-
     });
 
     // Load the plugin that provides the "uglify" task.
@@ -54,6 +60,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-sass');
 
 
@@ -62,6 +69,6 @@ module.exports = function(grunt) {
 
 
     // Default task(s).
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['bower']);
 
 };
