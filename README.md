@@ -64,11 +64,17 @@ button.
 * See the `commits` metric changes at every 10:00am
 
 ## To run app
-`node app.js`
+`node app.js` to start app server
+
+`./srcipt/start-moco.sh` to start moco server when we don't have the backend
 
 Then open `localhost:4000`
 
-## API
-* Get data for number view: `/metrics/:metric/types/:type/timeframes/:frames.json`
 
-    Such as `/metrics/story/types/_all/timeframes/fortnight.json`
+
+
+
+## API
+* Get data for number view: `/metrics/:metric/types/:type/timeframe/:frames.json`
+
+    Such as `/metrics/story/types/all/timeframe/fortnight.json`

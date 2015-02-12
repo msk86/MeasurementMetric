@@ -7,7 +7,7 @@
     "method": "get"
   },
   "response": {
-    "file": "data/iteration_stories.json"
+    "file": "mock-data/data/iteration_stories.json"
   }
 },
 {
@@ -18,7 +18,7 @@
     "method": "get"
   },
   "response": {
-    "file": "data/month_stories.json"
+    "file": "mock-data/data/month_stories.json"
   }
 }
 ]
