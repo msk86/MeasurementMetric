@@ -1,0 +1,24 @@
+[
+{
+  "request": {
+    "uri":  {
+      "match" :  "/metrics/stories/type/all/timeframe/fortnight"
+    },
+    "method": "get"
+  },
+  "response": {
+    "file": "data/iteration_stories.json"
+  }
+},
+{
+  "request": {
+    "uri":  {
+      "match" :  "/metrics/stories/type/userstory/timeframe/month"
+    },
+    "method": "get"
+  },
+  "response": {
+    "file": "data/month_stories.json"
+  }
+}
+]

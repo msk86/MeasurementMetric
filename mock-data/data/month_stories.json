@@ -1,0 +1,10 @@
+{
+  "metricName": "Stories",
+  "metricDesc": "Finished stories in current iteration",
+  "type": "userStory",
+  "timeFrame": "month",
+  "metricValue": {
+    "current": 15,
+    "previous": 13
+  }
+}
