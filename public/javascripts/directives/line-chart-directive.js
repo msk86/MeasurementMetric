@@ -43,6 +43,10 @@
                         renderTo: 'line-chart',
                         height: 300,
                         series: series,
+                        dateTimeLabelFormats: {
+                            day: '%a'
+
+                        },
                         //yAxisLabelFormatter: trendChartFormatterFactory.yAxisLabelFormatter(),
                         xAxisTickPixelInterval: xAxisTickPixelInterval,
                         //pointFormatter: trendChartFormatterFactory.pointFormatter(),

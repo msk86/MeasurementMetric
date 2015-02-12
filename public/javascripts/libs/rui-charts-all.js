@@ -300,6 +300,7 @@
                         fontSize: '12px'
                     }
                 },
+                dateTimeLabelFormats: options.dateTimeLabelFormats,
                 tickPixelInterval: options.xAxisTickPixelInterval
             },
             yAxis: {
