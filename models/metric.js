@@ -15,13 +15,32 @@ module.exports = (function() {
         this.metric = true;
     }
 
-    function reduceData(metricData) {
-        return _.reduce(metricData, function(m, d) {
-            return m + parseInt(d.metricValue);
-        }, 0);
+    function reduceData(metricData, processMethod) {
+        var processor = {
+            total: function(metricData) {
+                return _.reduce(metricData, function(m, d) {
+                    return m + parseInt(d.metricValue);
+                }, 0);
+            },
+            avg: function(metricData) {
+                return Math.floor(this.total(metricData) / metricData.length);
+            },
+            max: function(metricData) {
+                return _.max(metricData, function(d) {
+                    return parseInt(d.metricValue);
+                });
+            },
+            min: function(metricData) {
+                return _.min(metricData, function(d) {
+                    return parseInt(d.metricValue);
+                });
+            }
+        };
+
+        return processor[processMethod](metricData);
     }
 
-    function rangeReduceData(metricData, ranges) {
+    function rangeReduceData(metricData, ranges, processMethod) {
         var rangeMetrics = {};
         _.forEach(metricData, function(m) {
             _.forEach(ranges, function(r) {
@@ -32,7 +51,7 @@ module.exports = (function() {
             });
         });
         return _.map(rangeMetrics, function(metrics, range) {
-            return {x: range, y: reduceData(metrics)};
+            return {x: range, y: reduceData(metrics, processMethod)};
         });
     }
 
@@ -47,6 +66,7 @@ module.exports = (function() {
         MetricSettings.getInstance(metricName, function(err, settings) {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
+            var processMethod = settings.processMethod;
             db.metric.find({
                 metricName: metricName,
                 metric: true,
@@ -58,14 +78,14 @@ module.exports = (function() {
                 });
 
                 var value = _.reduce(grouped, function(memo, groupData, group) {
-                    var groupValue = reduceData(groupData);
+                    var groupValue = reduceData(groupData, processMethod);
                     if(group) {
                         memo[group] = groupValue;
                     }
                     return memo;
                 }, {});
 
-                value.all = reduceData(metricData);
+                value.all = reduceData(metricData, processMethod);
 
                 var data = {
                     metricName: metricName,
@@ -88,6 +108,7 @@ module.exports = (function() {
         MetricSettings.getInstance(metricName, function(err, settings) {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
+            var processMethod = settings.processMethod;
             db.metric.find({
                 metricName: metricName,
                 metric: true,
@@ -100,10 +121,10 @@ module.exports = (function() {
 
                 var value = {};
                 _.forEach(grouped, function(gm, g) {
-                    value[g] = rangeReduceData(gm, ranges);
+                    value[g] = rangeReduceData(gm, ranges, processMethod);
                 });
 
-                value.all = rangeReduceData(metricData, ranges);
+                value.all = rangeReduceData(metricData, ranges, processMethod);
 
                 var data = {
                     metricName: metricName,
