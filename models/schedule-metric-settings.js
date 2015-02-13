@@ -1,5 +1,4 @@
 var mongojs = require('mongojs');
-var uuid = require('node-uuid');
 
 var databaseUrl = "mydb";
 var collections = ["metric"];
@@ -7,7 +6,6 @@ var db = mongojs.connect(databaseUrl, collections);
 
 module.exports = (function() {
     function ScheduleMetricSettings(options) {
-        this.id = options.id;
         this.createAt = options.createAt;
         this.metricCategory = 'schedule';
         this.metricName = options.metricName;
@@ -24,11 +22,9 @@ module.exports = (function() {
     }
 
     ScheduleMetricSettings.create = function(settings) {
-        settings.id = uuid.v1();
         settings.createdTime = new Date();
         var metricSetting = new ScheduleMetricSettings(settings);
         db.metric.insert({message: metricSetting});
-        db.metric.save();
     };
 
     return ScheduleMetricSettings;
