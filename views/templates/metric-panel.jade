@@ -7,11 +7,11 @@ div
                 div.filters
                     span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
             div.graph-body
-                metric-general
-                //line-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()")
+                metric-general(ng-if="chartType=='general'")
+                line-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='lineChart'")
         div.actions
-            span.rui-icon.rui-icon-listview
-            span.rui-icon.rui-icon-cog
-            span.rui-icon.rui-icon-calendar
+            span.rui-icon.rui-icon-listview(ng-click="clickChartType('general')" ng-class="{active:chartType=='general'}")
+            span.rui-icon.rui-icon-cog(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
+            span.rui-icon.rui-icon-calendar(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
             span.rui-icon.rui-icon-link
             span.rui-icon.rui-icon-cog

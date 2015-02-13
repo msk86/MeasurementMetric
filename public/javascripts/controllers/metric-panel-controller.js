@@ -3,6 +3,7 @@
     angular.module('metric').controller('MetricPanelController',
         ['$scope', 'MetricDataService', 'MetricSettingsService',
             function ($scope, MetricDataService, MetricSettingsService) {
+                $scope.chartType = 'general';
                 MetricSettingsService.getSettings($scope.metricName).then(function(settings) {
                     $scope.timeFrame = settings.timeFrame;
                     $scope.metricDesc = 'Production issue average recovery time.';
@@ -19,7 +20,11 @@
                     $scope.timeFrame = timeFrame;
 
                     getMetricData();
-                }
+                };
+
+                $scope.setChartType = function(chartType) {
+                    $scope.chartType = chartType;
+                };
             }
         ]);
 

@@ -11,7 +11,11 @@
 
                 $scope.clickTimeFrameFilter = function(timeFrame) {
                     $scope.changeTimeFrame(timeFrame);
-                }
+                };
+
+                $scope.clickChartType = function(chartType) {
+                    $scope.setChartType(chartType);
+                };
             }
 
             return {
