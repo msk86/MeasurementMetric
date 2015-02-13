@@ -9,12 +9,14 @@
 
                 MetricSettingsService.getSettings($scope.metricName).then(function(settings) {
                     $scope.settings = settings;
-                    defaultMetricValue.metricType = settings.metricTypes[0];
+                    if(settings.metricTypes.length) {
+                        defaultMetricValue.metricType = settings.metricTypes[0];
+                    }
                     resetMetric();
                 });
 
                 function resetMetric() {
-                    $scope.metric = angular.extend({}, defaultMetricValue);
+                    $scope.metric = angular.extend({metricName: $scope.metricName}, defaultMetricValue);
                 }
 
                 $scope.record = function() {
