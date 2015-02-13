@@ -9,6 +9,7 @@ module.exports = (function() {
         this.createdTime = options.createdTime;
         this.metricCategory = 'schedule';
         this.metricName = options.metricName;
+        this.metricDesc = options.metricDesc;
         this.metricUnit = options.metricUnit || '';
         this.processMethod = options.processMethod;
         this.metricTypes = options.metricTypes ? (options.metricTypes).split(/[,;:|]/).map(function(t) {return t.trim()}) : [];

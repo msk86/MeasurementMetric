@@ -1,17 +1,5 @@
 div
     div
-        label MetricName
-        input(ng-model="form.metricName")
-    div
-        label MetricUnit
-        input(ng-model="form.metricUnit")
-    div
-        label ProcessMethod
-        select(ng-model="form.processMethod" ng-options="m.method as m.display for m in processMethods")
-    div
-        label MetricTypes
-        input(ng-model="form.metricTypes" placeholder="type1;type2")
-    div
         label API
         input(ng-model="form.api")
     div
@@ -26,6 +14,3 @@ div
     div
         label Frequency(Cron)
         input(ng-model="form.frequency" placeholder="MIN HOUR DAY MONTH DAY-OF-WEEK")
-    div
-        label TimeFrame
-        select(ng-model="form.timeFrame" ng-options="f.frame as f.display for f in timeFrames")

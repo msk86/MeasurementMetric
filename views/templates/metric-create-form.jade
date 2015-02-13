@@ -2,8 +2,26 @@ form
     div(class="form-category")
         label MetricCategory
         select(ng-model="form.category" ng-options="c.category as c.display for c in categories")
+    div
+        label MetricName
+        input(ng-model="form.metricName")
+    div
+        label MetricUnit
+        input(ng-model="form.metricUnit")
+    div
+        label MetricDesc
+        input(ng-model="form.metricDesc")
+    div
+        label ProcessMethod
+        select(ng-model="form.processMethod" ng-options="m.method as m.display for m in processMethods")
+    div
+        label MetricTypes
+        input(ng-model="form.metricTypes" placeholder="type1;type2")
     normal-metric-form(ng-if="form.category=='normal'")
     schedule-metric-form(ng-if="form.category=='schedule'")
+    div
+        label TimeFrame
+        select(ng-model="form.timeFrame" ng-options="f.frame as f.display for f in timeFrames")
     div
         button(ng-click="submit()") Submit
         button Close
