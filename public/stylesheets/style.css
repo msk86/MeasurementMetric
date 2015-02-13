@@ -16,7 +16,7 @@
   font-size: 0.8em; }
 
 header {
-  background-color: #00beb3;
+  background-color: #333f48;
   color: white;
   padding: 10px 0;
   margin-bottom: 40px; }
@@ -32,9 +32,9 @@ header {
       text-decoration: none; }
 
 .metric {
-  width: 31.333%;
+  width: 30.333%;
   min-width: 314px;
-  margin-right: 2%;
+  margin-right: 3%;
   float: left; }
   .metric .left-part {
     flex: 4;
@@ -58,8 +58,6 @@ header {
       padding: 2px 6px; }
       .metric .filters span:last-child {
         border-right: none; }
-      .metric .filters span.active {
-        background-color: #00c694; }
   .metric .graph-body {
     text-align: center;
     padding: 10px 0; }
@@ -67,14 +65,12 @@ header {
     width: 180px;
     height: 180px;
     margin: 0 auto;
-    border: 3px solid #00c694;
     border-radius: 100%; }
   .metric .number-wrapper {
     margin-top: 55px; }
   .metric .number {
     line-height: 1em;
-    font-size: 3em;
-    color: #00c694; }
+    font-size: 3em; }
   .metric .unit {
     color: #666; }
   .metric .metric-content {
@@ -98,10 +94,39 @@ header {
       transition: all 0.3s; }
       .metric .actions span:last-child {
         border-bottom: none; }
-      .metric .actions span:hover {
-        color: #00c694; }
-      .metric .actions span.active {
-        color: #00c694; }
+
+.mint-theme .number {
+  color: #00c694; }
+.mint-theme .filter span.active {
+  background-color: #00c694; }
+.mint-theme .graph-body .content {
+  border: 3px solid #00c694; }
+.mint-theme .actions span:hover {
+  color: #00c694; }
+.mint-theme .actions span.active {
+  color: #00c694; }
+
+.yellow-theme .number {
+  color: #ffb200; }
+.yellow-theme .filter span.active {
+  background-color: #ffb200; }
+.yellow-theme .graph-body .content {
+  border: 3px solid #ffb200; }
+.yellow-theme .actions span:hover {
+  color: #ffb200; }
+.yellow-theme .actions span.active {
+  color: #ffb200; }
+
+.orange-theme .number {
+  color: #ff6000; }
+.orange-theme .filter span.active {
+  background-color: #ff6000; }
+.orange-theme .graph-body .content {
+  border: 3px solid #ff6000; }
+.orange-theme .actions span:hover {
+  color: #ff6000; }
+.orange-theme .actions span.active {
+  color: #ff6000; }
 
 @font-face {
   font-family: 'icomoon';

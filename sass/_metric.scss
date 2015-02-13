@@ -1,7 +1,7 @@
 .metric {
-	width: 31.333%;
+	width: 30.333%;
 	min-width: 314px;
-	margin-right: 2%;
+	margin-right: 3%;
 	float: left;
 	.left-part {
 		flex: 4;
@@ -29,9 +29,6 @@
 			&:last-child {
 				border-right: none;
 			}
-			&.active {
-				background-color: $mint-dark;
-			}
 		}
 	}
 
@@ -43,7 +40,6 @@
 		width: 180px;
 		height: 180px;
 		margin: 0 auto;
-		border: 3px solid $mint-dark;
 		border-radius: 100%;
 	}
 	.number-wrapper {
@@ -52,7 +48,6 @@
 	.number {
 		line-height: 1em;
 		font-size: 3em;
-		color: $mint-dark;
 	}
 	.unit {
 		color: #666;
@@ -61,7 +56,7 @@
 		display: flex;
 		border: 1px solid $border-gray;
 	}
-  	.metric-desc {
+  .metric-desc {
 	  border-top: 1px solid #c3c8ce;
 	  margin-top: 4px;
 	  padding: 10px 5px;
@@ -82,13 +77,40 @@
 			&:last-child {
 				border-bottom: none;
 			}
-			&:hover {
-				color: $mint-dark;
-			}
-			&.active {
-				color: $mint-dark;
-			}
 		}
 
 	}
 }
+
+@mixin metric-theme($theme-color) {
+	.number {
+		color: $theme-color;
+	}
+	.filter span.active {
+		background-color: $theme-color;
+	}
+	.graph-body .content {
+		border: 3px solid $theme-color;
+	}
+	.actions {
+		span {
+			&:hover {
+				color: $theme-color;
+			}
+			&.active {
+				color: $theme-color;
+			}
+		}
+	}	
+}
+
+.mint-theme{
+	@include metric-theme($mint-dark);
+}
+.yellow-theme{
+	@include metric-theme($yellow-dark);
+}
+.orange-theme{
+	@include metric-theme($orange-dark);
+}
+
