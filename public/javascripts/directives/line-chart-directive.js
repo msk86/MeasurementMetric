@@ -1,4 +1,4 @@
-(function (angular, RuiCharts, Select) {
+(function (angular, RuiCharts, moment) {
     angular.module('metric').directive('lineChart',
         ['$timeout', function ($timeout) {
             var link = function ($scope, element) {
@@ -45,7 +45,13 @@
                         series: series,
                         dateTimeLabelFormats: {
                             day: '%a'
-
+                        },
+                        title: {
+                            text: moment(series[0].data[0].x).format("YYYY-MM-DD") + ' - ' + moment(series[0].data[6].x).format("YYYY-MM-DD"),
+                            align: 'left',
+                            style: {
+                                fontSize: '12px'
+                            }
                         },
                         //yAxisLabelFormatter: trendChartFormatterFactory.yAxisLabelFormatter(),
                         xAxisTickPixelInterval: xAxisTickPixelInterval,
@@ -68,9 +74,9 @@
                     //currentTrend: '&',
                     seriesData: '&'
                 },
-                templateUrl: '/templates/chart.html',
+                templateUrl: '/templates/line-chart.html',
                 controller: 'ChartsController',
                 replace: true
             };
         }]);
-}(window.angular, window.RUI.Charts, window.RUI.Select));
+}(window.angular, window.RUI.Charts, window.moment));

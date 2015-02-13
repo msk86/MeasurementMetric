@@ -46,6 +46,21 @@ router.get('/:metric/timeframes/fortnight.json', function(req, res, next) {
     )
 });
 
+router.get('/metrics/story/timeframes/week/pie.json', function(req, res, next) {
+    res.json([{
+            "metricName": "Stories",
+            "metricDesc": "Finished stories in current iteration",
+            "timeFrame": "week",
+            "pie": {
+                "all": 8,
+                "userStory": 5,
+                "bug": 2,
+                "techTask": 1
+            }
+        }]
+    )
+});
+
 
 
 module.exports = router;

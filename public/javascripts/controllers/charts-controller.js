@@ -40,13 +40,13 @@
                     $scope.$broadcast('TREND_DATA_CHANGE');
                 });
 
-                function transformToDate(dataType) {
-                    var data = $scope.allData[dataType];
+                function transformToDate(storyType) {
+                    var data = $scope.allData[storyType];
                     var convertXtoDate = [];
                     for (var i = 0; i < data.length; i++) {
                         convertXtoDate.push({x: toDate(data[i].x), y: data[i].y});
                     }
-                    $scope.allData[dataType] = convertXtoDate;
+                    $scope.allData[storyType] = convertXtoDate;
                 }
 
                 function toDate(date) {
