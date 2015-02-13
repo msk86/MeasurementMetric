@@ -85,12 +85,12 @@ Then open `localhost:4000`
 
 ## MongoDB
 * Installation: `brew install mongodb`
-* Configuration for **dbpath**:
+* Configuration for **dbpath**:  
       sudo mkdir -p /data/db
       sudo chmod 0755 /data/db
       sudo chown {userName}:staff /data/db
 * Start MongoDB server: `mongod`
-* Command to use mongo:
+* Command to use mongo:  
       mongo
       show dbs
       use mydb
