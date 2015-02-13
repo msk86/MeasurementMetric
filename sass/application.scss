@@ -86,15 +86,18 @@ header {
 		border: 3px solid $mint-dark;
 		border-radius: 100%;
 	}
+	.number-wrapper {
+		margin-top: 55px;		
+	}
 	.number {
-		margin-top: 55px;
+
 		line-height: 1em;
 		font-size: 3em;
 		color: $mint-dark;
 	}
-	.description {
+	.unit {
 		font-size: 0.8em;
-		color: $mint-dark;
+		color: #666;
 	}
 	.metric-content {
 		display: flex;

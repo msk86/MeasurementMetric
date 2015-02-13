@@ -157,14 +157,15 @@ header {
     margin: 0 auto;
     border: 3px solid #00c694;
     border-radius: 100%; }
+  .metric .number-wrapper {
+    margin-top: 55px; }
   .metric .number {
-    margin-top: 55px;
     line-height: 1em;
     font-size: 3em;
     color: #00c694; }
-  .metric .description {
+  .metric .unit {
     font-size: 0.8em;
-    color: #00c694; }
+    color: #666; }
   .metric .metric-content {
     display: flex;
     border: 1px solid #c3c8ce; }

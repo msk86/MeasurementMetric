@@ -1,5 +1,7 @@
 div
   div.content
-    p.number {{metric.value.all}}
+    p
+      span.number {{metric.value.all}}
+      span.unit min
     p.description in {{metric.timeFrame}}
   div.metric-desc {{metricDesc}}
