@@ -1,8 +1,8 @@
 (function (angular, $, moment, Story) {
 
     angular.module('metric').controller('ChartsController',
-        ['$scope', '$timeout', 'ChartDataService',
-            function ($scope, $timeout, ChartDataService) {
+        ['$scope', '$timeout', 'ChartDataService', 'PieChartDataService',
+            function ($scope, $timeout, ChartDataService, PieChartDataService) {
                 $scope.allData = {};
 
                 $scope.trendControls = {
@@ -13,20 +13,28 @@
                 };
 
                 $scope.seriesData = function () {
+                    return chartData($scope.allData);
+                };
+
+                $scope.pieChartData = function () {
+                    return chartData($scope.pieData);
+                };
+
+                function chartData(data) {
                     var seriesName = Story.storyTypes;
                     var seriesData = [];
                     for (var i = 0; i < seriesName.length; i++) {
-                        seriesData.push($scope.currentTrend(seriesName[i], $scope.trendControls));
+                        seriesData.push($scope.currentTrend(seriesName[i], $scope.trendControls, data));
                     }
                     return seriesData;
-                };
+                }
 
-                $scope.currentTrend = function (storyType, trendControls) {
-                    transformToDate(storyType.name);
+                $scope.currentTrend = function (storyType, trendControls, chartData) {
+                    transformToDate(chartData, storyType.name);
                     return {
                         "seriesLabel": storyType.seriesLabel,
                         "xLabelData": dateFormatter(trendControls.intervalType),
-                        "yData": $scope.allData[storyType.name],
+                        "yData": chartData[storyType.name],
                         "color": storyType.color
                     };
                 };
@@ -36,17 +44,22 @@
                 }
 
                 $scope.$on('LINE_CHART_DATA_CHANGE', function (e, data) {
-                    $scope.allData = data["trends"];
+                    $scope.allData = ChartDataService.data()["trends"];
                     $scope.$broadcast('TREND_DATA_CHANGE');
                 });
 
-                function transformToDate(storyType) {
-                    var data = $scope.allData[storyType];
+                $scope.$on('PIE_CHART_DATA_CHANGE', function (e, data) {
+                    $scope.pieData = PieChartDataService.data()["pie"];
+                    $scope.$broadcast('PIE_DATA_CHANGE');
+                });
+
+                function transformToDate(chartData, storyType) {
+                    var data = chartData[storyType];
                     var convertXtoDate = [];
                     for (var i = 0; i < data.length; i++) {
                         convertXtoDate.push({x: toDate(data[i].x), y: data[i].y});
                     }
-                    $scope.allData[storyType] = convertXtoDate;
+                    chartData[storyType] = convertXtoDate;
                 }
 
                 function toDate(date) {

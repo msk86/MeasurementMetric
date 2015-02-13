@@ -9,9 +9,9 @@
                 });
 
                 $scope.updateChart = function () {
-                    $scope.trendData = $scope.seriesData();
+                    $scope.allData = $scope.seriesData();
 
-                    var chartSeries = formatSeries($scope.trendData),
+                    var chartSeries = formatSeries($scope.allData),
                         series = chartSeries.series,
                         colors = chartSeries.colors;
 
@@ -36,7 +36,6 @@
                         element.show();
                     }
 
-                    console.log(series)
                     var xAxisTickPixelInterval = 68;
 
                     chart = RuiCharts.lineChart({
@@ -45,13 +44,6 @@
                         series: series,
                         dateTimeLabelFormats: {
                             day: '%a'
-                        },
-                        title: {
-                            text: moment(series[0].data[0].x).format("YYYY-MM-DD") + ' - ' + moment(series[0].data[6].x).format("YYYY-MM-DD"),
-                            align: 'left',
-                            style: {
-                                fontSize: '12px'
-                            }
                         },
                         //yAxisLabelFormatter: trendChartFormatterFactory.yAxisLabelFormatter(),
                         xAxisTickPixelInterval: xAxisTickPixelInterval,

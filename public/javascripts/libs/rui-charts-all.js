@@ -268,7 +268,9 @@
             credits: {
                 enabled: false
             },
-            title: options.title,
+            title: {
+                text: ''
+            },
             legend: {
                 enabled: options.legendEnabled,
                 itemStyle: {

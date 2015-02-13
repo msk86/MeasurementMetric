@@ -1,6 +1,6 @@
 (function (angular, $) {
     'use strict';
-    angular.module('metric').service('ChartDataService', ['$rootScope', '$timeout', 'DataService',
+    angular.module('metric').service('PieChartDataService', ['$rootScope', '$timeout', 'DataService',
         function ($rootScope, $timeout, DataService) {
 
             var service = this;
@@ -10,12 +10,12 @@
                 return data ? $.extend({}, data) : data;
             };
             service.load = function () {
-                DataService.lineChartData().then(function (lineChartData) {
-                    data = lineChartData;
-                    $rootScope.$broadcast("LINE_CHART_DATA_CHANGE");
+                DataService.pieChartData().then(function (chartData) {
+                    data = chartData;
+                    $rootScope.$broadcast("PIE_CHART_DATA_CHANGE");
                 }, function () {
                     data = {};
-                    $rootScope.$broadcast("LINE_CHART_DATA_CHANGE");
+                    $rootScope.$broadcast("PIE_CHART_DATA_CHANGE");
                 });
             };
 

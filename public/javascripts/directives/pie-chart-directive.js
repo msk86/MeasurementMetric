@@ -5,6 +5,34 @@
             var link = function ($scope, element) {
                 var chart;
 
+                $scope.$on('PIE_DATA_CHANGE', function () {
+                    $scope.updateChart();
+                });
+
+                $scope.updateChart = function () {
+                    $scope.pieData = $scope.pieChartData();
+
+                    var chartSeries = formatSeries($scope.pieData),
+                        series = chartSeries.series,
+                        colors = chartSeries.colors;
+
+                    drawGraph(series, colors);
+                };
+
+                function formatSeries(data) {
+                    var series = [{"data": [], name: 'Stories'}],
+                        colors = [];
+                    for (var i = 0; i < data.length; i++) {
+                        console.log(data[i].yData);
+                        series[0]["data"].push({
+                            name: data[i].seriesLabel,
+                            y: data[i].yData[0].y
+                        });
+                        colors.push(data[i].color);
+                    }
+                    return {series: series, colors: colors};
+                }
+
                 function drawGraph(series, colors) {
                     if (element.is(":hidden")) {
                         element.show();
@@ -18,31 +46,15 @@
                             plotBorderWidth: null,
                             plotShadow: false
                         },
-                        series: [{
-                            name: 'Browser share',
-                            data: [
-                                ['Firefox', 45.0],
-                                ['IE', 26.8],
-                                {
-                                    name: 'Chrome',
-                                    y: 12.8,
-                                    sliced: true,
-                                    selected: true
-                                },
-                                ['Safari', 8.5],
-                                ['Opera', 6.2],
-                                ['Others', 0.7]
-                            ]
-                        }],
-                        title: {
-                            //text: moment(series[0].data[0].x).format("YYYY-MM-DD") + ' - ' + moment(series[0].data[6].x).format("YYYY-MM-DD"),
-                            align: 'left',
-                            style: {
-                                fontSize: '12px'
-                            }
-                        },
+                        series: series,
                         tooltip: {
                             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        credits: {
+                            enabled: false
                         },
                         plotOptions: {
                             pie: {
@@ -55,7 +67,6 @@
                             }
                         }
                     };
-
                     var chart = new Highcharts.Chart(chartOptions);
                 }
 
@@ -72,9 +83,7 @@
                     dataType: '@sourceType',
                     intervalType: '@',
                     graphType: '@',
-                    chartTitle: '@',
-                    //currentTrend: '&',
-                    seriesData: '&'
+                    chartTitle: '@'
                 },
                 templateUrl: '/templates/pie-chart.html',
                 controller: 'ChartsController',

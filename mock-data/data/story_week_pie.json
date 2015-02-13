@@ -3,9 +3,9 @@
   "metricDesc": "Finished stories in current iteration",
   "timeFrame": "week",
   "pie": {
-    "all": 8,
-    "userStory": 5,
-    "bug": 2,
-    "techTask": 1
+    "all": [{"x": "2015-02-09", "y": 8, "date": "2015-02-09"}],
+    "userStory": [{"x": "2015-02-09", "y": 5, "date": "2015-02-09"}],
+    "bug": [{"x": "2015-02-09", "y": 2, "date": "2015-02-09"}],
+    "techTask": [{"x": "2015-02-09", "y": 2, "date": "2015-02-09"}]
   }
 }]
