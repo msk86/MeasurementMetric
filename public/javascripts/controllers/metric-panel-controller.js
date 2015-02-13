@@ -5,7 +5,7 @@
             function ($scope, MetricDataService, MetricSettingsService) {
                 MetricSettingsService.getSettings($scope.metricName).then(function(settings) {
                     $scope.timeFrame = settings.timeFrame;
-
+                    $scope.metricDesc = 'Production issue average recovery time.';
                     getMetricData();
                 });
 

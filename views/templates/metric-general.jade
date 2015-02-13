@@ -1,3 +1,5 @@
-div.content
-  p.number 12
-  p.description 12 stories / fortnight
+div
+  div.content
+    p.number {{metric.value.all}}
+    p.description in {{metric.timeFrame}}
+  div.metric-desc {{metricDesc}}

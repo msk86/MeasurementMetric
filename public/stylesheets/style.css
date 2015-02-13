@@ -161,6 +161,11 @@ header {
   .metric .metric-content {
     display: flex;
     border: 1px solid #c3c8ce; }
+  .metric .metric-desc {
+    border-top: 1px solid #c3c8ce;
+    margin-top: 4px;
+    padding: 10px 5px;
+    font-size: 14px; }
   .metric .actions {
     text-align: center;
     flex: 1;
