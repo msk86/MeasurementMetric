@@ -8,8 +8,11 @@ router.get('/', function(req, res, next) {
 
 
 // For test
-router.get('/create', function(req, res, next) {
+router.get('/create-metric', function(req, res, next) {
   res.render('metric-create');
+});
+router.get('/record-metric', function(req, res, next) {
+  res.render('metric-record');
 });
 
 module.exports = router;
