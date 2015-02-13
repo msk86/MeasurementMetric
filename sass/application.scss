@@ -1,4 +1,5 @@
 @import "chart";
+@import "icons";
 $border-color: #c3c8ce;
 body {
 	padding-top: 0;
@@ -103,10 +104,10 @@ header {
 		flex: 1;
 		border-left: 1px solid $border-color;
 		font-size: 1.2em;
-		span.rui-icon {
+		span {
 			display: block;
-			font-size: 1.5em;
-			padding: 5px;
+			font-size: 2em;
+			padding: 10px 0;
 			border-bottom: 1px solid $border-color;
 			transition: all 0.3s;
 			&:last-child {

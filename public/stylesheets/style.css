@@ -12,6 +12,76 @@
   .rui-chart-legend-item .rui-chart-legend-label {
     font-size: 0.8em; }
 
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?-1cbjs0');
+  src: url('fonts/icomoon.eot?#iefix-1cbjs0') format('embedded-opentype'), url('fonts/icomoon.woff?-1cbjs0') format('woff'), url('fonts/icomoon.ttf?-1cbjs0') format('truetype'), url('fonts/icomoon.svg?-1cbjs0#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-pencil:before {
+  content: "\e601"; }
+
+.icon-library:before {
+  content: "\e604"; }
+
+.icon-user:before {
+  content: "\e606"; }
+
+.icon-users:before {
+  content: "\e602"; }
+
+.icon-quotes-left:before {
+  content: "\e603"; }
+
+.icon-search:before {
+  content: "\e60f"; }
+
+.icon-expand:before {
+  content: "\e610"; }
+
+.icon-pie:before {
+  content: "\e616"; }
+
+.icon-stats:before {
+  content: "\e618"; }
+
+.icon-bars:before {
+  content: "\e600"; }
+
+.icon-plus:before {
+  content: "\e615"; }
+
+.icon-twitter:before {
+  content: "\e60b"; }
+
+.icon-github:before {
+  content: "\e60d"; }
+
+.icon-forward:before {
+  content: "\e612"; }
+
+.icon-link:before {
+  content: "\e613"; }
+
+.icon-ellipsis:before {
+  content: "\e614"; }
+
+.icon-sina-weibo:before {
+  content: "\e60e"; }
+
 body {
   padding-top: 0; }
 
@@ -96,13 +166,13 @@ header {
     flex: 1;
     border-left: 1px solid #c3c8ce;
     font-size: 1.2em; }
-    .metric .actions span.rui-icon {
+    .metric .actions span {
       display: block;
-      font-size: 1.5em;
-      padding: 5px;
+      font-size: 2em;
+      padding: 10px 0;
       border-bottom: 1px solid #c3c8ce;
       transition: all 0.3s; }
-      .metric .actions span.rui-icon:last-child {
+      .metric .actions span:last-child {
         border-bottom: none; }
-      .metric .actions span.rui-icon:hover {
+      .metric .actions span:hover {
         color: #00c694; }
