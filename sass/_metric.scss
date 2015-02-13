@@ -1,7 +1,7 @@
 .metric {
 	width: 30.333%;
 	min-width: 314px;
-	margin-right: 3%;
+	margin: 1.5%;
 	float: left;
 	.left-part {
 		flex: 4;
@@ -44,7 +44,7 @@
 	    border: 3px solid #333f48;
 	}
 
-	.number-wrapper {
+	.metric-value {
 		margin-top: 55px;		
 	}
 	.number {
