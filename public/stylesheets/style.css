@@ -97,7 +97,7 @@ header {
 
 .mint-theme .number {
   color: #00c694; }
-.mint-theme .filter span.active {
+.mint-theme .filters span.active {
   background-color: #00c694; }
 .mint-theme .graph-body .content {
   border: 3px solid #00c694; }
@@ -108,7 +108,7 @@ header {
 
 .yellow-theme .number {
   color: #ffb200; }
-.yellow-theme .filter span.active {
+.yellow-theme .filters span.active {
   background-color: #ffb200; }
 .yellow-theme .graph-body .content {
   border: 3px solid #ffb200; }
@@ -119,7 +119,7 @@ header {
 
 .orange-theme .number {
   color: #ff6000; }
-.orange-theme .filter span.active {
+.orange-theme .filters span.active {
   background-color: #ff6000; }
 .orange-theme .graph-body .content {
   border: 3px solid #ff6000; }
