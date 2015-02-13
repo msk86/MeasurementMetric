@@ -10,18 +10,7 @@ p {
 	width: 80%;
 	margin: 0 auto;
 }
-.rui-select-menu,
-.rui-input {
-	border-width: 1px;
-	border-radius: 0;
-}
-.rui-select-menu li {
-	margin: 0;
-	&.rui-current-list {
-		background-color: #00c694;
-		border-radius: 0;
-	}
-}
+
 header {
 	background-color: #00beb3;
 	color: white;
@@ -110,9 +99,7 @@ header {
 			padding: 8px;
 		}
 	}
-	.rui-select-wrapper .rui-input{
-		border-bottom-width: 0;
-	}
+
 	.actions {
 		text-align: center;
 		flex: 1;
@@ -130,7 +117,6 @@ header {
 			&:hover {
 				color: #00c694;
 			}
-			// background-color: #efefef;
 		}
 
 	}

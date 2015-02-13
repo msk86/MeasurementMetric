@@ -22,16 +22,6 @@ p {
   width: 80%;
   margin: 0 auto; }
 
-.rui-select-menu, .rui-input {
-  border-width: 1px;
-  border-radius: 0; }
-
-.rui-select-menu li {
-  margin: 0; }
-  .rui-select-menu li.rui-current-list {
-    background-color: #00c694;
-    border-radius: 0; }
-
 header {
   background-color: #00beb3;
   color: white;
@@ -101,8 +91,6 @@ header {
       border-top: 1px solid #c3c8ce;
       font-size: 0.8em;
       padding: 8px; }
-  .metric .rui-select-wrapper .rui-input {
-    border-bottom-width: 0; }
   .metric .actions {
     text-align: center;
     flex: 1;
