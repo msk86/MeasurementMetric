@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var MetricSettings = require('../models/metric-settings');
+var MetricData = require('../models/metric-data');
 
 /* GET users listing. */
 
@@ -22,10 +23,9 @@ router.post('/:metric/settings', function (req, res) {
 /* create metric */
 router.post('/:metric', function (req, res) {
     var params = req.body;
-    params['created_time'] = new Date();
-    db.metric.insert(params);
+    MetricData.create(params)
     res.status(201);
-    res.send("Metric saved");
+    res.send("Metric Data saved");
 });
 
 router.get('/:metric/timeframes/fortnight.json', function (req, res, next) {
