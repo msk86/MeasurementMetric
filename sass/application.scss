@@ -36,10 +36,12 @@ header {
 }
 .metric {
 	width: 31.333%;
+	min-width: 314px;
 	margin-right: 2%;
 	float: left;
 	.left-part {
 		flex: 4;
+		min-width: 268px;
 	}
 	.metric-title {
 		border: 1px solid $border-color;
@@ -72,10 +74,11 @@ header {
 
 	.graph-body {
 		text-align: center;
+		padding: 10px 0;
 	}
 	.graph-body .content {
 		width: 180px;
-		// height: 180px;
+		height: 180px;
 		margin: 0 auto;
 		border: 3px solid #00c694;
 		border-radius: 100%;
@@ -93,11 +96,6 @@ header {
 	.metric-content {
 		display: flex;
 		border: 1px solid $border-color;
-		.infomation {
-			border-top: 1px solid $border-color;
-			font-size: 0.8em;
-			padding: 8px;
-		}
 	}
 
 	.actions {

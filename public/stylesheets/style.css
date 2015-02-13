@@ -43,10 +43,12 @@ header {
 
 .metric {
   width: 31.333%;
+  min-width: 314px;
   margin-right: 2%;
   float: left; }
   .metric .left-part {
-    flex: 4; }
+    flex: 4;
+    min-width: 268px; }
   .metric .metric-title {
     border: 1px solid #c3c8ce;
     margin: 0;
@@ -70,9 +72,11 @@ header {
       .metric .filters span.active {
         background-color: #00c694; }
   .metric .graph-body {
-    text-align: center; }
+    text-align: center;
+    padding: 10px 0; }
   .metric .graph-body .content {
     width: 180px;
+    height: 180px;
     margin: 0 auto;
     border: 3px solid #00c694;
     border-radius: 100%; }
@@ -87,10 +91,6 @@ header {
   .metric .metric-content {
     display: flex;
     border: 1px solid #c3c8ce; }
-    .metric .metric-content .infomation {
-      border-top: 1px solid #c3c8ce;
-      font-size: 0.8em;
-      padding: 8px; }
   .metric .actions {
     text-align: center;
     flex: 1;
