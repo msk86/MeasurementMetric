@@ -1,4 +1,4 @@
-(function (angular, $, moment) {
+(function (angular, $, moment, Story) {
 
     angular.module('metric').controller('ChartsController',
         ['$scope', '$timeout', 'ChartDataService',
@@ -13,10 +13,7 @@
                 };
 
                 $scope.seriesData = function () {
-                    var seriesName = [
-                        {name: 'userStory', seriesLabel: 'Stories', color: "#b4674d"},
-                        {name: 'techTask', seriesLabel: 'Tech Tasks', color: "#1eb7ea"},
-                        {name: 'bug', seriesLabel: 'Bugs', color: "#fb7f68"}];
+                    var seriesName = Story.storyTypes;
                     var seriesData = [];
                     for (var i = 0; i < seriesName.length; i++) {
                         seriesData.push($scope.currentTrend(seriesName[i], $scope.trendControls));
@@ -53,7 +50,7 @@
                 }
 
                 function toDate(date) {
-                    return moment(date).toDate();
+                    return moment(date).add(10, 'h').toDate();
                 }
 
                 function weekly(date) {
@@ -62,4 +59,4 @@
             }
         ]);
 
-}(window.angular, window.jQuery, window.moment));
+}(window.angular, window.jQuery, window.moment, window.Metric.Story));
