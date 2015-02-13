@@ -13,15 +13,16 @@
                 };
 
                 $scope.seriesData = function () {
-                    return chartData($scope.allData);
+                    return chartData(Story.storyTypes, $scope.allData);
                 };
 
                 $scope.pieChartData = function () {
-                    return chartData($scope.pieData);
+                    var a = Story.storyTypes;
+                    return chartData(a.slice(1), $scope.pieData);
                 };
 
-                function chartData(data) {
-                    var seriesName = Story.storyTypes;
+                function chartData(storyTypes, data) {
+                    var seriesName = storyTypes;
                     var seriesData = [];
                     for (var i = 0; i < seriesName.length; i++) {
                         seriesData.push($scope.currentTrend(seriesName[i], $scope.trendControls, data));
@@ -56,10 +57,12 @@
                 function transformToDate(chartData, storyType) {
                     var data = chartData[storyType];
                     var convertXtoDate = [];
-                    for (var i = 0; i < data.length; i++) {
-                        convertXtoDate.push({x: toDate(data[i].x), y: data[i].y});
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            convertXtoDate.push({x: toDate(data[i].x), y: data[i].y});
+                        }
+                        chartData[storyType] = convertXtoDate;
                     }
-                    chartData[storyType] = convertXtoDate;
                 }
 
                 function toDate(date) {

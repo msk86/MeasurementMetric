@@ -51,7 +51,6 @@ router.get('/story/timeframes/week/pie.json', function (req, res, next) {
             "metricDesc": "Finished stories in current iteration",
             "timeFrame": "week",
             "pie": {
-                "all": [{"x": "2015-02-09", "y": 8, "date": "2015-02-09"}],
                 "userStory": [{"x": "2015-02-09", "y": 5, "date": "2015-02-09"}],
                 "bug": [{"x": "2015-02-09", "y": 2, "date": "2015-02-09"}],
                 "techTask": [{"x": "2015-02-09", "y": 2, "date": "2015-02-09"}]
