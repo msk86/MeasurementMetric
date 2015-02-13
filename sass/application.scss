@@ -1,6 +1,8 @@
 @import "chart";
 @import "icons";
-$border-color: #c3c8ce;
+$border-gray: #c3c8ce;
+$mint-dark: #00c694;
+
 body {
 	padding-top: 0;
 }
@@ -45,7 +47,7 @@ header {
 		min-width: 268px;
 	}
 	.metric-title {
-		border: 1px solid $border-color;
+		border: 1px solid $border-gray;
 		margin: 0;
 		border-bottom: 0;
 		text-align: center;
@@ -61,7 +63,7 @@ header {
 		span {
 			color: white;
 			cursor: pointer;
-			background-color: #00e6ac;
+			background-color: #333;
 			border-right: 1px solid #c8c9c7;
 			padding: 2px 6px;
 			&:last-child {
@@ -81,22 +83,22 @@ header {
 		width: 180px;
 		height: 180px;
 		margin: 0 auto;
-		border: 3px solid #00c694;
+		border: 3px solid $mint-dark;
 		border-radius: 100%;
 	}
 	.number {
 		margin-top: 55px;
 		line-height: 1em;
 		font-size: 3em;
-		color: #00c694;
+		color: $mint-dark;
 	}
 	.description {
 		font-size: 0.8em;
-		color: #00c694;
+		color: $mint-dark;
 	}
 	.metric-content {
 		display: flex;
-		border: 1px solid $border-color;
+		border: 1px solid $border-gray;
 	}
   	.metric-desc {
 	  border-top: 1px solid #c3c8ce;
@@ -108,19 +110,22 @@ header {
 	.actions {
 		text-align: center;
 		flex: 1;
-		border-left: 1px solid $border-color;
+		border-left: 1px solid $border-gray;
 		font-size: 1.2em;
 		span {
 			display: block;
 			font-size: 2em;
 			padding: 10px 0;
-			border-bottom: 1px solid $border-color;
+			border-bottom: 1px solid $border-gray;
 			transition: all 0.3s;
 			&:last-child {
 				border-bottom: none;
 			}
 			&:hover {
-				color: #00c694;
+				color: $mint-dark;
+			}
+			&.active {
+				color: $mint-dark;
 			}
 		}
 
