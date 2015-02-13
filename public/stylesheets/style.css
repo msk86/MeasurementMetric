@@ -65,7 +65,8 @@ header {
     width: 180px;
     height: 180px;
     margin: 0 auto;
-    border-radius: 100%; }
+    border-radius: 100%;
+    border: 3px solid #333f48; }
   .metric .number-wrapper {
     margin-top: 55px; }
   .metric .number {
@@ -73,6 +74,8 @@ header {
     font-size: 3em; }
   .metric .unit {
     color: #666; }
+  .metric .metric-value {
+    margin-top: 50px; }
   .metric .metric-content {
     display: flex;
     border: 1px solid #c3c8ce; }
