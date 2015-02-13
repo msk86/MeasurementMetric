@@ -14,10 +14,11 @@ module.exports = (function() {
 
     function getNextSunday(date, howMany) {
         howMany = howMany || 0;
-        var dayDiff = 7 - date.getDay() + 7 * howMany;
+        var dayDiff = 7 - date.getDay() + 7 * howMany + 1;
 
         var result = new Date(date.getTime());
         result.setDate(date.getDate() + dayDiff);
+        result.setMilliseconds(-1);
         return result;
     }
 
@@ -31,7 +32,7 @@ module.exports = (function() {
         var result = new Date(date.getTime());
         result.setDate(1);
         result.setMonth(date.getMonth() + 1);
-        result.setDate(result.getDate() - 1);
+        result.setMilliseconds(-1);
         return result;
     }
 
@@ -44,8 +45,10 @@ module.exports = (function() {
 
     function getLastDayThisYear(date) {
         var result = new Date(date.getTime());
-        result.setMonth(11);
-        result.setDate(31);
+        result.setYear(date.getFullYear() + 1);
+        result.setMonth(0);
+        result.setDate(1);
+        result.setMilliseconds(-1);
         return result;
     }
 
@@ -81,8 +84,20 @@ module.exports = (function() {
         }
     }
 
+    function sixTrendRanges(date, timeFrame) {
+        var ranges = [];
+        var flagDate = date;
+        for(var i=0;i<6;i++) {
+            var range = getDateRange(flagDate, timeFrame);
+            ranges.unshift(range);
+            flagDate = new Date(range.start.getTime() - 3 * 24 * 60 * 60 * 1000);
+        }
+        return ranges;
+    }
+
     return {
         formatDate: formatDate,
-        getDateRange: getDateRange
+        getDateRange: getDateRange,
+        sixTrendRanges: sixTrendRanges
     }
 })();

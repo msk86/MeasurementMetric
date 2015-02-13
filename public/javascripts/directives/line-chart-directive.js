@@ -32,10 +32,6 @@
                 }
 
                 function drawGraph(series, colors) {
-                    if (element.is(":hidden")) {
-                        element.show();
-                    }
-
                     var xAxisTickPixelInterval = 68;
 
                     chart = RuiCharts.lineChart({
