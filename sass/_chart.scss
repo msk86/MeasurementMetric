@@ -1,4 +1,5 @@
-#line-chart{
+#line-chart,
+#pie-chart{
   width: 267px;
   margin: 0 auto;
 }
@@ -14,10 +15,6 @@
 	}
 }
 
-#pie-chart{
-  width: 267px;
-  margin: 0 auto;
-}
 .chart .highcharts-title{
   font-size: 0.8em;
 }

@@ -1,4 +1,4 @@
-#line-chart {
+#line-chart, #pie-chart {
   width: 267px;
   margin: 0 auto; }
 
@@ -12,12 +12,96 @@
   .rui-chart-legend-item .rui-chart-legend-label {
     font-size: 0.8em; }
 
-#pie-chart {
-  width: 267px;
-  margin: 0 auto; }
-
 .chart .highcharts-title {
   font-size: 0.8em; }
+
+header {
+  background-color: #00beb3;
+  color: white;
+  padding: 10px 0;
+  margin-bottom: 40px; }
+  header .logo {
+    font-size: 1.5em; }
+  header .user {
+    float: right;
+    margin-top: -30px; }
+    header .user a:first-child {
+      margin-right: 20px; }
+    header .user a {
+      color: white;
+      text-decoration: none; }
+
+.metric {
+  width: 31.333%;
+  min-width: 314px;
+  margin-right: 2%;
+  float: left; }
+  .metric .left-part {
+    flex: 4;
+    min-width: 268px; }
+  .metric .metric-title {
+    border: 1px solid #c3c8ce;
+    margin: 0;
+    border-bottom: 0;
+    text-align: center;
+    padding: 6px 0; }
+  .metric .graph-header {
+    padding: 6px; }
+  .metric .filters {
+    float: right;
+    margin-right: 6px; }
+    .metric .filters span {
+      color: white;
+      cursor: pointer;
+      background-color: #333;
+      border-right: 1px solid #c8c9c7;
+      padding: 2px 6px; }
+      .metric .filters span:last-child {
+        border-right: none; }
+      .metric .filters span.active {
+        background-color: #00c694; }
+  .metric .graph-body {
+    text-align: center;
+    padding: 10px 0; }
+  .metric .graph-body .content {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    border: 3px solid #00c694;
+    border-radius: 100%; }
+  .metric .number-wrapper {
+    margin-top: 55px; }
+  .metric .number {
+    line-height: 1em;
+    font-size: 3em;
+    color: #00c694; }
+  .metric .unit {
+    color: #666; }
+  .metric .metric-content {
+    display: flex;
+    border: 1px solid #c3c8ce; }
+  .metric .metric-desc {
+    border-top: 1px solid #c3c8ce;
+    margin-top: 4px;
+    padding: 10px 5px;
+    font-size: 14px; }
+  .metric .actions {
+    text-align: center;
+    flex: 1;
+    border-left: 1px solid #c3c8ce;
+    font-size: 1.2em; }
+    .metric .actions span {
+      display: block;
+      font-size: 2em;
+      padding: 10px 0;
+      border-bottom: 1px solid #c3c8ce;
+      transition: all 0.3s; }
+      .metric .actions span:last-child {
+        border-bottom: none; }
+      .metric .actions span:hover {
+        color: #00c694; }
+      .metric .actions span.active {
+        color: #00c694; }
 
 @font-face {
   font-family: 'icomoon';
@@ -90,7 +174,8 @@
   content: "\e60e"; }
 
 body {
-  padding-top: 0; }
+  padding-top: 0;
+  min-height: 500px; }
 
 p {
   margin: 0; }
@@ -99,95 +184,5 @@ p {
   width: 80%;
   margin: 0 auto; }
 
-header {
-  background-color: #00beb3;
-  color: white;
-  padding: 10px 0;
-  margin-bottom: 40px; }
-  header .logo {
-    font-size: 1.5em; }
-  header .user {
-    float: right;
-    margin-top: -30px; }
-    header .user a:first-child {
-      margin-right: 20px; }
-    header .user a {
-      color: white;
-      text-decoration: none; }
-
-.metrics {
-  margin-bottom: 150px; }
-
-.metric {
-  width: 31.333%;
-  min-width: 314px;
-  margin-right: 2%;
-  float: left; }
-  .metric .left-part {
-    flex: 4;
-    min-width: 268px; }
-  .metric .metric-title {
-    border: 1px solid #c3c8ce;
-    margin: 0;
-    border-bottom: 0;
-    text-align: center;
-    padding: 6px 0; }
-  .metric .graph-header {
-    font-size: 0.8em;
-    padding: 6px; }
-  .metric .filters {
-    float: right;
-    margin-right: 6px; }
-    .metric .filters span {
-      color: white;
-      cursor: pointer;
-      background-color: #333;
-      border-right: 1px solid #c8c9c7;
-      padding: 2px 6px; }
-      .metric .filters span:last-child {
-        border-right: none; }
-      .metric .filters span.active {
-        background-color: #00c694; }
-  .metric .graph-body {
-    text-align: center;
-    padding: 10px 0; }
-  .metric .graph-body .content {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto;
-    border: 3px solid #00c694;
-    border-radius: 100%; }
-  .metric .number-wrapper {
-    margin-top: 55px; }
-  .metric .number {
-    line-height: 1em;
-    font-size: 3em;
-    color: #00c694; }
-  .metric .unit {
-    font-size: 0.8em;
-    color: #666; }
-  .metric .metric-content {
-    display: flex;
-    border: 1px solid #c3c8ce; }
-  .metric .metric-desc {
-    border-top: 1px solid #c3c8ce;
-    margin-top: 4px;
-    padding: 10px 5px;
-    font-size: 14px; }
-  .metric .actions {
-    text-align: center;
-    flex: 1;
-    border-left: 1px solid #c3c8ce;
-    font-size: 1.2em; }
-    .metric .actions span {
-      display: block;
-      font-size: 2em;
-      padding: 10px 0;
-      border-bottom: 1px solid #c3c8ce;
-      transition: all 0.3s; }
-      .metric .actions span:last-child {
-        border-bottom: none; }
-      .metric .actions span:hover {
-        color: #00c694; }
-      .metric .actions span.active {
-        color: #00c694; }
+.sm-font {
+  font-size: 0.8em; }
