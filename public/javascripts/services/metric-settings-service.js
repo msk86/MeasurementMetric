@@ -22,9 +22,16 @@
             return encodeURI("/metrics/" + metricName + "/settings");
         }
 
+        function allSettingsUrl() {
+            return encodeURI("/metrics/settings");
+        }
+
         return {
             getSettings: function (metricName) {
                 return dataPromise(metricSettingsUrl(metricName));
+            },
+            allSettings: function() {
+                return dataPromise(allSettingsUrl());
             }
         }
 

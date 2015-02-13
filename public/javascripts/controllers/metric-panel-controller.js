@@ -1,9 +1,10 @@
 (function (angular) {
 
     angular.module('metric').controller('MetricPanelController',
-        ['$scope', 'MetricDataService', 'MetricSettingsService',
-            function ($scope, MetricDataService, MetricSettingsService) {
+        ['$scope', '$timeout', 'MetricDataService', 'MetricSettingsService',
+            function ($scope, $timeout, MetricDataService, MetricSettingsService) {
                 $scope.chartType = 'general';
+
                 MetricSettingsService.getSettings($scope.metricName).then(function(settings) {
                     $scope.timeFrame = settings.timeFrame;
                     $scope.metricDesc = 'Production issue average recovery time.';
