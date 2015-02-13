@@ -9,8 +9,8 @@
                 // return undefined not {} when data not loaded.
                 return data ? $.extend({}, data) : data;
             };
-            service.load = function () {
-                DataService.lineChartData().then(function (lineChartData) {
+            service.load = function (metric, timeFrame) {
+                DataService.lineChartData(metric, timeFrame).then(function (lineChartData) {
                     data = lineChartData;
                     $rootScope.$broadcast("LINE_CHART_DATA_CHANGE");
                 }, function () {
@@ -18,13 +18,5 @@
                     $rootScope.$broadcast("LINE_CHART_DATA_CHANGE");
                 });
             };
-
-
-            // Ops, write code for test... without this one,
-            // we should spy on InvestmentDataService.getProcessedDates before injection,
-            // It makes the test too complex and hard to write.
-            $timeout(function () {
-                service.load();
-            });
         }]);
 }(window.angular, window.jQuery));

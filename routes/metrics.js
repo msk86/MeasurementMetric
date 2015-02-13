@@ -35,13 +35,27 @@ router.get('/:metric/timeframes/:timeFrame.json', function(req, res, next) {
     });
 });
 
-router.get('/:metric/timeframes/:timeFrame/pie.json', function(req, res, next) {
-    Metric.pieInTimeFrame(req.params.metric, req.params.timeFrame, function(err, data) {
-        res.json(data);
-    });
+router.get('/:metric/timeframes/:timeFrame/pie.json', function (req, res, next) {
+    res.json({
+            "metricName": "Stories",
+            "metricDesc": "Finished stories in current iteration",
+            "timeFrame": "week",
+            "pie": {
+                "userStory": [{"x": "2015-02-09", "y": 5, "date": "2015-02-09"}],
+                "bug": [{"x": "2015-02-09", "y": 2, "date": "2015-02-09"}],
+                "techTask": [{"x": "2015-02-09", "y": 2, "date": "2015-02-09"}]
+            }
+        }
+    )
 });
 
-router.get('/story/timeframes/week/trends.json', function (req, res, next) {
+//router.get('/:metric/timeframes/:timeFrame/pie.json', function(req, res, next) {
+//    Metric.pieInTimeFrame(req.params.metric, req.params.timeFrame, function(err, data) {
+//        res.json(data);
+//    });
+//});
+
+router.get('/:metric/timeframes/:timeFrame/trends.json', function (req, res, next) {
     res.json({
             "metricName": "Stories",
             "metricDesc": "Finished stories in current iteration",

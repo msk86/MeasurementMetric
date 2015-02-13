@@ -44,6 +44,8 @@
                     return {"weekly": weekly}[intervalType];
                 }
 
+                ChartDataService.load($scope.metricName, $scope.timeFrame);
+
                 $scope.$on('LINE_CHART_DATA_CHANGE', function (e, data) {
                     $scope.allData = ChartDataService.data()["trends"];
                     $scope.$broadcast('TREND_DATA_CHANGE');

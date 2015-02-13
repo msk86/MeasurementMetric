@@ -9,8 +9,8 @@
                 // return undefined not {} when data not loaded.
                 return data ? $.extend({}, data) : data;
             };
-            service.load = function () {
-                DataService.pieChartData().then(function (chartData) {
+            service.load = function (metric, timeFrame) {
+                DataService.pieChartData(metric, timeFrame).then(function (chartData) {
                     data = chartData;
                     $rootScope.$broadcast("PIE_CHART_DATA_CHANGE");
                 }, function () {

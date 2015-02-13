@@ -81,6 +81,8 @@
                 link: link,
                 restrict: 'E',
                 scope: {
+                    metricName: '@',
+                    timeFrame: '@',
                     dataType: '@sourceType',
                     intervalType: '@',
                     graphType: '@',

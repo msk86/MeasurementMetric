@@ -2,14 +2,14 @@ div
     h2.metric-title {{metric.metricName}}
     div.metric-content
         div.left-part
-            div.graph-header
+            div.graph-header.sm-font
                 span {{metric.timeRange.start}} - {{metric.timeRange.end}}
                 div.filters
                     span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
             div.graph-body
                 metric-general(ng-if="chartType=='general'")
-                line-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='lineChart'")
-                pie-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='pieChart'")
+                line-chart(metric-name="{{metricName}}" time-frame="{{timeFrame}}" source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='lineChart'")
+                pie-chart(metric-name="{{metricName}}" time-frame="{{timeFrame}}" source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='pieChart'")
         div.actions
             span.rui-icon.rui-icon-listview(ng-click="clickChartType('general')" ng-class="{active:chartType=='general'}")
             span.icon-stats(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")

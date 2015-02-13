@@ -22,20 +22,20 @@
             return deferred.promise;
         }
 
-        function lineChartUrl() {
-            return encodeURI(HOST + "/metrics/story/timeframes/week/trends.json");
+        function lineChartUrl(metric, timeFrame) {
+            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/trends.json");
         }
 
-        function pieChartUrl() {
-            return encodeURI(HOST + "/metrics/story/timeframes/week/pie.json");
+        function pieChartUrl(metric, timeFrame) {
+            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/pie.json");
         }
 
         return {
-            lineChartData: function lineChartData() {
-                return dataPromise(lineChartUrl());
+            lineChartData: function lineChartData(metric, timeFrame) {
+                return dataPromise(lineChartUrl(metric, timeFrame));
             },
-            pieChartData: function pieChartData() {
-                return dataPromise(pieChartUrl());
+            pieChartData: function pieChartData(metric, timeFrame) {
+                return dataPromise(pieChartUrl(metric, timeFrame));
             }
         }
 
