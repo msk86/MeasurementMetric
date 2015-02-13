@@ -1,0 +1,16 @@
+div
+    h2.metric-title {{metric.metricName}}
+    div.metric-content
+        div.left-part
+            div.graph-header
+                span {{metric.timeRange.start}} - {{metric.timeRange.end}}
+                div.filters
+                    span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
+            div.graph-body
+                line-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()")
+        div.actions
+            span.rui-icon.rui-icon-listview
+            span.rui-icon.rui-icon-cog
+            span.rui-icon.rui-icon-calendar
+            span.rui-icon.rui-icon-link
+            span.rui-icon.rui-icon-cog
