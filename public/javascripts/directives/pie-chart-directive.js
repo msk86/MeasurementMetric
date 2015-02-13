@@ -17,7 +17,7 @@
                 };
 
                 function formatSeries(data) {
-                    var series = [{"data": [], name: 'Stories'}],
+                    var series = [{"data": [], name: ''}],
                         colors = [];
                     for (var i = 0; i < data.length; i++) {
                         series[0]["data"].push({

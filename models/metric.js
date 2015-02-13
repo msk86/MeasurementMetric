@@ -144,11 +144,8 @@ module.exports = (function() {
             if(err) return cb(err);
             data.pie = {};
             _.forEach(data.value, function(v, type) {
-                console.log(v);
-                console.log(type);
                 data.pie[type] = [{x: "", y: v}];
             });
-            console.log(JSON.stringify(data));
 
             cb(null, data);
         });

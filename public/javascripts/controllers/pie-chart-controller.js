@@ -3,6 +3,7 @@
     angular.module('metric').controller('PieChartController',
         ['$scope', '$timeout', 'DataService',
             function ($scope, $timeout, DataService) {
+                $scope.pieData = {};
                 $scope.trendControls = {
                     dataType: $scope.dataType,
                     intervalType: $scope.intervalType,
@@ -12,8 +13,12 @@
 
                 $scope.pieChartData = function () {
                     var a = [];
+                    var onlyAll = true;
                     for(var k in $scope.pieData) {
-                        if(k != 'all') {
+                        if(k != 'all') onlyAll = false;
+                    }
+                    for(var k in $scope.pieData) {
+                        if(onlyAll || k != 'all') {
                             a.push({name: k, seriesLabel: k, color: ColorGen.next()});
                         }
                     }
