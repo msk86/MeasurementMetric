@@ -1,3 +1,15 @@
+@-webkit-keyframes my {
+	0% { top: 50; left: 50%; width: 0px; height: 0px};
+	100% { top: 0%; left: 0%;  width: 180px; height: 180px};
+}
+@-moz-keyframes my {
+	0% { top: 50%; left: 50%; width: 20px; height: 20px};
+	100% { top: 0%; left: 0%; width: 180px; height: 180px};
+}
+@keyframes my {
+	0% { top: 50%; left: 50%; width: 20px; height: 20px};
+	100% { top: 0; left: 0%; width: 180px; height: 180px};
+}
 .metric {
 	width: 30.333%;
 	min-width: 314px;
@@ -40,13 +52,19 @@
 		width: 180px;
 		height: 180px;
 		margin: 0 auto;
-		border-radius: 100%;
-	    border: 3px solid #333f48;
+		position: relative;
+		.animation {
+			position: absolute;
+			top: 0;
+			height: 180px;
+			width: 180px;
+			border-radius: 100%;
+			-webkit-animation: my 1s linear;
+			-moz-animation: my 1s linear;
+			animation: my 1s linear;		
+		}
 	}
 
-	.metric-value {
-		margin-top: 55px;		
-	}
 	.number {
 		line-height: 1em;
 		font-size: 3em;
@@ -54,8 +72,8 @@
 	.unit {
 		color: #666;
 	}
-  	.metric-value {
-	  margin-top: 50px;
+  .metric-value {
+	  padding-top: 50px;
 	}
 	.metric-content {
 		display: flex;
@@ -75,8 +93,8 @@
 		font-size: 1.2em;
 		span {
 			display: block;
-			font-size: 2em;
-			padding: 10px 0;
+			font-size: 1.5em;
+			padding: 15px 0;
 			border-bottom: 1px solid $border-gray;
 			transition: all 0.3s;
 			&:last-child {
@@ -94,7 +112,7 @@
 	.filters span.active {
 		background-color: $theme-color;
 	}
-	.graph-body .content {
+	.graph-body .content .animation{
 		border: 3px solid $theme-color;
 	}
 	.actions {
