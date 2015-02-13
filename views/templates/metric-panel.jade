@@ -9,9 +9,10 @@ div
             div.graph-body
                 metric-general(ng-if="chartType=='general'")
                 line-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='lineChart'")
+                pie-chart(source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='pieChart'")
         div.actions
             span.rui-icon.rui-icon-listview(ng-click="clickChartType('general')" ng-class="{active:chartType=='general'}")
-            span.rui-icon.rui-icon-cog(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
-            span.rui-icon.rui-icon-calendar(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
-            span.rui-icon.rui-icon-link
+            span.icon-stats(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
+            span.icon-pie(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
+            span.icon-bars
             span.rui-icon.rui-icon-cog
