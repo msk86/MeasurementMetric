@@ -6,17 +6,9 @@ var MetricSettings = require('../models/metric-settings');
 /* GET users listing. */
 
 router.get('/:metric/settings', function(req, res, next) {
-  var settings = {
-    metricName: 'Story',
-    metricTypes: ['UserStory', 'Bug', 'TechTask'],
-    metricUnit: '',
-    processMethod: 'total',
-    fields: ['StoryNo', 'StoryName'],
-    timeFrame: 'week'
-  };
-  //var settings = MetricSetting.getInstance(req.params.metric);
-
-  res.json(settings);
+  MetricSettings.getInstance(req.params.metric, function(err, settings) {
+      res.json(settings);
+  });
 });
 
 /* create metric setting */

@@ -17,7 +17,7 @@ module.exports = (function() {
                 cb(null, metricSettings);
             });
         },
-        create: function(metricCategory, settings) {
+        create: function(settings) {
             if(settings.category == 'schedule') {
                 ScheduleMetricSettings.create(settings);
             } else {

@@ -6,13 +6,12 @@ var db = mongojs.connect(databaseUrl, collections);
 
 module.exports = (function() {
     function ScheduleMetricSettings(options) {
-        this.createAt = options.createAt;
+        this.createdTime = options.createdTime;
         this.metricCategory = 'schedule';
         this.metricName = options.metricName;
         this.metricUnit = options.metricUnit || '';
         this.processMethod = options.processMethod;
-        this.metricTypes = options.metricTypes.split(/[,;:|]/);
-        this.fields = [];
+        this.metricTypes = options.metricTypes ? (options.metricTypes).split(/[,;:|]/).map(function(t) {return t.trim()}) : [];
         this.api = options.api;
         this.username = options.username;
         this.password = options.password;
@@ -24,7 +23,7 @@ module.exports = (function() {
     ScheduleMetricSettings.create = function(settings) {
         settings.createdTime = new Date();
         var metricSetting = new ScheduleMetricSettings(settings);
-        db.metric.insert({message: metricSetting});
+        db.metric.insert(metricSetting);
     };
 
     return ScheduleMetricSettings;
