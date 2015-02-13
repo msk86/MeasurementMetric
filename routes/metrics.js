@@ -1,11 +1,7 @@
 var express = require('express');
-var mongojs = require('mongojs');
 var router = express.Router();
 
-var databaseUrl = "mydb";
-var collections = ["metric"];
-var db = mongojs.connect(databaseUrl, collections);
-var MetricSetting = require('../models/metric-setting');
+var MetricSettings = require('../models/metric-settings');
 
 /* GET users listing. */
 
@@ -23,12 +19,10 @@ router.get('/:metric/settings', function(req, res, next) {
   res.json(settings);
 });
 
-/* create metric form */
-router.post('/:metric', function (req, res) {
+/* create metric setting */
+router.post('/:metric/settings', function (req, res) {
     var params = req.body;
-    params['created_time'] = new Date();
-    db.metric.insert({message: params});
-    db.metric.save();
+    MetricSettings.create(params);
     res.status(201);
     res.send("Metric saved");
 });
