@@ -2,6 +2,7 @@ div
   div.content
     p.metric-value
       span.number {{metric.value.all}}
-      span.unit.sm-font min
+      span.unit.sm-font {{settings.metricUnit}}
     p.description in {{metric.timeFrame}}
     div.animation
+  div.metric-desc {{settings.metricDesc}}

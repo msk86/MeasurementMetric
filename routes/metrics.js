@@ -4,7 +4,11 @@ var router = express.Router();
 var MetricSettings = require('../models/metric-settings');
 var Metric = require('../models/metric');
 
-/* GET users listing. */
+router.get('/settings', function(req, res, next) {
+    MetricSettings.all(function(err, settingses) {
+        res.json(settingses);
+    });
+});
 
 router.get('/:metric/settings', function (req, res, next) {
     MetricSettings.getInstance(req.params.metric, function (err, settings) {
