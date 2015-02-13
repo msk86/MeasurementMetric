@@ -1,6 +1,16 @@
 #line-chart {
-  width: 300px;
-  height: 200px; }
+  width: 267px;
+  margin: 0 auto; }
+
+.rui-chart-mobile-legend {
+  text-align: center;
+  margin-top: 10px; }
+
+.rui-chart-legend-item {
+  display: inline-block;
+  margin: 0 8px; }
+  .rui-chart-legend-item .rui-chart-legend-label {
+    font-size: 0.8em; }
 
 body {
   padding-top: 0; }
@@ -47,6 +57,12 @@ header {
   float: left; }
   .metric .left-part {
     flex: 4; }
+  .metric .metric-title {
+    border: 1px solid #c3c8ce;
+    margin: 0;
+    border-bottom: 0;
+    text-align: center;
+    padding: 6px 0; }
   .metric .graph-header {
     font-size: 0.8em;
     padding: 6px; }
@@ -64,11 +80,9 @@ header {
       .metric .filters span.active {
         background-color: #00c694; }
   .metric .graph-body {
-    text-align: center;
-    height: 200px; }
+    text-align: center; }
   .metric .graph-body .content {
     width: 180px;
-    height: 180px;
     margin: 0 auto;
     border: 3px solid #00c694;
     border-radius: 100%; }

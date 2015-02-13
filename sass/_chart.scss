@@ -1,4 +1,16 @@
 #line-chart{
-  width: 300px;
-  height: 200px;
+  width: 267px;
+  margin: 0 auto;
+}
+.rui-chart-mobile-legend {
+	text-align: center;
+	margin-top: 10px;
+}
+.rui-chart-legend-item {
+	display: inline-block;
+	margin: 0 8px;
+	.rui-chart-legend-label {
+		font-size: 0.8em;
+	}
+
 }

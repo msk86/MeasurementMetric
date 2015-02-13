@@ -1,15 +1,7 @@
 div.metrics.rui-clearfix
 	div.container
 		div.metric
-			div.rui-select-wrapper
-				div.rui-input.rui-select.rui-select-link
-					span Stories
-					input(type="text")
-					i.rui-icon.rui-icon-arrow-down
-				ul.rui-select-menu
-					li.rui-select-list.rui-selected.rui-current-list Stories
-					li.rui-select-list Bugs
-					li.rui-select-list Tech tasks
+			h2.metric-title Stories
 			div.metric-content		
 				div.left-part
 					div.graph-header
@@ -19,9 +11,7 @@ div.metrics.rui-clearfix
 							span M
 							span Y
 					div.graph-body 
-						div.content
-							p.number 12
-							p.description 12 stories / fortnight
+						include ./metric-chart.jade
 					div.infomation
 						p The team delivered 12 stories this fortnight 
 						p Last fortnight the team delivered 6 stories.
@@ -31,7 +21,7 @@ div.metrics.rui-clearfix
 					span.rui-icon.rui-icon-calendar
 					span.rui-icon.rui-icon-link
 					span.rui-icon.rui-icon-cog
-			include ./metric-chart.jade		
+
 
 		div.metric
 			div a metric here

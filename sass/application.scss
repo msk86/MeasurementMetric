@@ -52,6 +52,13 @@ header {
 	.left-part {
 		flex: 4;
 	}
+	.metric-title {
+		border: 1px solid $border-color;
+		margin: 0;
+		border-bottom: 0;
+		text-align: center;
+		padding: 6px 0;
+	}
 	.graph-header {
 		font-size: 0.8em;
 		padding: 6px;
@@ -76,11 +83,10 @@ header {
 
 	.graph-body {
 		text-align: center;
-		height: 200px;
 	}
 	.graph-body .content {
 		width: 180px;
-		height: 180px;
+		// height: 180px;
 		margin: 0 auto;
 		border: 3px solid #00c694;
 		border-radius: 100%;
