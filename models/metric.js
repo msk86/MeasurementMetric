@@ -64,13 +64,61 @@ module.exports = (function() {
         });
     };
 
+    Metric.trendsInTimeFrame = function(metricName, timeFrame, cb) {
+        var range = dateHelper.getDateRange(new Date(), timeFrame);
+        MetricSettings.getInstance(metricName, function(err, settings) {
+            if(err) return cb(err);
+            if(!settings) return cb('No settings');
+            db.metric.find({
+                metricName: metricName,
+                metric: true,
+                createdTime: {$gt: range.start, $lt: range.end}
+            }, function(err, metricData) {
+                if(err) return cb(err);
+                var grouped = _.groupBy(metricData, function(d) {
+                    return d.metricType || '';
+                });
+
+                var value = _.reduce(grouped, function(memo, groupData, group) {
+                    var groupValue = _.reduce(groupData, function(m, d) {return m + parseInt(d.metricValue);}, 0);
+                    if(group) {
+                        memo[group] = groupValue;
+                    }
+                    return memo;
+                }, {});
+
+                value.all = _.reduce(metricData, function(m, d) {
+                    return m + parseInt(d.metricValue);
+                }, 0);
+
+                var data = {
+                    metricName: metricName,
+                    metricDesc: settings.metricDesc,
+                    timeFrame: timeFrame,
+                    timeRange: {
+                        start: dateHelper.formatDate(range.start),
+                        end: dateHelper.formatDate(range.end)
+                    },
+                    value: value
+                };
+
+                cb(null, data);
+            });
+        });
+    };
+
+
     Metric.pieInTimeFrame = function(metricName, timeFrame, cb) {
         Metric.loadInTimeFrame(metricName, timeFrame, function(err, data) {
             if(err) return cb(err);
-            console.log(data);
-            data.pie = _.reduce(data.value, function(m, v, type) {
-                m[type] = [{x: "", y: v}];
-            }, {});
+            data.pie = {};
+            _.forEach(data.value, function(v, type) {
+                console.log(v);
+                console.log(type);
+                data.pie[type] = [{x: "", y: v}];
+            });
+            console.log(JSON.stringify(data));
+
             cb(null, data);
         });
     };

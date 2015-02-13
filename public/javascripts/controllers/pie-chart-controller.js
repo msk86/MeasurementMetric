@@ -1,10 +1,8 @@
-(function (angular, $, moment, Story) {
+(function (angular, $, moment, ColorGen) {
 
-    angular.module('metric').controller('ChartsController',
-        ['$scope', '$timeout', 'ChartDataService', 'PieChartDataService',
-            function ($scope, $timeout, ChartDataService, PieChartDataService) {
-                $scope.allData = {};
-
+    angular.module('metric').controller('PieChartController',
+        ['$scope', '$timeout', 'DataService',
+            function ($scope, $timeout, DataService) {
                 $scope.trendControls = {
                     dataType: $scope.dataType,
                     intervalType: $scope.intervalType,
@@ -12,13 +10,15 @@
                     chartTitle: $scope.chartTitle
                 };
 
-                $scope.seriesData = function () {
-                    return chartData(Story.storyTypes, $scope.allData);
-                };
-
                 $scope.pieChartData = function () {
-                    var a = Story.storyTypes;
-                    return chartData(a.slice(1), $scope.pieData);
+                    var a = [];
+                    for(var k in $scope.pieData) {
+                        if(k != 'all') {
+                            a.push({name: k, seriesLabel: k, color: ColorGen.next()});
+                        }
+                    }
+
+                    return chartData(a, $scope.pieData);
                 };
 
                 function chartData(storyTypes, data) {
@@ -44,18 +44,6 @@
                     return {"weekly": weekly}[intervalType];
                 }
 
-                ChartDataService.load($scope.metricName, $scope.timeFrame);
-
-                $scope.$on('LINE_CHART_DATA_CHANGE', function (e, data) {
-                    $scope.allData = ChartDataService.data()["trends"];
-                    $scope.$broadcast('TREND_DATA_CHANGE');
-                });
-
-                $scope.$on('PIE_CHART_DATA_CHANGE', function (e, data) {
-                    $scope.pieData = PieChartDataService.data()["pie"];
-                    $scope.$broadcast('PIE_DATA_CHANGE');
-                });
-
                 function transformToDate(chartData, storyType) {
                     var data = chartData[storyType];
                     var convertXtoDate = [];
@@ -74,7 +62,16 @@
                 function weekly(date) {
                     return moment(date).format('dddd YYYY-MM-DD');
                 }
+
+                function updatePieData() {
+                    DataService.pieChartData($scope.metricName, $scope.timeFrame).then(function(data) {
+                        $scope.pieData = data["pie"];
+                        $scope.$broadcast('PIE_DATA_CHANGE');
+                    });
+                }
+
+                updatePieData();
             }
         ]);
 
-}(window.angular, window.jQuery, window.moment, window.Metric.Story));
+}(window.angular, window.jQuery, window.moment, window.Metric.ColorGen));

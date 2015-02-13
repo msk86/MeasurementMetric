@@ -491,7 +491,7 @@
 
     var Chart = function (options) {
         this.options = ChartDefaultOptions.overwriteDefaults(options);
-        this.containerEl = $('#' + options.renderTo);
+        this.containerEl = $(options.renderTo);
         this.isMobile = withinMobileBreakpoint(this.containerEl);
 
         if (this.isMobile) {
