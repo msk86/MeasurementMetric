@@ -17,8 +17,9 @@ header {
 			text-decoration: none;
 		}
 	}
-	.container {
+}
+header .container,
+.banner .container {
 		padding: 0 1.5%;
 		box-sizing: border-box;
 	}
-}

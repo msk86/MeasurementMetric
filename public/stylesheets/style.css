@@ -30,45 +30,40 @@ header {
     header .user a {
       color: white;
       text-decoration: none; }
-  header .container {
-    padding: 0 1.5%;
-    box-sizing: border-box; }
+
+header .container, .banner .container {
+  padding: 0 1.5%;
+  box-sizing: border-box; }
 
 @-webkit-keyframes my {
   0% {
-    top: 50;
     left: 50%;
     width: 0px;
     height: 0px; }
 
   100% {
-    top: 0%;
     left: 0%;
     width: 180px;
     height: 180px; } }
 
 @-moz-keyframes my {
   0% {
-    top: 50%;
     left: 50%;
-    width: 20px;
-    height: 20px; }
+    width: 0px;
+    height: 0px; }
 
   100% {
-    top: 0%;
     left: 0%;
     width: 180px;
     height: 180px; } }
 
 @keyframes my {
   0% {
-    top: 50%;
     left: 50%;
-    width: 20px;
-    height: 20px; }
+    width: 0px;
+    height: 0px; }
 
   100% {
-    top: 0;
     left: 0%;
     width: 180px;
     height: 180px; } }
