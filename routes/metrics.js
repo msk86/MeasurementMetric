@@ -19,6 +19,14 @@ router.post('/:metric/settings', function (req, res) {
     res.send("Metric saved");
 });
 
+/* create metric */
+router.post('/:metric', function (req, res) {
+    var params = req.body;
+    params['created_time'] = new Date();
+    db.metric.insert(params);
+    res.status(201);
+    res.send("Metric saved");
+});
 
 router.get('/:metric/timeframes/fortnight.json', function (req, res, next) {
     res.json({
