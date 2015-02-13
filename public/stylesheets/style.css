@@ -35,6 +35,20 @@ header .container, .banner .container {
   padding: 0 1.5%;
   box-sizing: border-box; }
 
+.banner .mission {
+  font-weight: bold; }
+.banner span {
+  margin-right: 10px; }
+.banner h2 {
+  margin: 0; }
+.banner .healthy-number {
+  float: right;
+  margin-top: -30px; }
+  .banner .healthy-number .title {
+    padding: 4px 10px;
+    color: white;
+    background-color: #00c694; }
+
 @-webkit-keyframes my {
   0% {
     left: 50%;
@@ -102,6 +116,7 @@ header .container, .banner .container {
     width: 180px;
     height: 180px;
     margin: 0 auto;
+    margin-top: 35px;
     position: relative; }
     .metric .graph-body .content .animation {
       position: absolute;

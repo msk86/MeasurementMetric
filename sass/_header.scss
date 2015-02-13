@@ -20,6 +20,26 @@ header {
 }
 header .container,
 .banner .container {
-		padding: 0 1.5%;
-		box-sizing: border-box;
+	padding: 0 1.5%;
+	box-sizing: border-box;
+}
+.banner {
+	.mission {
+		font-weight: bold;
+	}	
+	span {
+		margin-right: 10px;
 	}
+	h2 {
+		margin: 0;
+	}
+	.healthy-number {
+		float: right;
+		margin-top: -30px;
+		.title {
+			padding: 4px 10px;
+			color: white;
+			background-color: $mint-dark;
+		}
+	}
+}
