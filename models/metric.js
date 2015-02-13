@@ -18,7 +18,6 @@ module.exports = (function() {
     Metric.create = function(options) {
         options.createdTime = new Date();
         var metric = new Metric(options);
-        console.log(metric);
         db.metric.insert(metric);
     };
 
@@ -26,6 +25,7 @@ module.exports = (function() {
         var range = dateHelper.getDateRange(new Date(), timeFrame);
         MetricSettings.getInstance(metricName, function(err, settings) {
             if(err) return cb(err);
+            if(!settings) return cb('No settings');
             db.metric.find({
                 metricName: metricName,
                 metric: true,
@@ -58,8 +58,20 @@ module.exports = (function() {
                     },
                     value: value
                 };
+
                 cb(null, data);
             });
+        });
+    };
+
+    Metric.pieInTimeFrame = function(metricName, timeFrame, cb) {
+        Metric.loadInTimeFrame(metricName, timeFrame, function(err, data) {
+            if(err) return cb(err);
+            console.log(data);
+            data.pie = _.reduce(data.value, function(m, v, type) {
+                m[type] = [{x: "", y: v}];
+            }, {});
+            cb(null, data);
         });
     };
 

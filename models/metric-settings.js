@@ -11,11 +11,9 @@ module.exports = (function() {
     return {
         getInstance: function(metricName, cb) {
             db.metric.findOne({
-                metricName: metricName
-            }, function(err, metricSettings) {
-                if(err) return cb(err);
-                cb(null, metricSettings);
-            });
+                metricName: metricName,
+                settings: true
+            }, cb);
         },
         create: function(settings) {
             if(settings.category == 'schedule') {
