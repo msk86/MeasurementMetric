@@ -23,6 +23,7 @@ module.exports = (function() {
                 }, 0);
             },
             avg: function(metricData) {
+                if(!metricData.length) return 0;
                 return Math.floor(this.total(metricData) / metricData.length);
             },
             max: function(metricData) {
