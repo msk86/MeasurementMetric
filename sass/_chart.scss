@@ -1,12 +1,9 @@
-#line-chart,
-#pie-chart{
-  width: 267px;
-  margin: 0 auto;
-}
 .rui-chart-mobile-legend {
 	text-align: center;
-	margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid $border-gray;
 }
+
 .rui-chart-legend-item {
 	display: inline-block;
 	margin: 0 8px;

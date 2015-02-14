@@ -41,10 +41,7 @@
                         dateTimeLabelFormats: {
                             day: '%a'
                         },
-                        //yAxisLabelFormatter: trendChartFormatterFactory.yAxisLabelFormatter(),
                         xAxisTickPixelInterval: xAxisTickPixelInterval,
-                        //pointFormatter: trendChartFormatterFactory.pointFormatter(),
-                        //legendFooterFormatter: trendChartFormatterFactory.legendFooterFormatter(),
                         colors: colors
                     });
                     chart.draw();
@@ -55,13 +52,11 @@
                 link: link,
                 restrict: 'E',
                 scope: {
-                    metricName: '@',
-                    timeFrame: '@',
+                    metricName: '=',
+                    timeFrame: '=',
                     dataType: '@sourceType',
                     intervalType: '@',
                     graphType: '@',
-                    chartTitle: '@',
-                    //currentTrend: '&',
                     seriesData: '&'
                 },
                 templateUrl: '/templates/line-chart',

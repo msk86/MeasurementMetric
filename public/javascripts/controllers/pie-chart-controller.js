@@ -69,14 +69,18 @@
                     return moment(date).format('dddd YYYY-MM-DD');
                 }
 
-                function updatePieData() {
-                    DataService.pieChartData($scope.metricName, $scope.timeFrame).then(function(data) {
+                function updatePieData(metricName, timeFrame) {
+                    DataService.pieChartData(metricName, timeFrame).then(function(data) {
                         $scope.pieData = data["pie"];
                         $scope.$broadcast('PIE_DATA_CHANGE');
                     });
                 }
 
-                updatePieData();
+                $scope.$on('TIME_FRAME_CHANGE', function(e, timeFrame) {
+                    updatePieData($scope.metricName, timeFrame);
+                });
+
+                updatePieData($scope.metricName, $scope.timeFrame);
             }
         ]);
 

@@ -64,14 +64,18 @@
                     return moment(date).format('dddd YYYY-MM-DD');
                 }
 
-                function updateLineData() {
-                    DataService.lineChartData($scope.metricName, $scope.timeFrame).then(function(data) {
+                function updateLineData(metricName, timeFrame) {
+                    DataService.lineChartData(metricName, timeFrame).then(function(data) {
                         $scope.lineData = data["trends"];
                         $scope.$broadcast('TREND_DATA_CHANGE');
                     });
                 }
 
-                updateLineData();
+                $scope.$on('TIME_FRAME_CHANGE', function(e, timeFrame) {
+                    updateLineData($scope.metricName, timeFrame);
+                });
+
+                updateLineData($scope.metricName, $scope.timeFrame);
             }
         ]);
 

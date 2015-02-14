@@ -45,9 +45,9 @@ module.exports = (function() {
         var rangeMetrics = {};
         _.forEach(metricData, function(m) {
             _.forEach(ranges, function(r) {
-                rangeMetrics[dateHelper.formatDate(r.end)] = rangeMetrics[dateHelper.formatDate(r.end)] || [];
+                rangeMetrics[dateHelper.formatDate(r.start)] = rangeMetrics[dateHelper.formatDate(r.start)] || [];
                 if(m.createdTime.getTime() >= r.start.getTime() && m.createdTime.getTime() <= r.end.getTime()) {
-                    rangeMetrics[dateHelper.formatDate(r.end)].push(m);
+                    rangeMetrics[dateHelper.formatDate(r.start)].push(m);
                 }
             });
         });

@@ -13,7 +13,7 @@
                     var chartSeries = formatSeries($scope.pieData),
                         series = chartSeries.series,
                         colors = chartSeries.colors;
-                        drawGraph(series, colors);
+                    drawGraph(series, colors);
                 };
 
                 function formatSeries(data) {
@@ -68,12 +68,11 @@
                 link: link,
                 restrict: 'E',
                 scope: {
-                    metricName: '@',
-                    timeFrame: '@',
+                    metricName: '=',
+                    timeFrame: '=',
                     dataType: '@sourceType',
                     intervalType: '@',
-                    graphType: '@',
-                    chartTitle: '@'
+                    graphType: '@'
                 },
                 templateUrl: '/templates/pie-chart',
                 controller: 'PieChartController',

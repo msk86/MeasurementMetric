@@ -1,10 +1,7 @@
-#line-chart, #pie-chart {
-  width: 267px;
-  margin: 0 auto; }
-
 .rui-chart-mobile-legend {
   text-align: center;
-  margin-top: 10px; }
+  padding-top: 10px;
+  border-top: 1px solid #c3c8ce; }
 
 .rui-chart-legend-item {
   display: inline-block;
@@ -121,7 +118,8 @@ header .container, .banner .container {
     position: relative; }
     .metric .graph-body .content .animation {
       position: absolute;
-      top: 0;
+      top: -3px;
+      left: -3px;
       height: 180px;
       width: 180px;
       border-radius: 100%;

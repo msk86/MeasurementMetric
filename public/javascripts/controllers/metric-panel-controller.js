@@ -20,9 +20,12 @@
 
                 $scope.changeTimeFrame = function(timeFrame) {
                     $scope.timeFrame = timeFrame;
-
-                    getMetricData();
+                    $scope.$broadcast('TIME_FRAME_CHANGE', timeFrame);
                 };
+
+                $scope.$on('TIME_FRAME_CHANGE', function() {
+                    getMetricData();
+                });
 
                 $scope.setChartType = function(chartType) {
                     $scope.chartType = chartType;
