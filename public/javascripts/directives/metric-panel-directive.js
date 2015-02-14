@@ -21,7 +21,10 @@
             return {
                 controller: 'MetricPanelController',
                 link: link,
-                scope: true,
+                scope: {
+                    metricName: '@',
+                    theme: '@'
+                },
                 restrict: 'E',
                 templateUrl: '/templates/metric-panel',
                 replace: true

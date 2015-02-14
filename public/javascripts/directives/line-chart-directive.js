@@ -32,14 +32,10 @@
                 }
 
                 function drawGraph(series, colors) {
-                    if (element.is(":hidden")) {
-                        element.show();
-                    }
-
                     var xAxisTickPixelInterval = 68;
 
                     chart = RuiCharts.lineChart({
-                        renderTo: 'line-chart',
+                        renderTo: element[0],
                         height: 300,
                         series: series,
                         dateTimeLabelFormats: {
@@ -68,8 +64,8 @@
                     //currentTrend: '&',
                     seriesData: '&'
                 },
-                templateUrl: '/templates/line-chart.html',
-                controller: 'ChartsController',
+                templateUrl: '/templates/line-chart',
+                controller: 'LineChartController',
                 replace: true
             };
         }]);

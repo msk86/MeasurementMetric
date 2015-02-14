@@ -21,6 +21,11 @@ module.exports = (function() {
             } else {
                 NormalMetricSettings.create(settings);
             }
+        },
+        all: function(cb) {
+            db.metric.find({
+                settings: true
+            }, cb);
         }
     };
 })();

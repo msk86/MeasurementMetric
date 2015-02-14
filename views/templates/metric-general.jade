@@ -1,7 +1,8 @@
 div
   div.content
     p.metric-value
-      span.number 12
-      span.unit.sm-font min
-    p.description in Fornight
+      span.number {{metric.value.all}}
+      span.unit.sm-font {{settings.metricUnit}}
+    p.description in {{metric.timeFrame}}
     div.animation
+  div.metric-desc {{settings.metricDesc}}

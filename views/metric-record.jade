@@ -1,0 +1,7 @@
+extends layout
+block content
+    label MetricName
+    input(ng-model="metricNameTxt")
+    button(ng-click="metricName=metricNameTxt") SetName
+    div(ng-if="metricName")
+        metric-record-form(metricName="{{metricName}}")

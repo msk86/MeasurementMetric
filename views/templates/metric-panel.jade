@@ -1,11 +1,11 @@
-div
+div.metric(ng-class="theme")
     h2.metric-title {{metric.metricName}}
     div.metric-content
         div.left-part
             div.graph-header.sm-font
                 span {{metric.timeRange.start}} - {{metric.timeRange.end}}
                 div.filters
-                    span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
+                    span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==settings.timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
             div.graph-body
                 metric-general(ng-if="chartType=='general'")
                 line-chart(metric-name="{{metricName}}" time-frame="{{timeFrame}}" source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='lineChart'")

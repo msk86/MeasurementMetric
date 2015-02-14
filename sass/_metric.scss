@@ -20,11 +20,12 @@
 		min-width: 268px;
 	}
 	.metric-title {
-		border: 1px solid $border-gray;
-		margin: 0;
-		border-bottom: 0;
-		text-align: center;
-		padding: 6px 0;
+	  border: 1px solid $border-gray;
+	  margin: 0;
+	  border-bottom: 0;
+	  text-align: center;
+	  padding: 6px 0;
+	  font-size: 30px;
 	}
 	.graph-header {
 		padding: 6px;
@@ -74,7 +75,7 @@
 		color: #666;
 	}
   .metric-value {
-	  padding-top: 50px;
+	  padding-top: 55px;
 	}
 	.metric-content {
 		min-height: 361px;
@@ -83,7 +84,7 @@
 	}
   .metric-desc {
 	  border-top: 1px solid #c3c8ce;
-	  margin-top: 4px;
+	  margin-top: 25px;
 	  padding: 10px 5px;
 	  font-size: 14px;
 	}
@@ -103,7 +104,6 @@
 				border-bottom: none;
 			}
 		}
-
 	}
 }
 

@@ -3,8 +3,6 @@
         ['$timeout', function ($timeout) {
 
             var link = function ($scope, element) {
-                var chart;
-
                 $scope.$on('PIE_DATA_CHANGE', function () {
                     $scope.updateChart();
                 });
@@ -15,15 +13,13 @@
                     var chartSeries = formatSeries($scope.pieData),
                         series = chartSeries.series,
                         colors = chartSeries.colors;
-
-                    drawGraph(series, colors);
+                        drawGraph(series, colors);
                 };
 
                 function formatSeries(data) {
-                    var series = [{"data": [], name: 'Stories'}],
+                    var series = [{"data": [], name: ''}],
                         colors = [];
                     for (var i = 0; i < data.length; i++) {
-                        console.log(data[i].yData);
                         series[0]["data"].push({
                             name: data[i].seriesLabel,
                             y: data[i].yData[0].y
@@ -34,12 +30,9 @@
                 }
 
                 function drawGraph(series, colors) {
-                    if (element.is(":hidden")) {
-                        element.show();
-                    }
                     var chartOptions = {
                         chart: {
-                            renderTo: 'pie-chart',
+                            renderTo: element[0],
                             type: 'pie',
                             height: 300,
                             plotBackgroundColor: null,
@@ -68,14 +61,8 @@
                             }
                         }
                     };
-                    var chart = new Highcharts.Chart(chartOptions);
+                    new Highcharts.Chart(chartOptions);
                 }
-
-                $(function () {
-                    var series = [];
-                    var colors = [];
-                    drawGraph(series, colors);
-                });
             };
             return {
                 link: link,
@@ -88,8 +75,8 @@
                     graphType: '@',
                     chartTitle: '@'
                 },
-                templateUrl: '/templates/pie-chart.html',
-                controller: 'ChartsController',
+                templateUrl: '/templates/pie-chart',
+                controller: 'PieChartController',
                 replace: true
             };
         }]);
