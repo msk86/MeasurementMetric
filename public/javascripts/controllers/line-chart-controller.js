@@ -15,7 +15,8 @@
                 $scope.seriesData = function () {
                     var a = [];
                     for(var k in $scope.lineData) {
-                       a.push({name: k, seriesLabel: k, color: ColorGen.next()});
+                        var label = k == 'all' ? 'All' : k;
+                        a.push({name: k, seriesLabel: label, color: ColorGen.next()});
                     }
 
                     return chartData(a, $scope.lineData);

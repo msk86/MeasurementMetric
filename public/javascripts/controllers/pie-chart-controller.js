@@ -19,7 +19,8 @@
                     }
                     for(var k in $scope.pieData) {
                         if(onlyAll || k != 'all') {
-                            a.push({name: k, seriesLabel: k, color: ColorGen.next()});
+                            var label = k == 'all' ? 'All' : k;
+                            a.push({name: k, seriesLabel: label, color: ColorGen.next()});
                         }
                     }
 

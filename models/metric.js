@@ -116,15 +116,15 @@ module.exports = (function() {
                 createdTime: {$gt: _.first(ranges).start, $lt: _.last(ranges).end}
             }, function(err, metricData) {
                 if(err) return cb(err);
-                var grouped = _.groupBy(metricData, function(d) {
-                    return d.metricType || '';
-                });
-
                 var value = {};
-                _.forEach(grouped, function(gm, g) {
-                    value[g] = rangeReduceData(gm, ranges, processMethod);
-                });
-
+                if(settings.metricTypes.length) {
+                    var grouped = _.groupBy(metricData, function(d) {
+                        return d.metricType || '';
+                    });
+                    _.forEach(grouped, function(gm, g) {
+                        value[g] = rangeReduceData(gm, ranges, processMethod);
+                    });
+                }
                 value.all = rangeReduceData(metricData, ranges, processMethod);
 
                 var data = {
