@@ -14,6 +14,7 @@
 .metric {
 	width: 30.333%;
 	min-width: 314px;
+	height: 424px;
 	margin: 1.5%;
 	float: left;
 	.left-part {
@@ -80,7 +81,7 @@
 	  padding-top: 55px;
 	}
 	.metric-content {
-		min-height: 364px;
+		height: 364px;
 		display: flex;
 		border: 1px solid $border-gray;
 	}

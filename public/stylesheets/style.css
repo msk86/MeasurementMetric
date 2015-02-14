@@ -82,6 +82,7 @@ header .container, .banner .container {
 .metric {
   width: 30.333%;
   min-width: 314px;
+  height: 424px;
   margin: 1.5%;
   float: left; }
   .metric .left-part {
@@ -134,7 +135,7 @@ header .container, .banner .container {
   .metric .metric-value {
     padding-top: 55px; }
   .metric .metric-content {
-    min-height: 364px;
+    height: 364px;
     display: flex;
     border: 1px solid #c3c8ce; }
   .metric .metric-desc {
