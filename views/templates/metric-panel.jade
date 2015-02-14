@@ -11,8 +11,8 @@ div.metric(ng-class="theme")
                 line-chart(metric-name="{{metricName}}" time-frame="{{timeFrame}}" source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='lineChart'")
                 pie-chart(metric-name="{{metricName}}" time-frame="{{timeFrame}}" source-type="userStory" interval-type="weekly" graph-type="all" chart-title="Story Weekly" series-data="seriesData()" ng-if="chartType=='pieChart'")
         div.actions
-            span.rui-icon.rui-icon-listview(ng-click="clickChartType('general')" ng-class="{active:chartType=='general'}")
-            span.icon-stats(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
-            span.icon-pie(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
-            span.icon-bars
-            span.rui-icon.rui-icon-cog
+            span.mm-icon.rui-icon.rui-icon-listview(ng-click="clickChartType('general')" ng-class="{active:chartType=='general'}")
+            span.mm-icon.icon-stats(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
+            span.mm-icon.icon-pie(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
+            span.mm-icon.icon-bars
+            span.mm-icon.rui-icon.rui-icon-cog

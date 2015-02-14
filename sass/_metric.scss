@@ -78,7 +78,7 @@
 	  padding-top: 55px;
 	}
 	.metric-content {
-		min-height: 361px;
+		min-height: 364px;
 		display: flex;
 		border: 1px solid $border-gray;
 	}
@@ -105,6 +105,12 @@
 			}
 		}
 	}
+
+  .mm-icon {
+    height: 42px;
+    vertical-align: middle;
+    line-height: 42px;
+  }
 }
 
 @mixin metric-theme($theme-color) {

@@ -136,7 +136,7 @@ header .container, .banner .container {
   .metric .metric-value {
     padding-top: 55px; }
   .metric .metric-content {
-    min-height: 361px;
+    min-height: 364px;
     display: flex;
     border: 1px solid #c3c8ce; }
   .metric .metric-desc {
@@ -157,6 +157,10 @@ header .container, .banner .container {
       transition: all 0.3s; }
       .metric .actions span:last-child {
         border-bottom: none; }
+  .metric .mm-icon {
+    height: 42px;
+    vertical-align: middle;
+    line-height: 42px; }
 
 .mint-theme .number {
   color: #00c694; }
