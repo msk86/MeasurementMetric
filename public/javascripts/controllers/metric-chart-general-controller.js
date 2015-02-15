@@ -4,17 +4,21 @@
         ['$scope', '$timeout', 'MetricDataService',
             function ($scope, $timeout, MetricDataService) {
 
-                function getGeneralData() {
-                    MetricDataService.getGeneralData($scope.metricName, $scope.timeFrame).then(function(metric) {
+                function getGeneralData(metricName, timeFrame) {
+                    MetricDataService.getGeneralData(metricName, timeFrame).then(function(metric) {
                         $scope.metric = metric;
                     });
                 }
 
-                getGeneralData();
-
-                $scope.$on('TIME_FRAME_CHANGE', function() {
-                    getGeneralData();
+                $scope.$on('TIME_FRAME_CHANGE', function(e, timeFrame) {
+                    getGeneralData($scope.metricName, timeFrame);
                 });
+
+                $scope.$on('REFRESH_SIGNAL', function() {
+                    getGeneralData($scope.metricName, $scope.timeFrame);
+                });
+
+                getGeneralData($scope.metricName, $scope.timeFrame);
             }
         ]);
 

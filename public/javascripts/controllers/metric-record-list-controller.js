@@ -1,4 +1,4 @@
-(function (angular, moment) {
+(function (angular) {
 
     angular.module('metric').controller('MetricRecordListController',
         ['$scope', 'MetricDataService',
@@ -11,12 +11,16 @@
                     });
                 }
 
-                getRecords($scope.metricName, $scope.timeFrame);
-
                 $scope.$on("TIME_FRAME_CHANGE", function(e, timeFrame) {
                     getRecords($scope.metricName, timeFrame);
                 });
+
+                $scope.$on('REFRESH_SIGNAL', function() {
+                    getRecords($scope.metricName, $scope.timeFrame);
+                });
+
+                getRecords($scope.metricName, $scope.timeFrame);
             }
         ]);
 
-}(window.angular, window.moment));
+}(window.angular));

@@ -80,6 +80,10 @@
                     updatePieData($scope.metricName, timeFrame);
                 });
 
+                $scope.$on('REFRESH_SIGNAL', function() {
+                    updatePieData($scope.metricName, $scope.timeFrame);
+                });
+
                 updatePieData($scope.metricName, $scope.timeFrame);
             }
         ]);

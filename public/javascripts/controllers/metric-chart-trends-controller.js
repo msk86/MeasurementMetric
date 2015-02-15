@@ -3,7 +3,7 @@
     angular.module('metric').controller('MetricChartTrendsController',
         ['$scope', '$timeout', 'MetricDataService',
             function ($scope, $timeout, MetricDataService) {
-                $scope.lineData = {};
+                $scope.trendsData = {};
 
                 $scope.trendControls = {
                     dataType: $scope.dataType,
@@ -14,12 +14,12 @@
 
                 $scope.seriesData = function () {
                     var a = [];
-                    for(var k in $scope.lineData) {
+                    for(var k in $scope.trendsData) {
                         var label = k == 'all' ? 'All' : k;
                         a.push({name: k, seriesLabel: label, color: ColorGen.next()});
                     }
 
-                    return chartData(a, $scope.lineData);
+                    return chartData(a, $scope.trendsData);
                 };
 
                 function chartData(storyTypes, data) {
@@ -64,18 +64,22 @@
                     return moment(date).format('dddd YYYY-MM-DD');
                 }
 
-                function updateLineData(metricName, timeFrame) {
+                function updateTrendsData(metricName, timeFrame) {
                     MetricDataService.getTrendsData(metricName, timeFrame).then(function(data) {
-                        $scope.lineData = data["trends"];
+                        $scope.trendsData = data["trends"];
                         $scope.$broadcast('TREND_DATA_CHANGE');
                     });
                 }
 
                 $scope.$on('TIME_FRAME_CHANGE', function(e, timeFrame) {
-                    updateLineData($scope.metricName, timeFrame);
+                    updateTrendsData($scope.metricName, timeFrame);
                 });
 
-                updateLineData($scope.metricName, $scope.timeFrame);
+                $scope.$on('REFRESH_SIGNAL', function() {
+                    updateTrendsData($scope.metricName, $scope.timeFrame);
+                });
+
+                updateTrendsData($scope.metricName, $scope.timeFrame);
             }
         ]);
 
