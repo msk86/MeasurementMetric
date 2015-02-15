@@ -30,6 +30,10 @@
             return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame + "/pie");
         }
 
+        function recordsUrl(metricName, timeFrame) {
+            return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame);
+        }
+
         return {
             getGeneralData: function (metricName, timeFrame) {
                 return dataPromise(generalDataUrl(metricName, timeFrame));
@@ -39,6 +43,9 @@
             },
             getPieData: function (metricName, timeFrame) {
                 return dataPromise(pieDataUrl(metricName, timeFrame));
+            },
+            getRecords: function(metricName, timeFrame) {
+                return dataPromise(recordsUrl(metricName, timeFrame));
             }
         }
 

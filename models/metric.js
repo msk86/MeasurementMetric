@@ -58,11 +58,24 @@ module.exports = (function() {
 
     Metric.create = function(options) {
         options.createdTime = new Date();
+        options.createdDate = dateHelper.formatDate(options.createdTime);
         var metric = new Metric(options);
         db.metric.insert(metric);
     };
 
-    Metric.loadInTimeFrame = function(metricName, timeFrame, cb) {
+    Metric.recordsInTimeFrame = function(metricName, timeFrame, cb) {
+        var range = dateHelper.getDateRange(new Date(), timeFrame);
+        db.metric.find({
+            metricName: metricName,
+            metric: true,
+            createdTime: {$gt: range.start, $lt: range.end}
+        }, function(err, metricData) {
+            if (err) return cb(err);
+            cb(null, metricData);
+        });
+    };
+
+    Metric.generalInTimeFrame = function(metricName, timeFrame, cb) {
         var range = dateHelper.getDateRange(new Date(), timeFrame);
         MetricSettings.getInstance(metricName, function(err, settings) {
             if(err) return cb(err);
@@ -141,7 +154,7 @@ module.exports = (function() {
 
 
     Metric.pieInTimeFrame = function(metricName, timeFrame, cb) {
-        Metric.loadInTimeFrame(metricName, timeFrame, function(err, data) {
+        Metric.generalInTimeFrame(metricName, timeFrame, function(err, data) {
             if(err) return cb(err);
             data.pie = {};
             _.forEach(data.value, function(v, type) {

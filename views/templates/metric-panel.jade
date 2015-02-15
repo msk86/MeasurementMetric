@@ -8,11 +8,12 @@ div.metric(ng-class="theme")
                     span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
             div.graph-body
                 metric-chart-general(ng-if="chartType=='generalChart'")
-                metric-chart-trends(metric-name="metricName" time-frame="timeFrame" source-type="userStory" interval-type="weekly" graph-type="all" series-data="seriesData()" ng-if="chartType=='lineChart'")
+                metric-chart-trends(metric-name="metricName" time-frame="timeFrame" source-type="userStory" interval-type="weekly" graph-type="all" series-data="seriesData()" ng-if="chartType=='trendsChart'")
                 metric-chart-pie(metric-name="metricName" time-frame="timeFrame" source-type="userStory" interval-type="weekly" graph-type="all" series-data="seriesData()" ng-if="chartType=='pieChart'")
+                metric-record-list(ng-if="chartType=='recordList'")
         div.actions
             span.mm-icon.rui-icon.rui-icon-listview(ng-click="clickChartType('generalChart')" ng-class="{active:chartType=='generalChart'}")
-            span.mm-icon.icon-stats(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
+            span.mm-icon.icon-stats(ng-click="clickChartType('trendsChart')" ng-class="{active:chartType=='trendsChart'}")
             span.mm-icon.icon-pie(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
-            span.mm-icon.icon-bars
+            span.mm-icon.icon-bars(ng-click="clickChartType('recordList')" ng-class="{active:chartType=='recordList'}")
             span.mm-icon.rui-icon.rui-icon-cog
