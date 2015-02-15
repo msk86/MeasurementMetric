@@ -3,6 +3,7 @@
         [function () {
             return {
                 scope: true,
+                controller: 'MetricChartGeneralController',
                 restrict: 'E',
                 templateUrl: '/templates/metric-chart-general',
                 replace: true
