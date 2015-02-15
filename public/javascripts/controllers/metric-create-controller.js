@@ -18,6 +18,7 @@
                 $scope.create = function() {
                     return MetricCreateService.createMetric($scope.form).then(function() {
                         resetForm();
+                        $scope.$emit('NEW_METRIC_CREATED');
                     });
                 }
             }

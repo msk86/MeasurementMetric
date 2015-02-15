@@ -231,6 +231,19 @@ header .container, .banner .container {
 .orange-theme .records-table tbody tr:nth-child(2n) {
   background-color: rgba(255, 96, 0, 0.2); }
 
+.blue-theme .number {
+  color: #4a4aff; }
+.blue-theme .filters span.active {
+  background-color: #4a4aff; }
+.blue-theme .graph-body .content .animation {
+  border: 3px solid #4a4aff; }
+.blue-theme .actions span:hover {
+  color: #4a4aff; }
+.blue-theme .actions span.active {
+  color: #4a4aff; }
+.blue-theme .records-table tbody tr:nth-child(2n) {
+  background-color: rgba(74, 74, 255, 0.2); }
+
 @font-face {
   font-family: 'icomoon';
   src: url('fonts/icomoon.eot?-1cbjs0');

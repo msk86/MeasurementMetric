@@ -4,14 +4,30 @@
         ['$scope', '$timeout', 'MetricSettingsService',
             function ($scope, $timeout, MetricSettingsService) {
                 var REFRESH_INTERVAL = 5 * 60 * 1000;
-                MetricSettingsService.allSettings().then(function(settingses) {
-                    $scope.settingses = settingses;
+                $scope.settingses = [];
+
+                $scope.$on('NEW_METRIC_CREATED', function() {
+                    loadSettings();
                 });
 
-                function sendRefreshSignal() {
-                    $scope.$broadcast('REFRESH_SIGNAL');
-                    $timeout(sendRefreshSignal, REFRESH_INTERVAL);
+                function loadSettings() {
+                    MetricSettingsService.allSettings().then(function(settingses) {
+                        var scopeSettingsIds = $scope.settingses.map(function(s) {return s._id;}).sort().join();
+                        var newSettingsIds = settingses.map(function(s) {return s._id;}).sort().join();
+                        if(newSettingsIds == scopeSettingsIds) {
+                            $scope.$broadcast('REFRESH_SIGNAL');
+                        } else {
+                            $scope.settingses = settingses;
+                        }
+                    });
                 }
+
+                function refresh() {
+                    loadSettings();
+                    $timeout(refresh, REFRESH_INTERVAL);
+                }
+
+                refresh();
             }
         ]);
 
