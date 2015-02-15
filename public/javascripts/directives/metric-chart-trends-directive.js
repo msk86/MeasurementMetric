@@ -1,5 +1,5 @@
 (function (angular, RuiCharts, moment) {
-    angular.module('metric').directive('lineChart',
+    angular.module('metric').directive('metricChartTrends',
         ['$timeout', function ($timeout) {
             var link = function ($scope, element) {
                 var chart;
@@ -59,8 +59,8 @@
                     graphType: '@',
                     seriesData: '&'
                 },
-                templateUrl: '/templates/line-chart',
-                controller: 'LineChartController',
+                templateUrl: '/templates/metric-chart-trends',
+                controller: 'MetricChartTrendsController',
                 replace: true
             };
         }]);

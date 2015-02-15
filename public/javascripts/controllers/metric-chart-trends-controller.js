@@ -1,9 +1,10 @@
 (function (angular, $, moment, ColorGen) {
 
-    angular.module('metric').controller('PieChartController',
+    angular.module('metric').controller('MetricChartTrendsController',
         ['$scope', '$timeout', 'MetricDataService',
             function ($scope, $timeout, MetricDataService) {
-                $scope.pieData = {};
+                $scope.lineData = {};
+
                 $scope.trendControls = {
                     dataType: $scope.dataType,
                     intervalType: $scope.intervalType,
@@ -11,20 +12,14 @@
                     chartTitle: $scope.chartTitle
                 };
 
-                $scope.pieChartData = function () {
+                $scope.seriesData = function () {
                     var a = [];
-                    var onlyAll = true;
-                    for(var k in $scope.pieData) {
-                        if(k != 'all') onlyAll = false;
-                    }
-                    for(var k in $scope.pieData) {
-                        if(onlyAll || k != 'all') {
-                            var label = k == 'all' ? 'All' : k;
-                            a.push({name: k, seriesLabel: label, color: ColorGen.next()});
-                        }
+                    for(var k in $scope.lineData) {
+                        var label = k == 'all' ? 'All' : k;
+                        a.push({name: k, seriesLabel: label, color: ColorGen.next()});
                     }
 
-                    return chartData(a, $scope.pieData);
+                    return chartData(a, $scope.lineData);
                 };
 
                 function chartData(storyTypes, data) {
@@ -69,18 +64,18 @@
                     return moment(date).format('dddd YYYY-MM-DD');
                 }
 
-                function updatePieData(metricName, timeFrame) {
-                    MetricDataService.getPieData(metricName, timeFrame).then(function(data) {
-                        $scope.pieData = data["pie"];
-                        $scope.$broadcast('PIE_DATA_CHANGE');
+                function updateLineData(metricName, timeFrame) {
+                    MetricDataService.getTrendsData(metricName, timeFrame).then(function(data) {
+                        $scope.lineData = data["trends"];
+                        $scope.$broadcast('TREND_DATA_CHANGE');
                     });
                 }
 
                 $scope.$on('TIME_FRAME_CHANGE', function(e, timeFrame) {
-                    updatePieData($scope.metricName, timeFrame);
+                    updateLineData($scope.metricName, timeFrame);
                 });
 
-                updatePieData($scope.metricName, $scope.timeFrame);
+                updateLineData($scope.metricName, $scope.timeFrame);
             }
         ]);
 

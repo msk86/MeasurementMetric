@@ -1,5 +1,5 @@
 (function (angular, Highcharts) {
-    angular.module('metric').directive('pieChart',
+    angular.module('metric').directive('metricChartPie',
         ['$timeout', function ($timeout) {
 
             var link = function ($scope, element) {
@@ -74,8 +74,8 @@
                     intervalType: '@',
                     graphType: '@'
                 },
-                templateUrl: '/templates/pie-chart',
-                controller: 'PieChartController',
+                templateUrl: '/templates/metric-chart-pie',
+                controller: 'MetricChartPieController',
                 replace: true
             };
         }]);
