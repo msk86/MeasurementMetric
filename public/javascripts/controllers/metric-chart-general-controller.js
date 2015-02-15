@@ -1,4 +1,4 @@
-(function (angular, $, moment) {
+(function (angular) {
 
     angular.module('metric').controller('MetricChartGeneralController',
         ['$scope', '$timeout', 'MetricDataService',
@@ -18,4 +18,4 @@
             }
         ]);
 
-}(window.angular, window.jQuery, window.moment));
+}(window.angular));

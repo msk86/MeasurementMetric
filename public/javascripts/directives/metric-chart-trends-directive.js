@@ -1,6 +1,6 @@
-(function (angular, RuiCharts, moment) {
+(function (angular, RuiCharts) {
     angular.module('metric').directive('metricChartTrends',
-        ['$timeout', function ($timeout) {
+        [function () {
             var link = function ($scope, element) {
                 var chart;
 
@@ -64,4 +64,4 @@
                 replace: true
             };
         }]);
-}(window.angular, window.RUI.Charts, window.moment));
+}(window.angular, window.RUI.Charts));

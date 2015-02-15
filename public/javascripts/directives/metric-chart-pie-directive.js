@@ -1,6 +1,6 @@
 (function (angular, Highcharts) {
     angular.module('metric').directive('metricChartPie',
-        ['$timeout', function ($timeout) {
+        [function () {
 
             var link = function ($scope, element) {
                 $scope.$on('PIE_DATA_CHANGE', function () {
