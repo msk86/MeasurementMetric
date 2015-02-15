@@ -5,7 +5,7 @@ module.exports = (function() {
 
     function getPreviousMonday(date, howMany) {
         howMany = howMany || 0;
-        var dayDiff = date.getDay() - 1 + 7 * howMany;
+        var dayDiff = (date.getDay() || 7) - 1 + 7 * howMany;
 
         var result = new Date(date.getTime());
         result.setDate(date.getDate() - dayDiff);
@@ -14,7 +14,7 @@ module.exports = (function() {
 
     function getNextSunday(date, howMany) {
         howMany = howMany || 0;
-        var dayDiff = 7 - date.getDay() + 7 * howMany + 1;
+        var dayDiff = 7 - (date.getDay() || 7) + 7 * howMany + 1;
 
         var result = new Date(date.getTime());
         result.setDate(date.getDate() + dayDiff);
