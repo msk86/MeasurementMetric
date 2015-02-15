@@ -1,8 +1,8 @@
 (function (angular, $, moment, ColorGen) {
 
     angular.module('metric').controller('LineChartController',
-        ['$scope', '$timeout', 'DataService',
-            function ($scope, $timeout, DataService) {
+        ['$scope', '$timeout', 'ChartDataService',
+            function ($scope, $timeout, ChartDataService) {
                 $scope.lineData = {};
 
                 $scope.trendControls = {
@@ -65,7 +65,7 @@
                 }
 
                 function updateLineData(metricName, timeFrame) {
-                    DataService.lineChartData(metricName, timeFrame).then(function(data) {
+                    ChartDataService.lineChartData(metricName, timeFrame).then(function(data) {
                         $scope.lineData = data["trends"];
                         $scope.$broadcast('TREND_DATA_CHANGE');
                     });

@@ -1,22 +1,44 @@
 (function (angular, $) {
-    'use strict';
-    angular.module('metric').service('ChartDataService', ['$rootScope', '$timeout', 'DataService',
-        function ($rootScope, $timeout, DataService) {
 
-            var service = this;
-            var data;
-            service.data = function () {
-                // return undefined not {} when data not loaded.
-                return data ? $.extend({}, data) : data;
-            };
-            service.load = function (metric, timeFrame) {
-                DataService.lineChartData(metric, timeFrame).then(function (lineChartData) {
-                    data = lineChartData;
-                    $rootScope.$broadcast("LINE_CHART_DATA_CHANGE");
-                }, function () {
-                    data = {};
-                    $rootScope.$broadcast("LINE_CHART_DATA_CHANGE");
-                });
-            };
-        }]);
-}(window.angular, window.jQuery));
+    angular.module('metric').factory('ChartDataService', ['$timeout', '$q', function ($timeout, $q) {
+
+        var HOST = 'http://localhost:4000';
+
+        function dataPromise(url) {
+            var deferred = $q.defer();
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                timeout: 5000
+            }).success(function (data) {
+                setTimeout(function () {
+                    deferred.resolve(data);
+                }, 0);
+            }).error(function () {
+                setTimeout(function () {
+                    deferred.reject("An error occurred while fetching data");
+                }, 0);
+            });
+            return deferred.promise;
+        }
+
+        function lineChartUrl(metric, timeFrame) {
+            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/trends.json");
+        }
+
+        function pieChartUrl(metric, timeFrame) {
+            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/pie.json");
+        }
+
+        return {
+            lineChartData: function lineChartData(metric, timeFrame) {
+                return dataPromise(lineChartUrl(metric, timeFrame));
+            },
+            pieChartData: function pieChartData(metric, timeFrame) {
+                return dataPromise(pieChartUrl(metric, timeFrame));
+            }
+        }
+
+    }]);
+
+})(window.angular, window.jQuery);

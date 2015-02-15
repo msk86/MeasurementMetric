@@ -1,8 +1,8 @@
 (function (angular, $, moment, ColorGen) {
 
     angular.module('metric').controller('PieChartController',
-        ['$scope', '$timeout', 'DataService',
-            function ($scope, $timeout, DataService) {
+        ['$scope', '$timeout', 'ChartDataService',
+            function ($scope, $timeout, ChartDataService) {
                 $scope.pieData = {};
                 $scope.trendControls = {
                     dataType: $scope.dataType,
@@ -70,7 +70,7 @@
                 }
 
                 function updatePieData(metricName, timeFrame) {
-                    DataService.pieChartData(metricName, timeFrame).then(function(data) {
+                    ChartDataService.pieChartData(metricName, timeFrame).then(function(data) {
                         $scope.pieData = data["pie"];
                         $scope.$broadcast('PIE_DATA_CHANGE');
                     });
