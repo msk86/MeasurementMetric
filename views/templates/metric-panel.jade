@@ -3,7 +3,7 @@ div.metric(ng-class="theme")
     div.metric-content
         div.left-part
             div.graph-header.sm-font
-                span {{metric.timeRange.start}} - {{metric.timeRange.end}}
+                span.frame-range {{range.start}} - {{range.end}}
                 div.filters
                     span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
             div.graph-body

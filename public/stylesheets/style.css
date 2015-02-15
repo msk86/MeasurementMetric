@@ -97,6 +97,10 @@ header .container, .banner .container {
     font-size: 30px; }
   .metric .graph-header {
     padding: 6px; }
+  .metric .frame-range {
+    display: block;
+    float: left;
+    margin: 2px 5px; }
   .metric .filters {
     float: right;
     margin-right: 6px; }
