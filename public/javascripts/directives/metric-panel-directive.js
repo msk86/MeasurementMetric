@@ -22,8 +22,8 @@
                 controller: 'MetricPanelController',
                 link: link,
                 scope: {
-                    metricName: '@',
-                    theme: '@'
+                    theme: '=',
+                    settings: '='
                 },
                 restrict: 'E',
                 templateUrl: '/templates/metric-panel',

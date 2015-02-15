@@ -1,5 +1,5 @@
 div.metric(ng-class="theme")
-    h2.metric-title {{metric.metricName}}
+    h2.metric-title {{metricName}}
     div.metric-content
         div.left-part
             div.graph-header.sm-font
@@ -7,11 +7,11 @@ div.metric(ng-class="theme")
                 div.filters
                     span(ng-repeat="f in timeFrames" ng-class="{active:f.frame==timeFrame}" ng-click="clickTimeFrameFilter(f.frame)") {{f.display}}
             div.graph-body
-                metric-general(ng-if="chartType=='general'")
+                metric-general(ng-if="chartType=='generalChart'")
                 line-chart(metric-name="metricName" time-frame="timeFrame" source-type="userStory" interval-type="weekly" graph-type="all" series-data="seriesData()" ng-if="chartType=='lineChart'")
                 pie-chart(metric-name="metricName" time-frame="timeFrame" source-type="userStory" interval-type="weekly" graph-type="all" series-data="seriesData()" ng-if="chartType=='pieChart'")
         div.actions
-            span.mm-icon.rui-icon.rui-icon-listview(ng-click="clickChartType('general')" ng-class="{active:chartType=='general'}")
+            span.mm-icon.rui-icon.rui-icon-listview(ng-click="clickChartType('generalChart')" ng-class="{active:chartType=='generalChart'}")
             span.mm-icon.icon-stats(ng-click="clickChartType('lineChart')" ng-class="{active:chartType=='lineChart'}")
             span.mm-icon.icon-pie(ng-click="clickChartType('pieChart')" ng-class="{active:chartType=='pieChart'}")
             span.mm-icon.icon-bars
