@@ -18,13 +18,27 @@
             return deferred.promise;
         }
 
-        function metricDataUrl(metricName, timeFrame) {
+        function generalDataUrl(metricName, timeFrame) {
             return encodeURI("/metrics/" + metricName + '/timeframes/' + timeFrame + '/general');
         }
 
+        function trendsDataUrl(metricName, timeFrame) {
+            return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame + "/trends");
+        }
+
+        function pieDataUrl(metricName, timeFrame) {
+            return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame + "/pie");
+        }
+
         return {
-            getMetricData: function (metricName, timeFrame) {
-                return dataPromise(metricDataUrl(metricName, timeFrame));
+            getGeneralData: function (metricName, timeFrame) {
+                return dataPromise(generalDataUrl(metricName, timeFrame));
+            },
+            getTrendsData: function (metricName, timeFrame) {
+                return dataPromise(trendsDataUrl(metricName, timeFrame));
+            },
+            getPieData: function (metricName, timeFrame) {
+                return dataPromise(pieDataUrl(metricName, timeFrame));
             }
         }
 

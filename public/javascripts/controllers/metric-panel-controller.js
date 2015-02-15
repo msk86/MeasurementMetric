@@ -9,11 +9,11 @@
                     $scope.timeFrame = settings.timeFrame;
                     $scope.metricDesc = 'Production issue average recovery time.';
                     $scope.settings = settings;
-                    getMetricData();
+                    getGeneralData();
                 });
 
-                function getMetricData() {
-                    MetricDataService.getMetricData($scope.metricName, $scope.timeFrame).then(function(metric) {
+                function getGeneralData() {
+                    MetricDataService.getGeneralData($scope.metricName, $scope.timeFrame).then(function(metric) {
                         $scope.metric = metric;
                     });
                 }
@@ -24,7 +24,7 @@
                 };
 
                 $scope.$on('TIME_FRAME_CHANGE', function() {
-                    getMetricData();
+                    getGeneralData();
                 });
 
                 $scope.setChartType = function(chartType) {
