@@ -33,19 +33,19 @@ router.post('/:metric', function (req, res) {
     res.send("Metric Data saved");
 });
 
-router.get('/:metric/timeframes/:timeFrame.json', function(req, res, next) {
+router.get('/:metric/timeframes/:timeFrame/general', function(req, res, next) {
     Metric.loadInTimeFrame(req.params.metric, req.params.timeFrame, function(err, data) {
         res.json(data);
     });
 });
 
-router.get('/:metric/timeframes/:timeFrame/pie.json', function(req, res, next) {
+router.get('/:metric/timeframes/:timeFrame/pie', function(req, res, next) {
     Metric.pieInTimeFrame(req.params.metric, req.params.timeFrame, function(err, data) {
         res.json(data);
     });
 });
 
-router.get('/:metric/timeframes/:timeFrame/trends.json', function (req, res, next) {
+router.get('/:metric/timeframes/:timeFrame/trends', function (req, res, next) {
     Metric.trendsInTimeFrame(req.params.metric, req.params.timeFrame, function(err, data) {
         res.json(data);
     });

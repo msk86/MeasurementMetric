@@ -23,11 +23,11 @@
         }
 
         function lineChartUrl(metric, timeFrame) {
-            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/trends.json");
+            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/trends");
         }
 
         function pieChartUrl(metric, timeFrame) {
-            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/pie.json");
+            return encodeURI(HOST + "/metrics/"+metric+"/timeframes/"+timeFrame+"/pie");
         }
 
         return {

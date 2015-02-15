@@ -19,7 +19,7 @@
         }
 
         function metricDataUrl(metricName, timeFrame) {
-            return encodeURI("/metrics/" + metricName + '/timeframes/' + timeFrame + '.json');
+            return encodeURI("/metrics/" + metricName + '/timeframes/' + timeFrame + '/general');
         }
 
         return {
