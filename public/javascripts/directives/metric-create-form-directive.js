@@ -22,14 +22,17 @@
                 $scope.submit = function() {
                     var metricName = $scope.form.metricName;
                     $scope.create().then(function() {
+                        $scope.cancelMethod();
                         alert('Metric ' + metricName + ' is created successfully!');
                     })
-                }
+                };
             }
 
             return {
                 link: link,
-                scope: true,
+                scope: {
+                    cancelMethod: '&'
+                },
                 controller: 'MetricCreateController',
                 restrict: 'E',
                 templateUrl: '/templates/metric-create-form',

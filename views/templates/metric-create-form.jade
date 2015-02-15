@@ -1,4 +1,4 @@
-form
+form.metric-form
     div(class="form-category")
         label MetricCategory
         select(ng-model="form.category" ng-options="c.category as c.display for c in categories")
@@ -22,7 +22,7 @@ form
     div
         label TimeFrame
         select(ng-model="form.timeFrame" ng-options="f.frame as f.display for f in timeFrames")
-    div
+    div.confirm-buttons
         button(ng-click="submit()") Submit
-        button Close
+        button(ng-click="cancelMethod()") Close
 

@@ -147,6 +147,12 @@ header .container, .banner .container {
     margin-top: 25px;
     padding: 10px 5px;
     font-size: 14px; }
+  .metric .click-me {
+    width: 100%;
+    line-height: 346px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer; }
   .metric .actions {
     text-align: center;
     flex: 1;
@@ -173,6 +179,18 @@ header .container, .banner .container {
       font-weight: bold; }
     .metric .records-table tbody tr:nth-child(2n) {
       background-color: #E7E7E7; }
+  .metric .metric-form {
+    position: relative;
+    width: 100%; }
+  .metric .confirm-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 5px;
+    text-align: center; }
+    .metric .confirm-buttons button {
+      margin: 0 5px; }
 
 .mint-theme .number {
   color: #00c694; }

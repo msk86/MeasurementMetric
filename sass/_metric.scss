@@ -98,6 +98,14 @@
     font-size: 14px;
   }
 
+  .click-me {
+    width: 100%;
+    line-height: 346px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
   .actions {
     text-align: center;
     flex: 1;
@@ -135,6 +143,24 @@
 
     tbody tr:nth-child(2n) {
       background-color: #E7E7E7;
+    }
+  }
+
+  .metric-form {
+    position: relative;
+    width: 100%;
+  }
+
+  .confirm-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 5px;
+    text-align: center;
+
+    button {
+      margin: 0 5px;
     }
   }
 }
