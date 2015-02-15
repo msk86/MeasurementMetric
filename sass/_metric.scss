@@ -1,150 +1,172 @@
 @-webkit-keyframes my {
-	0% { left: 50%; width: 0px; height: 0px};
-	100% { left: 0%;  width: 180px; height: 180px};
+  0% { left: 50%; width: 0px; height: 0px};
+100% { left: 0%;  width: 180px; height: 180px};
 }
 @-moz-keyframes my {
-	0% { left: 50%; width: 0px; height: 0px};
-	100% { left: 0%; width: 180px; height: 180px};
+  0% { left: 50%; width: 0px; height: 0px};
+100% { left: 0%; width: 180px; height: 180px};
 }
 @keyframes my {
-	0% { left: 50%; width: 0px; height: 0px};
-	100% { left: 0%; width: 180px; height: 180px};
+  0% { left: 50%; width: 0px; height: 0px};
+100% { left: 0%; width: 180px; height: 180px};
 }
 
 .metric {
-	width: 30.333%;
-	min-width: 314px;
-	height: 424px;
-	margin: 1.5%;
-	float: left;
-	.left-part {
-		flex: 4;
-		min-width: 268px;
-	}
-	.metric-title {
-	  border: 1px solid $border-gray;
-	  margin: 0;
-	  border-bottom: 0;
-	  text-align: center;
-	  padding: 6px 0;
-	  font-size: 30px;
-	}
-	.graph-header {
-		padding: 6px;
-	}
-	.filters {
-		float: right;
-		margin-right: 6px;
-		span {
-			color: white;
-			cursor: pointer;
-			background-color: #333;
-			border-right: 1px solid #c8c9c7;
-			padding: 2px 6px;
-			&:last-child {
-				border-right: none;
-			}
-		}
-	}
+  width: 30.333%;
+  min-width: 314px;
+  height: 424px;
+  margin: 1.5%;
+  float: left;
+  .left-part {
+    flex: 4;
+    min-width: 268px;
+  }
+  .metric-title {
+    border: 1px solid $border-gray;
+    margin: 0;
+    border-bottom: 0;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 30px;
+  }
+  .graph-header {
+    padding: 6px;
+  }
+  .filters {
+    float: right;
+    margin-right: 6px;
+    span {
+      color: white;
+      cursor: pointer;
+      background-color: #333;
+      border-right: 1px solid #c8c9c7;
+      padding: 2px 6px;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
 
-	.graph-body {
-		text-align: center;
-		padding: 10px 0;
-	}
-	.graph-body .content {
-		width: 180px;
-		height: 180px;
-		margin: 0 auto;
-		margin-top: 35px;
-		position: relative;
-		.animation {
-			position: absolute;
-			top: -3px;
-			left: -3px;
-			height: 180px;
-			width: 180px;
-			border-radius: 100%;
-			-webkit-animation: my 1s linear;
-			-moz-animation: my 1s linear;
-			animation: my 1s linear;		
-		}
-	}
+  .graph-body {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .graph-body .content {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    margin-top: 35px;
+    position: relative;
+    .animation {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      height: 180px;
+      width: 180px;
+      border-radius: 100%;
+      -webkit-animation: my 1s linear;
+      -moz-animation: my 1s linear;
+      animation: my 1s linear;
+    }
+  }
 
-	.number {
-		line-height: 1em;
-		font-size: 3em;
-	}
-	.unit {
-		color: #666;
-	}
+  .number {
+    line-height: 1em;
+    font-size: 3em;
+  }
+  .unit {
+    color: #666;
+  }
   .metric-value {
-	  padding-top: 55px;
-	}
-	.metric-content {
-		height: 364px;
-		display: flex;
-		border: 1px solid $border-gray;
-	}
+    padding-top: 55px;
+  }
+  .metric-content {
+    height: 364px;
+    display: flex;
+    border: 1px solid $border-gray;
+  }
   .metric-desc {
-	  border-top: 1px solid #c3c8ce;
-	  margin-top: 25px;
-	  padding: 10px 5px;
-	  font-size: 14px;
-	}
+    border-top: 1px solid #c3c8ce;
+    margin-top: 25px;
+    padding: 10px 5px;
+    font-size: 14px;
+  }
 
-	.actions {
-		text-align: center;
-		flex: 1;
-		border-left: 1px solid $border-gray;
-		font-size: 1.2em;
-		span {
-			display: block;
-			font-size: 1.5em;
-			padding: 15px 0;
-			border-bottom: 1px solid $border-gray;
-			transition: all 0.3s;
-			&:last-child {
-				border-bottom: none;
-			}
-		}
-	}
+  .actions {
+    text-align: center;
+    flex: 1;
+    border-left: 1px solid $border-gray;
+    font-size: 1.2em;
+    span {
+      display: block;
+      font-size: 1.5em;
+      padding: 15px 0;
+      border-bottom: 1px solid $border-gray;
+      transition: all 0.3s;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
 
   .mm-icon {
     height: 42px;
     vertical-align: middle;
     line-height: 42px;
   }
+
+  .records-table {
+    width: 100%;
+
+    thead tr {
+      border-bottom: 1px solid $border-gray;
+    }
+
+    th {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    tbody tr:nth-child(2n) {
+      background-color: #E7E7E7;
+    }
+  }
 }
 
 @mixin metric-theme($theme-color) {
-	.number {
-		color: $theme-color;
-	}
-	.filters span.active {
-		background-color: $theme-color;
-	}
-	.graph-body .content .animation{
-		border: 3px solid $theme-color;
-	}
-	.actions {
-		span {
-			&:hover {
-				color: $theme-color;
-			}
-			&.active {
-				color: $theme-color;
-			}
-		}
-	}	
+  .number {
+    color: $theme-color;
+  }
+  .filters span.active {
+    background-color: $theme-color;
+  }
+  .graph-body .content .animation {
+    border: 3px solid $theme-color;
+  }
+  .actions {
+    span {
+      &:hover {
+        color: $theme-color;
+      }
+      &.active {
+        color: $theme-color;
+      }
+    }
+  }
+  .records-table tbody tr:nth-child(2n) {
+    background-color: rgba($theme-color, .2);
+  }
 }
 
-.mint-theme{
-	@include metric-theme($mint-dark);
+.mint-theme {
+  @include metric-theme($mint-dark);
 }
-.yellow-theme{
-	@include metric-theme($yellow-dark);
+
+.yellow-theme {
+  @include metric-theme($yellow-dark);
 }
-.orange-theme{
-	@include metric-theme($orange-dark);
+
+.orange-theme {
+  @include metric-theme($orange-dark);
 }
 

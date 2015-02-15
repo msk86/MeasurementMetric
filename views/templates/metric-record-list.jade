@@ -1,9 +1,9 @@
-table
+table.records-table
     thead
         tr
             th(ng-if="settings.metricTypes.length") Type
             th(ng-repeat="field in settings.fields") {{field}}
-            th CreatedTime
+            th CreatedDate
     tbody
         tr(ng-repeat="record in records")
             td(ng-if="settings.metricTypes.length") {{record.metricType}}

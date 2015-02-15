@@ -160,6 +160,15 @@ header .container, .banner .container {
     height: 42px;
     vertical-align: middle;
     line-height: 42px; }
+  .metric .records-table {
+    width: 100%; }
+    .metric .records-table thead tr {
+      border-bottom: 1px solid #c3c8ce; }
+    .metric .records-table th {
+      text-align: center;
+      font-weight: bold; }
+    .metric .records-table tbody tr:nth-child(2n) {
+      background-color: #E7E7E7; }
 
 .mint-theme .number {
   color: #00c694; }
@@ -171,6 +180,8 @@ header .container, .banner .container {
   color: #00c694; }
 .mint-theme .actions span.active {
   color: #00c694; }
+.mint-theme .records-table tbody tr:nth-child(2n) {
+  background-color: rgba(0, 198, 148, 0.2); }
 
 .yellow-theme .number {
   color: #ffb200; }
@@ -182,6 +193,8 @@ header .container, .banner .container {
   color: #ffb200; }
 .yellow-theme .actions span.active {
   color: #ffb200; }
+.yellow-theme .records-table tbody tr:nth-child(2n) {
+  background-color: rgba(255, 178, 0, 0.2); }
 
 .orange-theme .number {
   color: #ff6000; }
@@ -193,6 +206,8 @@ header .container, .banner .container {
   color: #ff6000; }
 .orange-theme .actions span.active {
   color: #ff6000; }
+.orange-theme .records-table tbody tr:nth-child(2n) {
+  background-color: rgba(255, 96, 0, 0.2); }
 
 @font-face {
   font-family: 'icomoon';
