@@ -14,7 +14,8 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "mongojs": "~0.18.1",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "cron": "~1.0.6"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

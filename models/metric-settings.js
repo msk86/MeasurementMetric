@@ -26,6 +26,12 @@ module.exports = (function() {
             db.metric.find({
                 settings: true
             }, cb);
+        },
+        findByCategory: function(category, cb) {
+            db.metric.find({
+                settings: true,
+                metricCategory: category
+            }, cb);
         }
     };
 })();
