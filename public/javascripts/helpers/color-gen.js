@@ -3,8 +3,8 @@
     root.Metric.ColorGen = factory();
 }(this, function () {
     function Gen() {
-        this.count = 0;
         this.colors = ['#efc142', '#00ac6d', '#1eb7ea', '#fb7f68', '#4a4aff', '#ffbdbd', '#aa00cc', '#ff6000'];
+        this.count = Math.floor(Math.random() * this.colors.length);
     }
 
     Gen.prototype.next = function() {

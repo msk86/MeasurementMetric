@@ -10,7 +10,11 @@
             }
             return {
                 link: link,
-                scope: true,
+                scope: {
+                    metricName: '=',
+                    settings: '=',
+                    cancelMethod: '&'
+                },
                 controller: 'MetricRecordController',
                 restrict: 'E',
                 templateUrl: '/templates/metric-record-form',

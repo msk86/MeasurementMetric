@@ -1,25 +1,24 @@
 (function (angular) {
 
     angular.module('metric').controller('MetricRecordController',
-        ['$scope', 'MetricRecordService', 'MetricSettingsService',
-            function ($scope, MetricRecordService, MetricSettingsService) {
-                var defaultMetricValue = {};
-                $scope.settings = {};
+        ['$scope', 'MetricRecordService',
+            function ($scope, MetricRecordService) {
                 $scope.metric = {};
 
-                MetricSettingsService.getSettings($scope.metricName).then(function(settings) {
-                    $scope.settings = settings;
-                    if(settings.metricTypes.length) {
-                        defaultMetricValue.metricType = settings.metricTypes[0];
-                    }
-                    resetMetric();
-                });
+                var defaultMetricValue = {};
+                if($scope.settings.metricTypes.length) {
+                    defaultMetricValue.metricType = $scope.settings.metricTypes[0];
+                }
+                resetMetric();
 
                 function resetMetric() {
                     $scope.metric = angular.extend({metricName: $scope.metricName}, defaultMetricValue);
                 }
 
                 $scope.record = function() {
+                    if(!$scope.metric.metricValue) {
+                        $scope.metric.metricValue = 1;
+                    }
                     return MetricRecordService.recordMetric($scope.metric).then(function() {
                         resetMetric();
                     });
