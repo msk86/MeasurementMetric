@@ -13,8 +13,8 @@ module.exports = (function() {
         this.metricDesc = options.metricDesc;
         this.metricUnit = options.metricUnit || '';
         this.processMethod = options.processMethod;
-        this.metricTypes = options.metricTypes ? (options.metricTypes).split(/[,;:|]/).map(function(t) {return t.trim()}) : [];
-        this.fields = options.fields ? (options.fields).split(/[,;:|]/).map(function(f) {return f.trim()}) : [];
+        this.metricTypes = options.metricTypes ? (options.metricTypes).split(/[,;:|]/).map(function(t) {return t.trim();}) : [];
+        this.fields = options.fields ? (options.fields).split(/[,;:|]/).map(function(f) {return f.trim().replace(/\s/g, '');}) : [];
         this.timeFrame = options.timeFrame;
     }
 
