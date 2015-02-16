@@ -1,21 +1,21 @@
 form.metric-form
     div(class="form-category")
-        label MetricCategory
+        label Category
         select(ng-model="form.category" ng-options="c.category as c.display for c in categories")
     div
-        label MetricName
+        label Name
         input(ng-model="form.metricName")
     div
-        label MetricUnit
+        label Unit
         input(ng-model="form.metricUnit")
     div
-        label MetricDesc
+        label Description
         input(ng-model="form.metricDesc")
     div
-        label ProcessMethod
+        label CountMethod
         select(ng-model="form.processMethod" ng-options="m.method as m.display for m in processMethods")
     div
-        label MetricTypes
+        label Types
         input(ng-model="form.metricTypes" placeholder="type1;type2")
     normal-metric-form(ng-if="form.category=='normal'")
     schedule-metric-form(ng-if="form.category=='schedule'")
