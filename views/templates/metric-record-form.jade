@@ -9,7 +9,7 @@ form
         select(ng-model="metric.metricType" ng-options="t for t in settings.metricTypes")
     div(ng-repeat="field in settings.fields")
         label {{field}}
-        input(ng-model="metric.fields[field]")
+        input(ng-model="metric[field]")
     div
         button(ng-click="submit()") Submit
         button Close

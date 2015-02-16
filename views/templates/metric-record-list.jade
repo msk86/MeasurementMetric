@@ -9,5 +9,5 @@ table.records-table
         tr(ng-repeat="record in records")
             td(ng-if="settings.metricTypes.length") {{record.metricType}}
             td {{record.metricValue}}
-            td(ng-repeat="field in settings.fields") {{record.fields[field]}}
+            td(ng-repeat="field in settings.fields") {{record[field]}}
             td {{record.createdDate}}

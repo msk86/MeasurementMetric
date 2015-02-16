@@ -5,7 +5,7 @@
             function ($scope, MetricRecordService, MetricSettingsService) {
                 var defaultMetricValue = {};
                 $scope.settings = {};
-                $scope.metric = {fields: {}};
+                $scope.metric = {};
 
                 MetricSettingsService.getSettings($scope.metricName).then(function(settings) {
                     $scope.settings = settings;
