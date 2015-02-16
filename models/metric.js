@@ -63,6 +63,10 @@ module.exports = (function() {
         db.metric.insert(metric);
     };
 
+    Metric.lastRecord = function(metricName, cb) {
+        cb();
+    };
+
     Metric.recordsInTimeFrame = function(metricName, timeFrame, cb) {
         var range = dateHelper.getDateRange(new Date(), timeFrame);
         db.metric.find({
