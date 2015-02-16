@@ -167,9 +167,9 @@ header .container, .banner .container {
       .metric .actions span:last-child {
         border-bottom: none; }
   .metric .mm-icon {
-    height: 42px;
+    height: 30px;
     vertical-align: middle;
-    line-height: 42px; }
+    line-height: 30px; }
   .metric .records-table {
     width: 100%; }
     .metric .records-table thead tr {
