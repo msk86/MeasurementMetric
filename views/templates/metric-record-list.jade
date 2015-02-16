@@ -10,4 +10,4 @@ table.records-table
             td(ng-if="settings.metricTypes.length") {{record.metricType}}
             td {{record.metricValue}}
             td(ng-repeat="field in settings.fields") {{record.fields[field]}}
-            th {{record.createdDate}}
+            td {{record.createdDate}}
