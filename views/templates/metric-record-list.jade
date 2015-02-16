@@ -4,7 +4,7 @@ table.records-table
             th(ng-if="settings.metricTypes.length") Type
             th Value
             th(ng-repeat="field in settings.fields") {{field}}
-            th CreatedDate
+            th Date
     tbody
         tr(ng-repeat="record in records")
             td(ng-if="settings.metricTypes.length") {{record.metricType}}
