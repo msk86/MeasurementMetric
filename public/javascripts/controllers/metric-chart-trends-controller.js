@@ -3,6 +3,7 @@
     angular.module('metric').controller('MetricChartTrendsController',
         ['$scope', '$timeout', 'MetricDataService',
             function ($scope, $timeout, MetricDataService) {
+                var colorGen = new ColorGen();
                 $scope.trendsData = {};
 
                 $scope.trendControls = {
@@ -16,7 +17,7 @@
                     var a = [];
                     for(var k in $scope.trendsData) {
                         var label = k == 'all' ? 'All' : k;
-                        a.push({name: k, seriesLabel: label, color: ColorGen.next()});
+                        a.push({name: k, seriesLabel: label, color: colorGen.next()});
                     }
 
                     return chartData(a, $scope.trendsData);

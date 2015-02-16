@@ -3,6 +3,7 @@
     angular.module('metric').controller('MetricChartPieController',
         ['$scope', '$timeout', 'MetricDataService',
             function ($scope, $timeout, MetricDataService) {
+                var colorGen = new ColorGen();
                 $scope.pieData = {};
                 $scope.trendControls = {
                     dataType: $scope.dataType,
@@ -20,7 +21,7 @@
                     for(var k in $scope.pieData) {
                         if(onlyAll || k != 'all') {
                             var label = k == 'all' ? 'All' : k;
-                            a.push({name: k, seriesLabel: label, color: ColorGen.next()});
+                            a.push({name: k, seriesLabel: label, color: colorGen.next()});
                         }
                     }
 
