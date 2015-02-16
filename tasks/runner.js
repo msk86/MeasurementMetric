@@ -14,7 +14,7 @@ module.exports = (function() {
             } catch(e) {}
             Metric.lastRecord(scheduleMetric.metricName, function(e, lastRecord) {
                 if(e) return cb(e);
-                var result = $x(null, raw, lastRecord, _);
+                var result = $x(raw, lastRecord, _);
                 if(result) {
                     result.metricName = scheduleMetric.metricName;
                     result.metricValue = result.metricValue == null ? 1 : result.metricValue;
@@ -25,7 +25,7 @@ module.exports = (function() {
     }
 
     return {
-        runScheduleMetric: runTask
+        loadScheduleMetric: runTask
     }
 })();
 
