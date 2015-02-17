@@ -1,0 +1,13 @@
+API:
+    https://git.realestate.com.au/api/v3/repos/wenbo-fan/finance-ui/compare/master...3701c01ffb245aadd8d13818b434e29812a63e94
+
+API Method:
+    function(diff, lastRecord) {
+      // diff is the result json from github
+      var totalCommits = diff.behind_by + 1;
+      // init case, the result object will be saved to metric
+      if(!lastRecord) {return {metricValue: 0, totalCommits: totalCommits};}
+      // system will not save anything if return null
+      if(totalCommits == lastRecord.totalCommits) return;
+      return {metricValue: (totalCommits - lastRecord.totalCommits), totalCommits: totalCommits};
+    }
