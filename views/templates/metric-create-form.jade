@@ -17,7 +17,9 @@ form.metric-form
     div
         label Types
         input(ng-model="form.metricTypes" placeholder="type1;type2")
-    normal-metric-form(ng-if="form.category=='normal'")
+    div
+        label Fields
+        input(ng-model="form.fields" placeholder="field1;field2")
     schedule-metric-form(ng-if="form.category=='schedule'")
     div
         label TimeFrame

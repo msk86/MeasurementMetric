@@ -14,6 +14,7 @@ module.exports = (function() {
         this.metricUnit = options.metricUnit || '';
         this.processMethod = options.processMethod;
         this.metricTypes = options.metricTypes ? (options.metricTypes).split(/[,;:|]/).map(function(t) {return t.trim();}) : [];
+        this.fields = options.fields ? (options.fields).split(/[,;:|]/).map(function(f) {return f.trim().replace(/\s/g, '');}) : [];
         this.api = options.api;
         this.username = options.username;
         this.password = options.password;
