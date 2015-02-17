@@ -10,6 +10,8 @@ var templates = require('./routes/templates');
 var metrics = require('./routes/metrics');
 var helpers = require('./routes/helpers');
 
+var scheduler = require('./tasks/scheduler');
+
 var app = express();
 
 // view engine setup
@@ -59,6 +61,8 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+scheduler.startAllScheduleMetric();
 
 app.listen(4000);
 console.log('server is running');

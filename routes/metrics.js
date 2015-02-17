@@ -4,6 +4,8 @@ var router = express.Router();
 var MetricSettings = require('../models/metric-settings');
 var Metric = require('../models/metric');
 
+var Scheduler = require('../tasks/scheduler');
+
 router.get('/settings', function(req, res, next) {
     MetricSettings.all(function(err, settingses) {
         res.json(settingses);
@@ -19,18 +21,20 @@ router.get('/:metric/settings', function (req, res, next) {
 /* create metric setting */
 router.post('/:metric/settings', function (req, res) {
     var params = req.body;
-    MetricSettings.create(params);
-    res.status(201);
-    res.send("Metric settings saved");
+    MetricSettings.create(params, function(settings) {
+        Scheduler.StartNewScheduleMetric(settings);
+        res.status(201);
+        res.send("Metric settings saved");
+    });
 });
 
-/* create metric setting */
 router.post('/:metric', function (req, res) {
     var params = req.body;
     params.metricName = req.params.metric;
-    Metric.create(params);
-    res.status(201);
-    res.send("Metric Data saved");
+    Metric.create(params, function() {
+        res.status(201);
+        res.send("Metric Data saved");
+    });
 });
 
 router.get('/:metricName/timeframes/:timeFrame', function(req, res, next) {
