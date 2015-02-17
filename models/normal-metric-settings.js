@@ -1,12 +1,11 @@
 var mongojs = require('mongojs');
 
 var databaseUrl = "mydb";
-var collections = ["metric"];
+var collections = ["settings"];
 var db = mongojs.connect(databaseUrl, collections);
 
 module.exports = (function() {
     function NormalMetricSettings(options) {
-        this.settings = true;
         this.createdTime = options.createdTime;
         this.metricCategory = 'normal';
         this.metricName = options.metricName;
@@ -21,7 +20,7 @@ module.exports = (function() {
     NormalMetricSettings.create = function(settings, cb) {
         settings.createdTime = new Date();
         var metricSetting = new NormalMetricSettings(settings);
-        db.metric.insert(metricSetting, cb);
+        db.settings.insert(metricSetting, cb);
     };
 
     return NormalMetricSettings;

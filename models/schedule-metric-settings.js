@@ -1,12 +1,11 @@
 var mongojs = require('mongojs');
 
 var databaseUrl = "mydb";
-var collections = ["metric"];
+var collections = ["settings"];
 var db = mongojs.connect(databaseUrl, collections);
 
 module.exports = (function() {
     function ScheduleMetricSettings(options) {
-        this.settings = true;
         this.createdTime = options.createdTime;
         this.metricCategory = 'schedule';
         this.metricName = options.metricName;
@@ -26,7 +25,7 @@ module.exports = (function() {
     ScheduleMetricSettings.create = function(settings, cb) {
         settings.createdTime = new Date();
         var metricSetting = new ScheduleMetricSettings(settings);
-        db.metric.insert(metricSetting, cb);
+        db.settings.insert(metricSetting, cb);
     };
 
     return ScheduleMetricSettings;

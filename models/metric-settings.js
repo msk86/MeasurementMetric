@@ -1,7 +1,7 @@
 var mongojs = require('mongojs');
 
 var databaseUrl = "mydb";
-var collections = ["metric"];
+var collections = ["settings"];
 var db = mongojs.connect(databaseUrl, collections);
 
 NormalMetricSettings = require('../models/normal-metric-settings');
@@ -10,9 +10,8 @@ ScheduleMetricSettings = require('../models/schedule-metric-settings');
 module.exports = (function() {
     return {
         getInstance: function(metricName, cb) {
-            db.metric.findOne({
-                metricName: metricName,
-                settings: true
+            db.settings.findOne({
+                metricName: metricName
             }, cb);
         },
         create: function(settings, cb) {
@@ -23,13 +22,10 @@ module.exports = (function() {
             }
         },
         all: function(cb) {
-            db.metric.find({
-                settings: true
-            }, cb);
+            db.settings.find({}, cb);
         },
         findByCategory: function(category, cb) {
-            db.metric.find({
-                settings: true,
+            db.settings.find({
                 metricCategory: category
             }, cb);
         }

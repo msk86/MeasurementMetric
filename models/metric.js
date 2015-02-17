@@ -12,7 +12,6 @@ var _ = require('underscore');
 module.exports = (function() {
     function Metric(options) {
         _.extend(this, options);
-        this.metric = true;
     }
 
     function reduceData(metricData, processMethod) {
@@ -71,7 +70,6 @@ module.exports = (function() {
         var range = dateHelper.getDateRange(new Date(), timeFrame);
         db.metric.find({
             metricName: metricName,
-            metric: true,
             createdTime: {$gt: range.start, $lt: range.end}
         }, function(err, metricData) {
             if (err) return cb(err);
@@ -87,7 +85,6 @@ module.exports = (function() {
             var processMethod = settings.processMethod;
             db.metric.find({
                 metricName: metricName,
-                metric: true,
                 createdTime: {$gt: range.start, $lt: range.end}
             }, function(err, metricData) {
                 if(err) return cb(err);
@@ -129,7 +126,6 @@ module.exports = (function() {
             var processMethod = settings.processMethod;
             db.metric.find({
                 metricName: metricName,
-                metric: true,
                 createdTime: {$gt: _.first(ranges).start, $lt: _.last(ranges).end}
             }, function(err, metricData) {
                 if(err) return cb(err);
