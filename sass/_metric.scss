@@ -20,6 +20,7 @@
   .left-part {
     flex: 4;
     min-width: 275px;
+    height: 364px;
   }
   
   .metric-title {
@@ -32,6 +33,7 @@
   }
   .graph-header {
     padding: 6px;
+    height: 23px;
   }
   .frame-range {
     display: block;
@@ -56,8 +58,10 @@
 
   .graph-body {
     text-align: center;
-    padding: 10px 0;
+    height: 329px;
+    overflow-y: scroll;
   }
+
   .graph-body .content {
     width: 180px;
     height: 180px;
@@ -132,6 +136,7 @@
 
   .records-table {
     width: 100%;
+    margin: 0;
 
     thead tr {
       border-bottom: 1px solid $border-gray;

@@ -87,7 +87,8 @@ header .container, .banner .container {
   float: left; }
   .metric .left-part {
     flex: 4;
-    min-width: 275px; }
+    min-width: 275px;
+    height: 364px; }
   .metric .metric-title {
     border: 1px solid #c3c8ce;
     margin: 0;
@@ -96,7 +97,8 @@ header .container, .banner .container {
     padding: 6px 0;
     font-size: 30px; }
   .metric .graph-header {
-    padding: 6px; }
+    padding: 6px;
+    height: 23px; }
   .metric .frame-range {
     display: block;
     float: left;
@@ -114,7 +116,8 @@ header .container, .banner .container {
         border-right: none; }
   .metric .graph-body {
     text-align: center;
-    padding: 10px 0; }
+    height: 329px;
+    overflow-y: scroll; }
   .metric .graph-body .content {
     width: 180px;
     height: 180px;
@@ -171,7 +174,8 @@ header .container, .banner .container {
     vertical-align: middle;
     line-height: 30px; }
   .metric .records-table {
-    width: 100%; }
+    width: 100%;
+    margin: 0; }
     .metric .records-table thead tr {
       border-bottom: 1px solid #c3c8ce; }
     .metric .records-table th {
