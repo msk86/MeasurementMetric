@@ -63,7 +63,10 @@ module.exports = (function() {
     };
 
     Metric.lastRecord = function(metricName, cb) {
-        cb();
+        db.metric.find({metricName: metricName}).sort({createdTime: -1}).limit(1, function(e, metrics) {
+            if(e) return cb(e);
+            cb(null, metrics[0]);
+        });
     };
 
     Metric.recordsInTimeFrame = function(metricName, timeFrame, cb) {
