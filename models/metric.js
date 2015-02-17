@@ -12,7 +12,12 @@ var _ = require('underscore');
 module.exports = (function() {
     function Metric(options) {
         _.extend(this, options);
-        if(!this.metricValue) this.metricValue = 0;
+        try {
+            this.metricValue = parseInt(this.metricValue);
+        } catch(e) {
+            this.metricValue = 0;
+        }
+
     }
 
     function reduceData(metricData, processMethod) {
