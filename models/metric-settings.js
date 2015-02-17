@@ -15,11 +15,11 @@ module.exports = (function() {
                 settings: true
             }, cb);
         },
-        create: function(settings) {
+        create: function(settings, cb) {
             if(settings.category == 'schedule') {
-                ScheduleMetricSettings.create(settings);
+                ScheduleMetricSettings.create(settings, cb);
             } else {
-                NormalMetricSettings.create(settings);
+                NormalMetricSettings.create(settings, cb);
             }
         },
         all: function(cb) {

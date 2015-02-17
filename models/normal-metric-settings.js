@@ -18,10 +18,10 @@ module.exports = (function() {
         this.timeFrame = options.timeFrame;
     }
 
-    NormalMetricSettings.create = function(settings) {
+    NormalMetricSettings.create = function(settings, cb) {
         settings.createdTime = new Date();
         var metricSetting = new NormalMetricSettings(settings);
-        db.metric.insert(metricSetting);
+        db.metric.insert(metricSetting, cb);
     };
 
     return NormalMetricSettings;

@@ -56,11 +56,11 @@ module.exports = (function() {
         });
     }
 
-    Metric.create = function(options) {
+    Metric.create = function(options, cb) {
         options.createdTime = new Date();
         options.createdDate = dateHelper.formatDate(options.createdTime);
         var metric = new Metric(options);
-        db.metric.insert(metric);
+        db.metric.insert(metric, cb);
     };
 
     Metric.lastRecord = function(metricName, cb) {

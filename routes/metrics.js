@@ -21,7 +21,7 @@ router.get('/:metric/settings', function (req, res, next) {
 /* create metric setting */
 router.post('/:metric/settings', function (req, res) {
     var params = req.body;
-    MetricSettings.create(params, function(settings) {
+    MetricSettings.create(params, function(e, settings) {
         Scheduler.StartNewScheduleMetric(settings);
         res.status(201);
         res.send("Metric settings saved");

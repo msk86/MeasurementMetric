@@ -23,10 +23,10 @@ module.exports = (function() {
         this.timeFrame = options.timeFrame;
     }
 
-    ScheduleMetricSettings.create = function(settings) {
+    ScheduleMetricSettings.create = function(settings, cb) {
         settings.createdTime = new Date();
         var metricSetting = new ScheduleMetricSettings(settings);
-        db.metric.insert(metricSetting);
+        db.metric.insert(metricSetting, cb);
     };
 
     return ScheduleMetricSettings;
