@@ -62,11 +62,16 @@ module.exports = (function() {
     }
 
     Metric.create = function(team, options, cb) {
-        options.createdTime = new Date();
-        options.createdDate = dateHelper.formatDate(options.createdTime);
-        options.team = team;
-        var metric = new Metric(options);
-        db.metric.insert(metric, cb);
+        MetricSettings.getInstance(team, options.metricName, function(err, settings) {
+            if(err) return cb(err);
+            if(!settings) return cb('Metric settings not exist');
+
+            options.createdTime = new Date();
+            options.createdDate = dateHelper.formatDate(options.createdTime);
+            options.team = team;
+            var metric = new Metric(options);
+            db.metric.insert(metric, cb);
+        });
     };
 
     Metric.lastRecord = function(metricName, cb) {
