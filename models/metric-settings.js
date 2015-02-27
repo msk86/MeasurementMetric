@@ -21,7 +21,7 @@ module.exports = (function() {
                 if(s) return cb('Metric settings exist.');
 
                 settings.team = team;
-                if(settings.metricCategory == 'schedule') {
+                if(settings.category == 'schedule') {
                     ScheduleMetricSettings.create(settings, cb);
                 } else {
                     NormalMetricSettings.create(settings, cb);
@@ -33,7 +33,7 @@ module.exports = (function() {
         },
         findByCategory: function(category, cb) {
             db.settings.find({
-                metricCategory: category
+                category: category
             }, cb);
         }
     };

@@ -8,7 +8,7 @@ module.exports = (function() {
     function NormalMetricSettings(options) {
         this.createdTime = options.createdTime;
         this.team = options.team;
-        this.metricCategory = 'normal';
+        this.category = 'normal';
         this.metricName = options.metricName;
         this.metricDesc = options.metricDesc;
         this.metricUnit = options.metricUnit || '';

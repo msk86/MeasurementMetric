@@ -8,7 +8,7 @@ module.exports = (function() {
     function ScheduleMetricSettings(options) {
         this.createdTime = options.createdTime;
         this.team = options.team;
-        this.metricCategory = 'schedule';
+        this.category = 'schedule';
         this.metricName = options.metricName;
         this.metricDesc = options.metricDesc;
         this.metricUnit = options.metricUnit || '';
