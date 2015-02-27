@@ -26,16 +26,15 @@ router.post('/:metric/settings', function (req, res) {
             Scheduler.StartNewScheduleMetric(settings);
         }
         res.status(201);
-        res.send("Metric settings saved");
+        res.json({error: e});
     });
 });
 
 router.post('/:metric', function (req, res) {
     var params = req.body;
     params.metricName = req.params.metric;
-    Metric.create(req.params.team, params, function() {
-        res.status(201);
-        res.send("Metric Data saved");
+    Metric.create(req.params.team, params, function(e) {
+        res.json({error: e});
     });
 });
 

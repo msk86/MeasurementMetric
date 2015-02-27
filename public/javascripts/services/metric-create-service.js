@@ -7,9 +7,13 @@
                 url: url,
                 type: 'POST',
                 data: data
-            }).success(function () {
+            }).success(function (d) {
                 $timeout(function () {
-                    deferred.resolve();
+                    if(d.error) {
+                        deferred.reject(d.error);
+                    } else {
+                        deferred.resolve();
+                    }
                 });
             }).error(function () {
                 $timeout(function () {
