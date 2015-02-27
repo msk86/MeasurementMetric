@@ -61,9 +61,10 @@ module.exports = (function() {
         });
     }
 
-    Metric.create = function(options, cb) {
+    Metric.create = function(team, options, cb) {
         options.createdTime = new Date();
         options.createdDate = dateHelper.formatDate(options.createdTime);
+        options.team = team;
         var metric = new Metric(options);
         db.metric.insert(metric, cb);
     };
@@ -75,9 +76,10 @@ module.exports = (function() {
         });
     };
 
-    Metric.recordsInTimeFrame = function(metricName, timeFrame, cb) {
+    Metric.recordsInTimeFrame = function(team, metricName, timeFrame, cb) {
         var range = dateHelper.getDateRange(new Date(), timeFrame);
         db.metric.find({
+            team: team,
             metricName: metricName,
             createdTime: {$gt: range.start, $lt: range.end}
         }, function(err, metricData) {
@@ -86,13 +88,14 @@ module.exports = (function() {
         });
     };
 
-    Metric.generalInTimeFrame = function(metricName, timeFrame, cb) {
+    Metric.generalInTimeFrame = function(team, metricName, timeFrame, cb) {
         var range = dateHelper.getDateRange(new Date(), timeFrame);
-        MetricSettings.getInstance(metricName, function(err, settings) {
+        MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
             var processMethod = settings.processMethod;
             db.metric.find({
+                team: team,
                 metricName: metricName,
                 createdTime: {$gt: range.start, $lt: range.end}
             }, function(err, metricData) {
@@ -127,13 +130,14 @@ module.exports = (function() {
         });
     };
 
-    Metric.trendsInTimeFrame = function(metricName, timeFrame, cb) {
+    Metric.trendsInTimeFrame = function(team, metricName, timeFrame, cb) {
         var ranges = dateHelper.sixTrendRanges(new Date(), timeFrame);
-        MetricSettings.getInstance(metricName, function(err, settings) {
+        MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
             var processMethod = settings.processMethod;
             db.metric.find({
+                team: team,
                 metricName: metricName,
                 createdTime: {$gt: _.first(ranges).start, $lt: _.last(ranges).end}
             }, function(err, metricData) {
@@ -162,8 +166,8 @@ module.exports = (function() {
     };
 
 
-    Metric.pieInTimeFrame = function(metricName, timeFrame, cb) {
-        Metric.generalInTimeFrame(metricName, timeFrame, function(err, data) {
+    Metric.pieInTimeFrame = function(team, metricName, timeFrame, cb) {
+        Metric.generalInTimeFrame(team, metricName, timeFrame, function(err, data) {
             if(err) return cb(err);
             data.pie = {};
             _.forEach(data.value, function(v, type) {

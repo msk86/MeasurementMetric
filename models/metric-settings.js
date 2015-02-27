@@ -9,20 +9,22 @@ ScheduleMetricSettings = require('../models/schedule-metric-settings');
 
 module.exports = (function() {
     return {
-        getInstance: function(metricName, cb) {
+        getInstance: function(team, metricName, cb) {
             db.settings.findOne({
+                team: team,
                 metricName: metricName
             }, cb);
         },
-        create: function(settings, cb) {
+        create: function(team, settings, cb) {
+            settings.team = team;
             if(settings.category == 'schedule') {
                 ScheduleMetricSettings.create(settings, cb);
             } else {
                 NormalMetricSettings.create(settings, cb);
             }
         },
-        all: function(cb) {
-            db.settings.find({}, cb);
+        all: function(team, cb) {
+            db.settings.find({team: team}, cb);
         },
         findByCategory: function(category, cb) {
             db.settings.find({

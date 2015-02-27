@@ -20,7 +20,7 @@
         }
 
         function createMetricUrl(metricName) {
-            return encodeURI("/metrics/" + metricName + "/settings");
+            return encodeURI("/" + TEAM + "/metrics/" + metricName + "/settings");
         }
 
         return {

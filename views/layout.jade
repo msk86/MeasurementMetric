@@ -1,6 +1,9 @@
 doctype html
 html('id'='ng-app', 'ng-app'='metric')
   head
+    script(type='text/javascript').
+      var TEAM = '#{team}';
+
     script(src='vendor/jquery/jquery.js')
     script(src='vendor/highcharts/highcharts.js')
     script(src='vendor/angularjs/angular.js')

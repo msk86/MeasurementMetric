@@ -19,11 +19,11 @@
         }
 
         function metricSettingsUrl(metricName) {
-            return encodeURI("/metrics/" + metricName + "/settings");
+            return encodeURI("/" + TEAM + "/metrics/" + metricName + "/settings");
         }
 
         function allSettingsUrl() {
-            return encodeURI("/metrics/settings");
+            return encodeURI("/" + TEAM + "/metrics/settings");
         }
 
         return {

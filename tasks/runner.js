@@ -14,6 +14,7 @@ module.exports = (function() {
                 if(e) return cb(e);
                 var result = $x(raw, lastRecord);
                 if(result) {
+                    result.team = scheduleMetric.team;
                     result.metricName = scheduleMetric.metricName;
                     result.metricValue = result.metricValue == null ? 1 : result.metricValue;
                     cb(null, result);

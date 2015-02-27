@@ -19,19 +19,19 @@
         }
 
         function generalDataUrl(metricName, timeFrame) {
-            return encodeURI("/metrics/" + metricName + '/timeframes/' + timeFrame + '/general');
+            return encodeURI("/" + TEAM + "/metrics/" + metricName + '/timeframes/' + timeFrame + '/general');
         }
 
         function trendsDataUrl(metricName, timeFrame) {
-            return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame + "/trends");
+            return encodeURI("/" + TEAM + "/metrics/" + metricName + "/timeframes/" + timeFrame + "/trends");
         }
 
         function pieDataUrl(metricName, timeFrame) {
-            return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame + "/pie");
+            return encodeURI("/" + TEAM + "/metrics/" + metricName + "/timeframes/" + timeFrame + "/pie");
         }
 
         function recordsUrl(metricName, timeFrame) {
-            return encodeURI("/metrics/" + metricName + "/timeframes/" + timeFrame);
+            return encodeURI("/" + TEAM + "/metrics/" + metricName + "/timeframes/" + timeFrame);
         }
 
         return {

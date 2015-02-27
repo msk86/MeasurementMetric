@@ -7,13 +7,13 @@ var Metric = require('../models/metric');
 var Scheduler = require('../tasks/scheduler');
 
 router.get('/settings', function(req, res, next) {
-    MetricSettings.all(function(err, settingses) {
+    MetricSettings.all(req.params.team, function(err, settingses) {
         res.json(settingses);
     });
 });
 
 router.get('/:metric/settings', function (req, res, next) {
-    MetricSettings.getInstance(req.params.metric, function (err, settings) {
+    MetricSettings.getInstance(req.params.team, req.params.metric, function (err, settings) {
         res.json(settings);
     });
 });
@@ -21,7 +21,7 @@ router.get('/:metric/settings', function (req, res, next) {
 /* create metric setting */
 router.post('/:metric/settings', function (req, res) {
     var params = req.body;
-    MetricSettings.create(params, function(e, settings) {
+    MetricSettings.create(req.params.team, params, function(e, settings) {
         Scheduler.StartNewScheduleMetric(settings);
         res.status(201);
         res.send("Metric settings saved");
@@ -31,32 +31,32 @@ router.post('/:metric/settings', function (req, res) {
 router.post('/:metric', function (req, res) {
     var params = req.body;
     params.metricName = req.params.metric;
-    Metric.create(params, function() {
+    Metric.create(req.params.team, params, function() {
         res.status(201);
         res.send("Metric Data saved");
     });
 });
 
 router.get('/:metricName/timeframes/:timeFrame', function(req, res, next) {
-    Metric.recordsInTimeFrame(req.params.metricName, req.params.timeFrame, function(err, data) {
+    Metric.recordsInTimeFrame(req.params.team, req.params.metricName, req.params.timeFrame, function(err, data) {
         res.json(data);
     });
 });
 
 router.get('/:metricName/timeframes/:timeFrame/general', function(req, res, next) {
-    Metric.generalInTimeFrame(req.params.metricName, req.params.timeFrame, function(err, data) {
+    Metric.generalInTimeFrame(req.params.team, req.params.metricName, req.params.timeFrame, function(err, data) {
         res.json(data);
     });
 });
 
 router.get('/:metricName/timeframes/:timeFrame/pie', function(req, res, next) {
-    Metric.pieInTimeFrame(req.params.metricName, req.params.timeFrame, function(err, data) {
+    Metric.pieInTimeFrame(req.params.team, req.params.metricName, req.params.timeFrame, function(err, data) {
         res.json(data);
     });
 });
 
 router.get('/:metricName/timeframes/:timeFrame/trends', function (req, res, next) {
-    Metric.trendsInTimeFrame(req.params.metricName, req.params.timeFrame, function(err, data) {
+    Metric.trendsInTimeFrame(req.params.team, req.params.metricName, req.params.timeFrame, function(err, data) {
         res.json(data);
     });
 });

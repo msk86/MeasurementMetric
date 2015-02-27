@@ -28,8 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/templates', templates);
-app.use('/metrics', metrics);
 app.use('/helpers', helpers);
+app.use('/:teamName/metrics', metrics);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
