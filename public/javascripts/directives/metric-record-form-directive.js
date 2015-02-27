@@ -4,6 +4,7 @@
             function link($scope) {
                 $scope.submit = function() {
                     $scope.record().then(function() {
+                        $scope.cancelMethod();
                         alert('Record successfully!');
                     });
                 }
