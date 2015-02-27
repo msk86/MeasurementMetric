@@ -16,12 +16,17 @@ module.exports = (function() {
             }, cb);
         },
         create: function(team, settings, cb) {
-            settings.team = team;
-            if(settings.category == 'schedule') {
-                ScheduleMetricSettings.create(settings, cb);
-            } else {
-                NormalMetricSettings.create(settings, cb);
-            }
+            this.getInstance(team, settings.metricName, function(e, s) {
+                if(e) return cb(e);
+                if(s) return cb('Metric settings exist.');
+
+                settings.team = team;
+                if(settings.category == 'schedule') {
+                    ScheduleMetricSettings.create(settings, cb);
+                } else {
+                    NormalMetricSettings.create(settings, cb);
+                }
+            });
         },
         all: function(team, cb) {
             db.settings.find({team: team}, cb);
