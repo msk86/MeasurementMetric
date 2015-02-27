@@ -15,7 +15,7 @@ module.exports = (function() {
         try {
             this.metricValue = parseInt(this.metricValue);
         } catch(e) {
-            this.metricValue = 0;
+            this.metricValue = 1;
         }
 
     }
