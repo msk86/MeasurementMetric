@@ -12,9 +12,8 @@ var _ = require('underscore');
 module.exports = (function() {
     function Metric(options) {
         _.extend(this, options);
-        try {
-            this.metricValue = parseInt(this.metricValue);
-        } catch(e) {
+        this.metricValue = parseInt(this.metricValue);
+        if(Number.isNaN(this.metricValue)) {
             this.metricValue = 1;
         }
 
