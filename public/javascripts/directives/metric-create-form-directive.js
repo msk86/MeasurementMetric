@@ -18,6 +18,10 @@
                     {display:'Max()', method:'max'},
                     {display:'Min()', method:'min'}
                 ];
+                $scope.fortnightStartFrom = [
+                    {display:'This week', startFrom:'thisweek'},
+                    {display:'Last week', startFrom:'lastweek'}
+                ];
 
                 $scope.submit = function() {
                     var metricName = $scope.form.metricName;

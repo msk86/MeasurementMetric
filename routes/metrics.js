@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 
 var MetricSettings = require('../models/metric-settings');
 var Metric = require('../models/metric');
@@ -27,7 +27,6 @@ router.post('/:metric/settings', function (req, res) {
                 Scheduler.StartNewScheduleMetric(settings);
             }
         }
-        res.status(201);
         res.json({error: e});
     });
 });

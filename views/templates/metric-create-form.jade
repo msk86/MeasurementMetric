@@ -24,6 +24,9 @@ form.metric-form
     div
         label TimeFrame
         select(ng-model="form.timeFrame" ng-options="f.frame as f.display for f in timeFrames")
+        span(ng-if="form.timeFrame=='fortnight'")
+            label from
+            select(ng-model="form.startFrom" ng-options="m.startFrom as m.display for m in fortnightStartFrom")
     div.confirm-buttons
         button(ng-click="submit()") Submit
         button(ng-click="cancelMethod()") Close

@@ -6,7 +6,8 @@
                 var defaultFormValue = {
                     category: 'normal',
                     timeFrame: 'week',
-                    processMethod: 'total'
+                    processMethod: 'total',
+                    startFrom: 'thisweek'
                 };
 
                 function resetForm() {

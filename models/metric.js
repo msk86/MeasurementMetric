@@ -82,22 +82,28 @@ module.exports = (function() {
     };
 
     Metric.recordsInTimeFrame = function(team, metricName, timeFrame, cb) {
-        var range = dateHelper.getDateRange(new Date(), timeFrame);
-        db.metric.find({
-            team: team,
-            metricName: metricName,
-            createdTime: {$gt: range.start, $lt: range.end}
-        }, function(err, metricData) {
-            if (err) return cb(err);
-            cb(null, metricData);
+        MetricSettings.getInstance(team, metricName, function(err, settings) {
+            if(err) return cb(err);
+            if(!settings) return cb('No settings');
+
+            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), timeFrame);
+            db.metric.find({
+                team: team,
+                metricName: metricName,
+                createdTime: {$gt: range.start, $lt: range.end}
+            }, function(err, metricData) {
+                if (err) return cb(err);
+                cb(null, metricData);
+            });
         });
     };
 
     Metric.generalInTimeFrame = function(team, metricName, timeFrame, cb) {
-        var range = dateHelper.getDateRange(new Date(), timeFrame);
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
+
+            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), timeFrame);
             var processMethod = settings.processMethod;
             db.metric.find({
                 team: team,
@@ -136,10 +142,11 @@ module.exports = (function() {
     };
 
     Metric.trendsInTimeFrame = function(team, metricName, timeFrame, cb) {
-        var ranges = dateHelper.sixTrendRanges(new Date(), timeFrame);
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
+
+            var ranges = dateHelper.sixTrendRanges(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), timeFrame);
             var processMethod = settings.processMethod;
             db.metric.find({
                 team: team,

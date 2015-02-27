@@ -95,7 +95,21 @@ module.exports = (function() {
         return ranges;
     }
 
+    function standardDay(date, startFrom, timeFrame) {
+        if(!startFrom || timeFrame != 'fortnight') {
+            return date;
+        }
+        var offsetDay = 0;
+        var t = (date.getTime() - startFrom.getTime()) / (({week: 7, fortnight: 14})[timeFrame] * 24 * 60 * 60 * 1000);
+        if(t - Math.floor(t) < 0.5) {
+            offsetDay = 7;
+        }
+        date.setDate(date.getDate() + offsetDay);
+        return date;
+    }
+
     return {
+        standardDay: standardDay,
         formatDate: formatDate,
         getDateRange: getDateRange,
         sixTrendRanges: sixTrendRanges

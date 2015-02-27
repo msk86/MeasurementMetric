@@ -18,13 +18,13 @@
             return deferred.promise;
         }
 
-        function frameRangeUrl(timeFrame) {
-            return encodeURI("/helpers/range/" + timeFrame);
+        function frameRangeUrl(metricName, timeFrame) {
+            return encodeURI("/helpers/range/teams/" + TEAM + "/metrics/" + metricName + "/timeframes/" + timeFrame);
         }
 
         return {
-            getFrameRange: function (timeFrame) {
-                return dataPromise(frameRangeUrl(timeFrame));
+            getFrameRange: function (metricName, timeFrame) {
+                return dataPromise(frameRangeUrl(metricName, timeFrame));
             }
         }
 

@@ -8,7 +8,7 @@
                 $scope.timeFrame = $scope.settings.timeFrame;
 
                 function getFrameRange(timeFrame) {
-                    HelpersService.getFrameRange(timeFrame).then(function(range) {
+                    HelpersService.getFrameRange($scope.metricName, timeFrame).then(function(range) {
                         $scope.range = range;
                     });
                 }

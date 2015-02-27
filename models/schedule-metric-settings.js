@@ -21,6 +21,13 @@ module.exports = (function() {
         this.apiMethod = options.apiMethod;
         this.frequency = options.frequency;
         this.timeFrame = options.timeFrame;
+        if(this.timeFrame == 'fortnight') {
+            var startFrom = new Date();
+            if(options.startFrom == 'lastweek') {
+                startFrom.setDate(startFrom.getDate() - 7);
+            }
+            this.startFrom = startFrom;
+        }
     }
 
     ScheduleMetricSettings.create = function(settings, cb) {
