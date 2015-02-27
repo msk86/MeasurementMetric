@@ -24,7 +24,9 @@
                     $scope.create().then(function() {
                         $scope.cancelMethod();
                         alert('Metric ' + metricName + ' is created successfully!');
-                    })
+                    }, function(e) {
+                        alert(e);
+                    });
                 };
             }
 

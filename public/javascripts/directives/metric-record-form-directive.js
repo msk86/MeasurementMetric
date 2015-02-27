@@ -6,6 +6,8 @@
                     $scope.record().then(function() {
                         $scope.cancelMethod();
                         alert('Record successfully!');
+                    }, function(e) {
+                        alert(e);
                     });
                 }
             }
