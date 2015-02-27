@@ -13,7 +13,7 @@ module.exports = (function() {
 
     function startNewScheduleMetric(settings) {
         Runner.loadScheduleMetric(settings, function(err, result) {
-            if(!err) Metric.create(result);
+            if(!err) Metric.create(settings.team, result);
         });
         scheduleJob(settings);
     }
@@ -28,7 +28,7 @@ module.exports = (function() {
         var frequency = "0 " + settings.frequency;
         new CronJob(frequency, function(){
             Runner.loadScheduleMetric(settings, function(err, result) {
-                if(!err) Metric.create(result);
+                if(!err) Metric.create(settings.team, result);
             });
         }, null, true);
     }
