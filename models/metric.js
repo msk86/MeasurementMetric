@@ -85,7 +85,7 @@ module.exports = (function() {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
 
-            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), timeFrame);
+            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
             db.metric.find({
                 team: team,
                 metricName: metricName,
@@ -102,7 +102,7 @@ module.exports = (function() {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
 
-            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), timeFrame);
+            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
             var processMethod = settings.processMethod;
             db.metric.find({
                 team: team,
@@ -145,7 +145,7 @@ module.exports = (function() {
             if(err) return cb(err);
             if(!settings) return cb('No settings');
 
-            var ranges = dateHelper.sixTrendRanges(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), timeFrame);
+            var ranges = dateHelper.sixTrendRanges(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
             var processMethod = settings.processMethod;
             db.metric.find({
                 team: team,

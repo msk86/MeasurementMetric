@@ -8,7 +8,7 @@ router.get('/range/teams/:team/metrics/:metric/timeframes/:timeFrame', function(
         if(err) return res.json({error: err});
         if(!settings) return res.json({error: 'Settings not exist.'});
 
-        var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), req.params.timeFrame);
+        var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, req.params.timeFrame), req.params.timeFrame);
         range.start = dateHelper.formatDate(range.start);
         range.end = dateHelper.formatDate(range.end);
         res.json(range);
