@@ -1,19 +1,16 @@
-extends layout
+doctype html
 
-block content
-	header
-		div.container
-			div.logo
-				span.rui-icon.rui-icon-home 
-				span Measure Metrics
-			div.user
-				span.icon-user 
-				a MAD
-	div.banner
-		div.container
-			h2 Media and Developer
-			div.healthy-number
-				span.title Healthy
-				span.number 93
-
-	metric-dashboard
+html
+	head
+		title Measurement Metrics
+		link(rel='stylesheet', href='http://s1.rui.au.reastatic.net/rui-1.7.2/css/rui-all.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		div.team-container
+			h1 Measurement Metrics
+			form(action="/dashboard" method="POST")
+				div
+					label Your team name
+					input.team(name="team")
+				div.submit
+					input(type="submit" value="Go")

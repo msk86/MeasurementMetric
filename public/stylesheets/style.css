@@ -320,6 +320,25 @@ header .container, .banner .container {
 .icon-sina-weibo:before {
   content: "\e60e"; }
 
+h1 {
+  font-size: 2em; }
+
+.team-container {
+  width: 325px;
+  left: 50%;
+  margin-left: -200px;
+  position: relative;
+  margin-top: 100px; }
+  .team-container .team {
+    float: right;
+    width: 170px; }
+  .team-container .submit {
+    margin-top: 15px;
+    width: 100px;
+    margin-left: 112px; }
+    .team-container .submit input {
+      width: 100%; }
+
 body {
   padding-top: 0;
   min-height: 500px; }

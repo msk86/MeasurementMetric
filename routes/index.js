@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Measurement Metric' });
+  res.render('index');
+});
+
+router.post('/dashboard', function(req, res, next) {
+  var team = req.body.team;
+  res.redirect('/' + team.replace(/ /g, '+'), 302);
 });
 
 router.get('/:team', function(req, res, next) {
