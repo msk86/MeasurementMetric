@@ -23,7 +23,7 @@ router.post('/:metric/settings', function (req, res) {
     var params = req.body;
     MetricSettings.create(req.params.team, params, function(e, settings) {
         if(!e) {
-            if(settings.category == 'schedule') {
+            if(settings.metricCategory == 'schedule') {
                 Scheduler.StartNewScheduleMetric(settings);
             }
         }

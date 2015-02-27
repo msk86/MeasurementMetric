@@ -21,7 +21,7 @@ module.exports = (function() {
                 if(s) return cb('Metric settings exist.');
 
                 settings.team = team;
-                if(settings.category == 'schedule') {
+                if(settings.metricCategory == 'schedule') {
                     ScheduleMetricSettings.create(settings, cb);
                 } else {
                     NormalMetricSettings.create(settings, cb);
