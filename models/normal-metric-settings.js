@@ -33,8 +33,8 @@ module.exports = (function() {
 
     NormalMetricSettings.update = function(id, settings, cb) {
         var metricSetting = new NormalMetricSettings(settings);
-        settings._id = mongojs.ObjectId(id);
-        db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, cb);
+        metricSetting._id = mongojs.ObjectId(id);
+        db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, function(e) { cb(e, metricSetting); });
     };
 
     return NormalMetricSettings;

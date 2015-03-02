@@ -38,8 +38,8 @@ module.exports = (function() {
 
     ScheduleMetricSettings.update = function(id, settings, cb) {
         var metricSetting = new ScheduleMetricSettings(settings);
-        settings._id = mongojs.ObjectId(id);
-        db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, cb);
+        metricSetting._id = mongojs.ObjectId(id);
+        db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, function(e) { cb(e, metricSetting); });
     };
 
     return ScheduleMetricSettings;

@@ -5,8 +5,13 @@ _ = require('underscore');
 module.exports = (function() {
     function runTask(scheduleMetric, cb) {
         var apiMethod = scheduleMetric.apiMethod.toString().trim().replace(/^function.*?\(/, 'function $x(');
-        eval(apiMethod);
+        try {
+            eval(apiMethod);
+        } catch(e) {}
 
+        if(typeof $x != 'function') {
+            return;
+        }
         httpHelper.get(scheduleMetric.api, scheduleMetric.username, scheduleMetric.password, function(e, raw) {
             try {
                 raw = JSON.parse(raw);

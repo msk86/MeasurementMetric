@@ -23,9 +23,7 @@ router.post('/:metric/settings', function (req, res) {
     var params = req.body;
     MetricSettings.create(req.params.team, params, function(e, settings) {
         if(!e) {
-            if(settings.category == 'schedule') {
-                Scheduler.StartNewScheduleMetric(settings);
-            }
+            Scheduler.StartNewScheduleMetric(settings);
         }
         res.json({error: e});
     });
@@ -36,10 +34,7 @@ router.put('/:metric/settings', function (req, res) {
     if(!params._id) return res.json({error: 'No id specified.'});
     MetricSettings.update(params._id, params, function(e, settings) {
         if(!e) {
-            if(settings.category == 'schedule') {
-                //Scheduler.StopScheduleMetric(settings);
-                Scheduler.StartNewScheduleMetric(settings);
-            }
+            Scheduler.updateScheduleMetric(params._id, settings);
         }
         res.json({error: e});
     });
