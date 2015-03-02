@@ -13,7 +13,7 @@ module.exports = (function() {
             } catch(e) {}
             Metric.lastRecord(scheduleMetric.team, scheduleMetric.metricName, function(e, lastRecord) {
                 if(e) return cb(e);
-                var result = $x(raw, lastRecord, _);
+                var result = $x(raw, lastRecord);
                 if(result) {
                     result.team = scheduleMetric.team;
                     result.metricName = scheduleMetric.metricName;
