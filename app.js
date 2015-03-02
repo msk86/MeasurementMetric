@@ -64,7 +64,7 @@ app.use(function(err, req, res, next) {
 
 scheduler.startAllScheduleMetric();
 
-app.listen(4000);
+app.listen(process.env.MM_PORT || 4000);
 console.log('server is running');
 
 module.exports = app;
