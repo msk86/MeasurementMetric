@@ -7,6 +7,7 @@ var db = mongojs.connect(databaseUrl, collections);
 module.exports = (function() {
     function NormalMetricSettings(options) {
         this.createdTime = options.createdTime;
+        this.updatedTime = options.updatedTime;
         this.team = options.team;
         this.category = 'normal';
         this.metricName = options.metricName;
@@ -32,6 +33,7 @@ module.exports = (function() {
     };
 
     NormalMetricSettings.update = function(id, settings, cb) {
+        settings.updatedTime = new Date();
         var metricSetting = new NormalMetricSettings(settings);
         metricSetting._id = mongojs.ObjectId(id);
         db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, function(e) { cb(e, metricSetting); });

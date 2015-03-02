@@ -7,6 +7,7 @@ var db = mongojs.connect(databaseUrl, collections);
 module.exports = (function() {
     function ScheduleMetricSettings(options) {
         this.createdTime = options.createdTime;
+        this.updatedTime = options.updatedTime;
         this.team = options.team;
         this.category = 'schedule';
         this.metricName = options.metricName;
@@ -37,6 +38,7 @@ module.exports = (function() {
     };
 
     ScheduleMetricSettings.update = function(id, settings, cb) {
+        settings.updatedTime = new Date();
         var metricSetting = new ScheduleMetricSettings(settings);
         metricSetting._id = mongojs.ObjectId(id);
         db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, function(e) { cb(e, metricSetting); });
