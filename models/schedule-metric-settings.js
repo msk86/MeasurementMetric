@@ -36,5 +36,11 @@ module.exports = (function() {
         db.settings.insert(metricSetting, cb);
     };
 
+    ScheduleMetricSettings.update = function(id, settings, cb) {
+        var metricSetting = new ScheduleMetricSettings(settings);
+        settings._id = mongojs.ObjectId(id);
+        db.settings.update({_id: mongojs.ObjectId(id)}, metricSetting, cb);
+    };
+
     return ScheduleMetricSettings;
 })();

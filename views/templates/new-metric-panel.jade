@@ -2,4 +2,4 @@ div.metric.new-metric
     h2.metric-title Want new metric?
     div.metric-content
         div.click-me(ng-click="toggleCreateForm()" ng-if="!isForm") Click here!
-        metric-create-form(ng-if="isForm" cancel-method="toggleCreateForm()")
+        metric-create-form(ng-if="isForm" cancel-method="toggleCreateForm()" form="defaultForm" submit-action="create")

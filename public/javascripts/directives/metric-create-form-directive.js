@@ -37,7 +37,9 @@
             return {
                 link: link,
                 scope: {
-                    cancelMethod: '&'
+                    cancelMethod: '&',
+                    submitAction: '@',
+                    form: '='
                 },
                 controller: 'MetricCreateController',
                 restrict: 'E',

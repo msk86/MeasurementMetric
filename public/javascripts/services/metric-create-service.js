@@ -1,11 +1,11 @@
 (function (angular, $) {
 
     angular.module('metric').factory('MetricCreateService', ['$timeout', '$q', function ($timeout, $q) {
-        function dataPromise(url, data) {
+        function dataPromise(url, data, method) {
             var deferred = $q.defer();
             $.ajax({
                 url: url,
-                type: 'POST',
+                type: method,
                 data: data
             }).success(function (d) {
                 $timeout(function () {
@@ -23,13 +23,16 @@
             return deferred.promise;
         }
 
-        function createMetricUrl(metricName) {
+        function metricUrl(metricName) {
             return encodeURI("/" + TEAM + "/metrics/" + metricName + "/settings");
         }
 
         return {
             createMetric: function (data) {
-                return dataPromise(createMetricUrl(data.metricName), data);
+                return dataPromise(metricUrl(data.metricName), data, 'POST');
+            },
+            updateMetric: function (data) {
+                return dataPromise(metricUrl(data.metricName), data, 'PUT');
             }
         }
 

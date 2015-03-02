@@ -28,6 +28,13 @@ module.exports = (function() {
                 }
             });
         },
+        update: function(id, settings, cb) {
+            if(settings.category == 'schedule') {
+                ScheduleMetricSettings.update(settings._id, settings, cb);
+            } else {
+                NormalMetricSettings.update(settings._id, settings, cb);
+            }
+        },
         all: function(team, cb) {
             db.settings.find({team: team}, cb);
         },

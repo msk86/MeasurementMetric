@@ -3,6 +3,7 @@
         [function () {
             function link($scope, element) {
                 $scope.isForm = false;
+                $scope.defaultForm = {};
 
                 $scope.toggleCreateForm = function() {
                     $scope.isForm = !$scope.isForm;

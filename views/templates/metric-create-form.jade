@@ -2,7 +2,7 @@ form.metric-form
     div(class="form-category")
         label Category
         select(ng-model="form.category" ng-options="c.category as c.display for c in categories")
-    div
+    div(ng-if="submitAction=='create'")
         label Name
         input(ng-model="form.metricName")
     div

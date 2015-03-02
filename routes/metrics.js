@@ -30,6 +30,20 @@ router.post('/:metric/settings', function (req, res) {
         res.json({error: e});
     });
 });
+/* update metric setting */
+router.put('/:metric/settings', function (req, res) {
+    var params = req.body;
+    if(!params._id) return res.json({error: 'No id specified.'});
+    MetricSettings.update(params._id, params, function(e, settings) {
+        if(!e) {
+            if(settings.category == 'schedule') {
+                //Scheduler.StopScheduleMetric(settings);
+                Scheduler.StartNewScheduleMetric(settings);
+            }
+        }
+        res.json({error: e});
+    });
+});
 
 router.post('/:metric', function (req, res) {
     var params = req.body;

@@ -12,8 +12,8 @@
 
                 function loadSettings() {
                     MetricSettingsService.allSettings().then(function(settingses) {
-                        var scopeSettingsIds = $scope.settingses.map(function(s) {return s._id;}).sort().join();
-                        var newSettingsIds = settingses.map(function(s) {return s._id;}).sort().join();
+                        var scopeSettingsIds = $scope.settingses.map(function(s) {return JSON.stringify(s);}).sort().join();
+                        var newSettingsIds = settingses.map(function(s) {return JSON.stringify(s);}).sort().join();
                         if(newSettingsIds == scopeSettingsIds) {
                             $scope.$broadcast('REFRESH_SIGNAL');
                         } else {
