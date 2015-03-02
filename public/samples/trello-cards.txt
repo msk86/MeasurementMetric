@@ -23,6 +23,10 @@ API Method:
         });
 
         backToDev = backToDevCards.length;
+
+        if(backToDev == 0) {
+          return null;
+        }
       }
 
       return {
