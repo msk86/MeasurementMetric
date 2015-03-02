@@ -11,7 +11,7 @@ module.exports = (function() {
             try {
                 raw = JSON.parse(raw);
             } catch(e) {}
-            Metric.lastRecord(scheduleMetric.metricName, function(e, lastRecord) {
+            Metric.lastRecord(scheduleMetric.team, scheduleMetric.metricName, function(e, lastRecord) {
                 if(e) return cb(e);
                 var result = $x(raw, lastRecord, _);
                 if(result) {

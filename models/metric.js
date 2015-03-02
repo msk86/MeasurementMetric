@@ -73,8 +73,8 @@ module.exports = (function() {
         });
     };
 
-    Metric.lastRecord = function(metricName, cb) {
-        db.metric.find({metricName: metricName}).sort({createdTime: -1}).limit(1, function(e, metrics) {
+    Metric.lastRecord = function(team, metricName, cb) {
+        db.metric.find({team: team, metricName: metricName}).sort({createdTime: -1}).limit(1, function(e, metrics) {
             if(e) return cb(e);
             cb(null, metrics[0]);
         });
