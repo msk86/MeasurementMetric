@@ -117,7 +117,7 @@ header .container, .banner .container {
   .metric .graph-body {
     text-align: center;
     height: 329px;
-    overflow-y: scroll; }
+    overflow-y: auto; }
   .metric .graph-body .content {
     width: 180px;
     height: 180px;
