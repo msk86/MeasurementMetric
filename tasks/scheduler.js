@@ -15,15 +15,15 @@ module.exports = (function() {
     }
 
     function runJob(settings) {
+        if(settings.category != 'schedule') return;
         Runner.loadScheduleMetric(settings, function(err, result) {
             if(!err) Metric.create(settings.team, result);
         });
     }
 
-    function startNewScheduleMetric(settings, cb) {
-        if(settings.category != 'schedule') return;
+    function startNewScheduleMetric(settings) {
         runJob(settings);
-        scheduleJob(settings, cb);
+        scheduleJob(settings);
     }
 
     function startAllScheduleMetric() {
@@ -32,26 +32,20 @@ module.exports = (function() {
         });
     }
 
-    function scheduleJob(settings, cb) {
+    function scheduleJob(settings) {
         if(settings.category != 'schedule') return;
 
-        try {
-            var frequency = "0 " + settings.frequency;
-            var job = new CronJob(frequency, function(){
-                Runner.loadScheduleMetric(settings, function(err, result) {
-                    if(!err) Metric.create(settings.team, result);
-                });
-            }, null, true);
-            job.settings = settings;
-            jobs.push(job);
-            if(typeof cb == 'function') cb();
-        } catch(e) {
-            if(typeof cb == 'function') cb('Frequency is incorrect.');
-        }
-
+        var frequency = "0 " + settings.frequency;
+        var job = new CronJob(frequency, function(){
+            Runner.loadScheduleMetric(settings, function(err, result) {
+                if(!err) Metric.create(settings.team, result);
+            });
+        }, null, true);
+        job.settings = settings;
+        jobs.push(job);
     }
 
-    function updateScheduleMetric(id, settings, cb) {
+    function updateScheduleMetric(id, settings) {
         var jobIndex = jobs.indexOf(_.find(jobs, function(job) {
             return job.settings._id = id;
         }));
@@ -61,13 +55,40 @@ module.exports = (function() {
             jobs.pop();
         }
         runJob(settings);
-        scheduleJob(settings, cb);
+        scheduleJob(settings);
+    }
+
+    function validScheduleJob(settings) {
+        if(settings.category != 'schedule') return;
+        validFrequency(settings);
+        validApiMethod(settings);
+    }
+
+    function validFrequency(settings) {
+        var frequency = "0 " + settings.frequency;
+        if(frequency.split(' ').length != 6) throw 'Frequency is invalid';
+        try {
+            new CronJob(frequency, function(){}, null, false);
+        } catch(e) {
+            throw 'Frequency is invalid';
+        }
+    }
+
+    function validApiMethod(settings) {
+        var apiMethod = (settings.apiMethod || '').toString().trim().replace(/^function.*?\(/, 'function $x(');
+        try {
+            eval(apiMethod);
+        } catch(e) {
+            throw 'API method is not a function';
+        }
+        if(typeof $x != 'function') throw 'API method is not a function';
     }
 
     return {
         startAllScheduleMetric: startAllScheduleMetric,
         updateScheduleMetric: updateScheduleMetric,
-        StartNewScheduleMetric : startNewScheduleMetric
+        StartNewScheduleMetric : startNewScheduleMetric,
+        validScheduleJob: validScheduleJob
     }
 })();
 

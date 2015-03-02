@@ -27,7 +27,7 @@
                     var metricName = $scope.form.metricName;
                     $scope.create().then(function() {
                         $scope.cancelMethod();
-                        alert('Metric ' + metricName + ' is created successfully!');
+                        alert('Metric ' + metricName + ' is ' + $scope.submitAction + 'd successfully!');
                     }, function(e) {
                         alert(e);
                     });
