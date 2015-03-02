@@ -4,7 +4,7 @@ _ = require('underscore');
 
 module.exports = (function() {
     function runTask(scheduleMetric, cb) {
-        var apiMethod = scheduleMetric.apiMethod.toString().trim().replace(/^function.*?\(/, 'function $x(');
+        var apiMethod = (scheduleMetric.apiMethod || '').toString().trim().replace(/^function.*?\(/, 'function $x(');
         try {
             eval(apiMethod);
         } catch(e) {}
