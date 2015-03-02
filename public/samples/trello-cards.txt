@@ -1,0 +1,33 @@
+API:
+    https://api.trello.com/1/boards/ce5oDD24/cards?key=d5e133da1db19c2435d2228f8d8f32ca&token=14a745f5254e1f2374f0e72ca212f4211aedefb7e21228b978b03e2035f1dfee
+
+Username:
+
+Password:
+
+
+API Method:
+    function(apiResult, lastRecord) {
+      var devDoneCards = apiResult.filter(function(result) {
+        return result.labels.filter(function(label){return label.name == 'Dev Complete'}).length > 0;
+      }).map(function(card) { return {id: card.id, name: card.name};});
+
+      var backToDev = 0;
+      if(lastRecord) {
+        var lastDevDoneCards = lastRecord.devDoneCards;
+
+        var backToDevCards = lastDevDoneCards.filter(function(lastCard) {
+          return devDoneCards.filter(function(card) {
+            return card.id == lastCard.id;
+          }).length == 0;
+        });
+
+        backToDev = backToDevCards.length;
+      }
+
+      return {
+        metricValue: backToDev,
+        devDoneCards: devDoneCards
+      };
+    }
+

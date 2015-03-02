@@ -1,6 +1,11 @@
 API:
     https://git.realestate.com.au/api/v3/repos/wenbo-fan/finance-ui/compare/master...3701c01ffb245aadd8d13818b434e29812a63e94
 
+Username:
+    ***
+Password:
+    ***
+
 API Method:
     function(diff, lastRecord) {
       // diff is the result json from github
