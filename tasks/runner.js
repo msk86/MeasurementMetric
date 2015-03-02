@@ -1,5 +1,6 @@
 httpHelper = require('../helpers/http-helper');
 Metric = require('../models/metric');
+_ = require('underscore');
 
 module.exports = (function() {
     function runTask(scheduleMetric, cb) {
@@ -12,7 +13,7 @@ module.exports = (function() {
             } catch(e) {}
             Metric.lastRecord(scheduleMetric.metricName, function(e, lastRecord) {
                 if(e) return cb(e);
-                var result = $x(raw, lastRecord);
+                var result = $x(raw, lastRecord, _);
                 if(result) {
                     result.team = scheduleMetric.team;
                     result.metricName = scheduleMetric.metricName;
