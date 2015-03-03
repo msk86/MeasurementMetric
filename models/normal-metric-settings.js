@@ -6,8 +6,8 @@ var db = mongojs.connect(databaseUrl, collections);
 
 module.exports = (function() {
     function NormalMetricSettings(options) {
-        this.createdTime = options.createdTime;
-        this.updatedTime = options.updatedTime;
+        this.createdTime = typeof(options.createdTime) == 'string' ? new Date(options.createdTime) : options.createdTime;
+        this.updatedTime = typeof(options.updatedTime) == 'string' ? new Date(options.updatedTime) : options.updatedTime;
         this.team = options.team;
         this.category = 'normal';
         this.metricName = options.metricName;
