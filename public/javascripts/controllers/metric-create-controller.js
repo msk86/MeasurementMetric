@@ -3,6 +3,7 @@
     angular.module('metric').controller('MetricCreateController',
         ['$scope', 'MetricCreateService',
             function ($scope, MetricCreateService) {
+                $scope.form = angular.extend({}, $scope.settings);
                 if($scope.form.metricTypes) $scope.form.metricTypes = $scope.form.metricTypes.join(';');
                 if($scope.form.fields) $scope.form.fields = $scope.form.fields.join(';');
                 if($scope.form.startFrom) delete $scope.form.startFrom;
@@ -21,7 +22,6 @@
                 resetForm();
 
                 $scope.create = function() {
-                    var submit = 'createMetric';
                     if($scope.submitAction=='update') {
                         return MetricCreateService.updateMetric($scope.form).then(function() {
                             resetForm();

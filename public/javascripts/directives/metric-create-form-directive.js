@@ -39,7 +39,7 @@
                 scope: {
                     cancelMethod: '&',
                     submitAction: '@',
-                    form: '='
+                    settings: '='
                 },
                 controller: 'MetricCreateController',
                 restrict: 'E',
