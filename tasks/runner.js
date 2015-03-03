@@ -20,13 +20,23 @@ module.exports = (function() {
                 if(e) return cb(e);
                 var result = $x(raw, lastRecord);
                 if(result) {
-                    result.team = scheduleMetric.team;
-                    result.metricName = scheduleMetric.metricName;
-                    result.metricValue = result.metricValue == null ? 1 : result.metricValue;
-                    cb(null, result);
+                    (result instanceof Array)? saveResults(result,scheduleMetric, cb) : saveResult(result, scheduleMetric, cb);
                 }
             });
         });
+    }
+
+    function saveResults(results, scheduleMetric, cb){
+        results.forEach(function(result) {
+            saveResult(result, scheduleMetric, cb)
+        });
+    }
+
+    function saveResult(result, scheduleMetric, cb){
+        result.team = scheduleMetric.team;
+        result.metricName = scheduleMetric.metricName;
+        result.metricValue = result.metricValue == null ? 1 : result.metricValue;
+        cb(null, result);
     }
 
     return {

@@ -17,20 +17,8 @@ module.exports = (function() {
     function runJob(settings) {
         if(settings.category != 'schedule') return;
         Runner.loadScheduleMetric(settings, function(err, result) {
-            if(!err){
-                (result instanceof Array) ? saveResults(settings.team, result) : saveResult(settings.team, result);
-            }
+            if(!err) Metric.create(settings.team, result);
         });
-    }
-
-    function saveResults(team, results){
-        results.forEach(function(result) {
-            saveResult(team, result);
-        });
-    }
-
-    function saveResult(team, result){
-        Metric.create(team, result);
     }
 
     function startNewScheduleMetric(settings) {
