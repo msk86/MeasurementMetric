@@ -22,7 +22,7 @@
     min-width: 275px;
     height: 364px;
   }
-  
+
   .metric-title {
     border: 1px solid $border-gray;
     margin: 0;
@@ -31,10 +31,24 @@
     padding: 6px 0;
     font-size: 30px;
   }
+
   .graph-header {
     padding: 6px;
     height: 23px;
   }
+
+  .schedule-mark {
+    float: left;
+    margin: 2px 0;
+    border: 1px solid;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    line-height: 16px;
+    display: block;
+  }
+
   .frame-range {
     display: block;
     float: left;
