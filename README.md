@@ -6,96 +6,55 @@ to help us collect metric data, also provide analytics
 and visualization.
 
 Measurement & Metric is this tool which can easily:
+
 * Creating a new metric
-* Choosing a metric type
 * Collecting data(Manually & Automatically)
 * Analyzing metric
 * A great visualization
 
-## User Journey
+## Env
 
-Jie is a team manager, her main work is collecting
-all kind of data, and find out how the performance of
-the team.
+* MongoDB: `brew install mongodb`
+    * Configuration for **dbpath**:
 
-* Login in to `http://mm.com`
-* Click `New Metric` button
-* Fill form and submit:
-  * `Metric Name`:`<input value="Session">`
-  * `Metric category`:`<radio value="Normal" selected><radio value="Schedule">`
-  * `Metric Type`:`<input value="Team;Office">`
-  * `Other Infos`:`<input value="Runner;Feedback">`
-  * `Week start`:`<select><option>Monday</option><option>...</option><option>Sunday</option></select>`
-  * `Time Frame`:`<select><option>Daily</option><option>Weekly</option><option>Fortnightly</option><option>Monthly</option></select>`
-* See `New metric "Session" is created successfully!`
-* Go back to `http://mm.com`
-* See the `Session` metric is on the dashboard now, the value is `0/Day`
-* Hover on the `Session` metric panel, I can see `Increase`
-button.
-* Click on `Increase` button
-* See a popup with
-  * `Metric Type`:`<select><option>Team</option><option>Office</option></select>`
-  * `Runner`:`<input>`
-  * `Feedback`:`<input>`
-* Submit the form, the value changes to `1/Day`
-* Click on `Analysis` button on the right side of the panel
-* See a line-chart to show the `daily` data of last 30 days
-  * Have a line of total number
-  * Have a line of `Team`
-  * Have a line of `Office`
-* The frequence can be changed to `weekly`, `fortnightly`, `monthly`
-* The data range can be changed
-* Click on `List` button on the right side of the panel
-* See a full list of `Session` metric, with `Metric Type`, `Runner`, `Created At`
-* Click `Delete` in a row to delete a metric
-* Click `New Metric` button again, to add a new metric
-* Fill form and submit:
-  * `Metric Name`:`<input value="Commits">`
-  * `Metric category`:`<radio value="Normal"><radio value="Schedule" selected>`
-  * `API`:`<input value="https://api.github.com">`
-  * `User Name`:`<input value="username">`
-  * `Password`:`<input value="password">`
-  * `Metric function`:`<textarea>function(apiResult) {return apiResult.metric; }</textarea>`
-  * `Frequency(Day)`:`<input value="1">`
-  * `Trigger Time`:`<input type="time" value="10:00">`
-  * `Week start`:`<select><option>Monday</option><option>...</option><option>Sunday</option></select>`
-  * `Time Frame`:`<select><option>Daily</option><option>Weekly</option><option>Fortnightly</option><option>Monthly</option></select>`
-* See `New metric "Commits" is created successfully!`
-* See the `commits` metric changes at every 10:00am
+            sudo mkdir -p /data/db
+            sudo chmod 0755 /data/db
+            sudo chown {userName}:staff /data/db
 
-## To run app
-`node app.js` to start app server
+* NodeJS: `brew install node`
+* NPM: `npm install`
 
-`./srcipt/start-moco.sh` to start moco server when we don't have the backend
+## Startup
 
-Then open `localhost:4000`
+* Start MongoDB: `mongod` or `nohup mongod &`
+* Start App: `node app.js` or `nodemon app.js` or `sudo MM_PORT=80 NODE_ENV=production forever start app.js`
 
-## API
-* Get data for number view: `/metrics/:metric/timeframes/:frame.json`
+## Create Metric
 
-    Such as `/metrics/story/timeframes/fortnight.json`
+* Category: `Normal` means this metric can only be recorded manually, `Schedule` means this metric can only be recorded automatically.
+* Name: The unique name of this metric. Cannot be empty.
+* Unit: The unit of this metric, such as `mins`, `hours`, `times`, `etc.`. Can be empty.
+* Description: The description for this metric. Can be empty.
+* CountMethod: How to count the data in the time frame. `Total()` means we need the total count, `Avg()` means we want the average value, `Max()` means we need the maximum one, `Min()` means we need the minimum one.
+* Types: Define the types of the metric. Such as the **Story** metric have 2 types, `UserStory` and `Bug`, we put `UserStory;Bug` here. The analysis is based on this metric type. Can be empty.
+* Fields: Define additional fields for te metric. We we want to store a `StoryNo` and a `StoryName` of **Story** metric, we can put `StoryNo;StoryName` here. Can be empty.
+* API(`Schedule` only): API url of schedule job, the schedule job will hit this API automatically. Can be empty, that means this job doesn't require any API.
+* Username(`Schedule` only): Username for base authentication. Can be empty.
+* Password(`Schedule` only): Password for base authentication. Can be empty.
+* JS Method(`Schedule` only): An anonymous JavaScript function to process the result from API. The function looks like:
 
-* Get data for line chart view: `/metrics/:metric/timeframes/:frame/trends.json`
+        function(apiResult, lastRecord, _) {
+            ...
+            return {
+                metricValue: 1,
+                metricType: 'typeA',
+                otherField: '...'
+            };
+        }
 
-    Such as `/metrics/story/timeframes/week/trends.json`
-
-* Get data for pie chart view: `/metrics/:metric/timeframes/:frame/pie.json`
-
-    Such as `/metrics/story/timeframes/week/pie.json`
-
-## MongoDB
-* Installation: `brew install mongodb`
-* Configuration for **dbpath**:
-```
-    sudo mkdir -p /data/db  
-    sudo chmod 0755 /data/db  
-    sudo chown {userName}:staff /data/db  
-```
-* Start MongoDB server: `mongod`
-* Command to use mongo:  
-```
-    mongo  
-    show dbs  
-    use mydb  
-    db.collections.find()  
-```
+    * apiResult: `JsonObject`, if the result form API cannot be parse to JSON, this is a `String`.
+    * lastRecord: `JsonObject`, the latest record of this metric, usually this object can provide some useful data.
+    * _: `underscore` object.
+    * return value: null / an object / an array. If return `null`, no record will be stored. If return `Object`, the object will be stored. If return `Array`, all elements will be stored. `metricValue` is the number we need count, default to 1. `metricType` is the type defined in `Types`, also can store what every you want.
+* Frequency(`Schedule` only): A cron pattern to define the schedule.
+* TimeFrame: A default time window, metric analysis based on this TimeFrame.

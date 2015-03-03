@@ -15,31 +15,39 @@ API Method:
       }).map(function(card) { return {id: card.id, name: card.name};});
 
       var backToDev = 0;
-      if(lastRecord) {
-        var lastDevDoneCards = lastRecord.devDoneCards;
-
-        var backToDevCards = lastDevDoneCards.filter(function(lastCard) {
-          return devDoneCards.filter(function(card) {
-            return card.id == lastCard.id;
-          }).length == 0;
-        });
-
-        backToDev = backToDevCards.length;
-
-        if(backToDev == 0) {
-          return null;
+      if(!lastRecord) {
+        return {
+          metricValue: 0,
+          devDoneCards: devDoneCards
         }
       }
 
-      return {
-        metricValue: backToDev,
-        devDoneCards: devDoneCards
-      };
+      var lastDevDoneCards = lastRecord.devDoneCards;
+
+      var backToDevCards = lastDevDoneCards.filter(function(lastCard) {
+        return devDoneCards.filter(function(card) {
+          return card.id == lastCard.id;
+        }).length == 0;
+      });
+
+      if(backToDevCards.length == 0) {
+        return null;
+      }
+
+      var results = backToDevCards.map(function(card) {
+        return {
+          metricValue: 1,
+          cardName: card.name
+        };
+      });
+      results[results.length - 1].devDoneCards = devDoneCards;
+
+      return results;
     }
 
   cardsNumber:
 
-     function aa(apiResult, lastRecord) {
+     function(apiResult, lastRecord) {
        var plannedCards = devCompleteCards = qaDoneCards = CompleteCards = 0
        var result = [];
 

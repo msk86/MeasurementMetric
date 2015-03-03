@@ -1,8 +1,13 @@
 $border-gray: #c3c8ce;
 $mint-dark: #00c694;
-$yellow-dark: #ffb200;
-$orange-dark: #ff6000;
-$blue-light: #4a4aff;
+
+$red: #fb4047;
+$orange: #fe9321;
+$yellow: #ffb200;
+$green: #00c694;
+$blue: #6FC7DB;
+$indigo: #4a4aff;
+$violet: #93489a;
 
 @import "chart";
 @import "header";
@@ -19,8 +24,7 @@ p {
 	margin: 0;
 }
 .container {
-	width: 80%;
-	margin: 0 auto;
+	margin: 0 10px;
 }
 .sm-font {
 	font-size: 0.8em;

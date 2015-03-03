@@ -12,11 +12,11 @@
 }
 
 .metric {
-  width: 30.333%;
-  min-width: 314px;
+  width: 325px;
   height: 424px;
-  margin: 1.5%;
+  margin: 15px;
   float: left;
+
   .left-part {
     flex: 4;
     min-width: 275px;
@@ -146,6 +146,14 @@
     height: 30px;
     vertical-align: middle;
     line-height: 30px;
+
+    &.disabled {
+      color: $border-gray;
+
+      &:hover {
+        color: $border-gray;
+      }
+    }
   }
 
   .records-table {
@@ -177,10 +185,6 @@
   }
 
   .confirm-buttons {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     margin: 5px;
     text-align: center;
 
@@ -191,6 +195,9 @@
 }
 
 @mixin metric-theme($theme-color) {
+  &.metric {
+    box-shadow: $theme-color 0 0 4px 1px;
+  }
   .number {
     color: $theme-color;
   }
@@ -215,18 +222,32 @@
   }
 }
 
-.mint-theme {
-  @include metric-theme($mint-dark);
-}
 
-.yellow-theme {
-  @include metric-theme($yellow-dark);
+.red-theme {
+  @include metric-theme($red);
 }
 
 .orange-theme {
-  @include metric-theme($orange-dark);
+  @include metric-theme($orange);
+}
+
+.yellow-theme {
+  @include metric-theme($yellow);
+}
+
+.green-theme {
+  @include metric-theme($green);
 }
 
 .blue-theme {
-  @include metric-theme($blue-light);
+  @include metric-theme($blue);
 }
+
+.indigo-theme {
+  @include metric-theme($indigo);
+}
+
+.violet-theme {
+  @include metric-theme($violet);
+}
+

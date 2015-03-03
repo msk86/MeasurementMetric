@@ -2,7 +2,7 @@
     angular.module('metric').directive('metricDashboard',
         [function () {
             function link($scope, element) {
-                $scope.themes = ['mint-theme', 'yellow-theme', 'orange-theme', 'blue-theme'];
+                $scope.themes = ['red-theme', 'orange-theme', 'yellow-theme', 'green-theme', 'blue-theme', 'indigo-theme', 'violet-theme'];
             }
 
             return {

@@ -20,6 +20,7 @@
                 };
 
                 $scope.setChartType = function(chartType) {
+                    if($scope.settings.category == 'schedule' && chartType == 'recordForm') return;
                     $scope.chartType = chartType;
                 };
 

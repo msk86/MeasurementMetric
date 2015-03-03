@@ -36,7 +36,7 @@ module.exports = (function() {
             }
         },
         all: function(team, cb) {
-            db.settings.find({team: team}, cb);
+            db.settings.find({team: team}).sort({createdTime: 1}, cb);
         },
         findByCategory: function(category, cb) {
             db.settings.find({
