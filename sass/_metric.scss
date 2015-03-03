@@ -17,6 +17,7 @@
   height: 424px;
   margin: 1.5%;
   float: left;
+
   .left-part {
     flex: 4;
     min-width: 275px;
@@ -191,6 +192,9 @@
 }
 
 @mixin metric-theme($theme-color) {
+  &.metric {
+    box-shadow: $theme-color 0 0 4px 1px;
+  }
   .number {
     color: $theme-color;
   }
