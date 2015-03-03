@@ -99,6 +99,16 @@ header .container, .banner .container {
   .metric .graph-header {
     padding: 6px;
     height: 23px; }
+  .metric .schedule-mark {
+    float: left;
+    margin: 2px 0;
+    border: 1px solid;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    line-height: 16px;
+    display: block; }
   .metric .frame-range {
     display: block;
     float: left;
