@@ -80,9 +80,7 @@ header .container, .banner .container {
     height: 180px; } }
 
 .metric {
-  width: 22%;
-  max-width: 340px;
-  min-width: 314px;
+  min-width: 325px;
   height: 424px;
   margin: 15px;
   float: left; }
@@ -201,10 +199,6 @@ header .container, .banner .container {
     width: 100%;
     height: 100%; }
   .metric .confirm-buttons {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     margin: 5px;
     text-align: center; }
     .metric .confirm-buttons button {
@@ -367,7 +361,7 @@ p {
   margin: 0; }
 
 .container {
-  margin: 0 30px; }
+  margin: 0 10px; }
 
 .sm-font {
   font-size: 0.8em; }

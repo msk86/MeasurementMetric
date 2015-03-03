@@ -162,7 +162,9 @@ module.exports = (function() {
                         value[g] = rangeReduceData(gm, ranges, processMethod);
                     });
                 }
-                value.all = rangeReduceData(metricData, ranges, processMethod);
+                if(!settings.metricTypes.length || (settings.metricTypes.length >= 2 && !settings.excludeAllTrends)) {
+                    value.all = rangeReduceData(metricData, ranges, processMethod);
+                }
 
                 var data = {
                     metricName: metricName,

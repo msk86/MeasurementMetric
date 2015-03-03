@@ -12,9 +12,7 @@
 }
 
 .metric {
-  width: 22%;
-  max-width: 340px;
-  min-width: 314px;
+  min-width: 325px;
   height: 424px;
   margin: 15px;
   float: left;
@@ -179,10 +177,6 @@
   }
 
   .confirm-buttons {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     margin: 5px;
     text-align: center;
 
