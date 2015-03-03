@@ -16,7 +16,7 @@ header {
   background-color: #333f48;
   color: white;
   padding: 10px 0;
-  margin-bottom: 40px; }
+  margin-bottom: 20px; }
   header .logo {
     font-size: 1.5em; }
   header .user {
@@ -80,10 +80,11 @@ header .container, .banner .container {
     height: 180px; } }
 
 .metric {
-  width: 30.333%;
+  width: 22%;
+  max-width: 340px;
   min-width: 314px;
   height: 424px;
-  margin: 1.5%;
+  margin: 15px;
   float: left; }
   .metric .left-part {
     flex: 4;
@@ -366,8 +367,7 @@ p {
   margin: 0; }
 
 .container {
-  width: 80%;
-  margin: 0 auto; }
+  margin: 0 30px; }
 
 .sm-font {
   font-size: 0.8em; }
