@@ -222,18 +222,32 @@
   }
 }
 
-.mint-theme {
-  @include metric-theme($mint-dark);
-}
 
-.yellow-theme {
-  @include metric-theme($yellow-dark);
+.red-theme {
+  @include metric-theme($red);
 }
 
 .orange-theme {
-  @include metric-theme($orange-dark);
+  @include metric-theme($orange);
+}
+
+.yellow-theme {
+  @include metric-theme($yellow);
+}
+
+.green-theme {
+  @include metric-theme($green);
 }
 
 .blue-theme {
-  @include metric-theme($blue-light);
+  @include metric-theme($blue);
 }
+
+.indigo-theme {
+  @include metric-theme($indigo);
+}
+
+.violet-theme {
+  @include metric-theme($violet);
+}
+
