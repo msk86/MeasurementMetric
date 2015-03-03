@@ -182,6 +182,10 @@ header .container, .banner .container {
     height: 30px;
     vertical-align: middle;
     line-height: 30px; }
+    .metric .mm-icon.disabled {
+      color: #c3c8ce; }
+      .metric .mm-icon.disabled:hover {
+        color: #c3c8ce; }
   .metric .records-table {
     width: 100%;
     margin: 0; }

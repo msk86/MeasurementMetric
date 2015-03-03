@@ -146,6 +146,14 @@
     height: 30px;
     vertical-align: middle;
     line-height: 30px;
+
+    &.disabled {
+      color: $border-gray;
+
+      &:hover {
+        color: $border-gray;
+      }
+    }
   }
 
   .records-table {
