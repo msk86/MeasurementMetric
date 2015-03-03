@@ -162,7 +162,7 @@ module.exports = (function() {
                         value[g] = rangeReduceData(gm, ranges, processMethod);
                     });
                 }
-                if(!settings.metricTypes.length || (settings.metricTypes.length >= 2 && !settings.excludeAllTrends)) {
+                if(!settings.metricTypes.length || (settings.metricTypes.length >= 2 && !(_.contains(settings.metricTypes, 'All') || _.contains(settings.metricTypes, 'all')))) {
                     value.all = rangeReduceData(metricData, ranges, processMethod);
                 }
 
