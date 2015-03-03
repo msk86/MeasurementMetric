@@ -21,6 +21,7 @@ router.get('/:metric/settings', function (req, res, next) {
 /* create metric setting */
 router.post('/:metric/settings', function (req, res) {
     var params = req.body;
+    if(!params.metricName) {return res.json({error: 'No metric name specified.'});}
     try {Scheduler.validScheduleJob(params);} catch(e) { return res.json({error: e}); }
     MetricSettings.create(req.params.team, params, function(e, settings) {
         if(e) return res.json({error: e});
@@ -32,6 +33,7 @@ router.post('/:metric/settings', function (req, res) {
 router.put('/:metric/settings', function (req, res) {
     var params = req.body;
     if(!params._id) return res.json({error: 'No id specified.'});
+    if(!params.metricName) {return res.json({error: 'No metric name specified.'});}
     try {Scheduler.validScheduleJob(params);} catch(e) { return res.json({error: e}); }
     MetricSettings.update(params._id, params, function(e, settings) {
         if(e) return res.json({error: e});
