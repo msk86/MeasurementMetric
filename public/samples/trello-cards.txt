@@ -46,61 +46,61 @@ API Method:
     }
 
   cardsNumber:
-
      function(apiResult, lastRecord) {
-       var plannedCards = devCompleteCards = qaDoneCards = CompleteCards = 0
-       var result = [];
+         var plannedCards = 0,
+           devCompleteCards = 0,
+           qaDoneCards = 0,
+           completeCards = 0;
+         var result = [];
 
-       var totalCards = apiResult.length;
+         var totalCards = apiResult.length;
+         apiResult.forEach(function (results) {
+             results.labels.forEach(function (label) {
+                 switch (label.name) {
+                     case 'Planned':
+                         plannedCards++;
+                         break;
+                     case 'Dev Complete':
+                         devCompleteCards++;
+                         break;
+                     case 'QA\'ed':
+                         qaDoneCards++;
+                         break;
+                     case 'Completed':
+                         completeCards++;
+                         break;
+                 }
+             })
+         });
 
-       apiResult.forEach(function (results) {
-         results.labels.forEach(function (label) {
-           switch (label.name) {
-             case 'Planned':
-               plannedCards++;
-               break;
-             case 'Dev Complete':
-               devCompleteCards++;
-               break;
-             case 'QA\'ed':
-               qaDoneCards++;
-               break;
-             case 'Completed':
-               CompleteCards++;
-               break;
-           }
-         })
-       });
+         function calculateResult() {
+             var lastCardsNumber = lastRecord.currentCards;
+             currentCards.forEach(function (currentCards) {
+                 lastCardsNumber.forEach(function (lastCards) {
+                     if (lastCards.metricType == currentCards.metricType && currentCards.metricValue > lastCards.metricValue) {
+                         result.push({
+                             metricType: currentCards.metricType,
+                             metricValue: currentCards.metricValue - lastCards.metricValue
+                         });
+                     }
+                 })
+             });
+         }
 
-       function calculateResult() {
-         lastCardsNumber = lastRecord[lastRecord.length - 1].currentCards;
-         currentCards.forEach(function (currentCards) {
-           lastCardsNumber.forEach(function (lastCards) {
-             if (lastCards.metricType == currentCards.metricType && currentCards.metricValue > lastCards.metricValue) {
-               result.push({
-                 metricType: currentCards.metricType,
-                 metricValue: currentCards.metricValue - lastCards.metricValue
-               })
-             }
-           })
-         })
-       }
+         var currentCards = [{metricType: 'Planned', metricValue: plannedCards},
+             {metricType: 'Dev Complete', metricValue: devCompleteCards},
+             {metricType: 'QA\'ed', metricValue: qaDoneCards},
+             {metricType: 'Completed', metricValue: completeCards},
+             {metricType: 'All', metricValue: totalCards}];
 
-       var currentCards = [{metricType: 'Planned', metricValue: plannedCards},
-         {metricType: 'Dev Complete', metricValue: devCompleteCards},
-         {metricType: 'QA\'ed', metricValue: qaDoneCards},
-         {metricType: 'Completed', metricValue: CompleteCards},
-         {metricType: 'total', metricValue: totalCards}];
-
-       lastRecord ? calculateResult() : result = currentCards;
-       if (result.length == 0) {
-         return null;
-       }
-       result[result.length - 1].currentCards = currentCards;
-
-       return result;
-
+         lastRecord ? calculateResult() : result = currentCards;
+         if (result.length == 0) {
+             return null;
+         }
+         result[result.length - 1].currentCards = currentCards;
+         return result;
      }
+
 
 
 
