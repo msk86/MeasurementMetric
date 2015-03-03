@@ -33,12 +33,12 @@ module.exports = (function() {
             max: function(metricData) {
                 return _.max(metricData, function(d) {
                     return parseInt(d.metricValue);
-                });
+                }).metricValue;
             },
             min: function(metricData) {
                 return _.min(metricData, function(d) {
                     return parseInt(d.metricValue);
-                });
+                }).metricValue;
             }
         };
 
