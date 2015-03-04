@@ -16,7 +16,8 @@
                     {display:'Total()', method:'total'},
                     {display:'Avg()', method:'avg'},
                     {display:'Max()', method:'max'},
-                    {display:'Min()', method:'min'}
+                    {display:'Min()', method:'min'},
+                    {display:'Last()', method:'last'}
                 ];
                 $scope.fortnightStartFrom = [
                     {display:'This week', startFrom:'thisweek'},

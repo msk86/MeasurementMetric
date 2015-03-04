@@ -39,6 +39,9 @@ module.exports = (function() {
                 return _.min(metricData, function(d) {
                     return parseInt(d.metricValue);
                 }).metricValue;
+            },
+            last: function(metricData) {
+                return _.last(metricData).metricValue;
             }
         };
 
