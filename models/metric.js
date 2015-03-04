@@ -41,11 +41,11 @@ module.exports = (function() {
                 }).metricValue;
             },
             last: function(metricData) {
-                return _.last(metricData).metricValue;
+                return (_.last(metricData) || {}).metricValue;
             }
         };
 
-        return processor[processMethod](metricData);
+        return processor[processMethod](metricData) || 0;
     }
 
     function rangeReduceData(metricData, ranges, processMethod) {

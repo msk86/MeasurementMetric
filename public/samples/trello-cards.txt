@@ -46,60 +46,58 @@ API Method:
     }
 
   cardsNumber:
-     function(apiResult, lastRecord) {
-         var plannedCards = 0,
-           devCompleteCards = 0,
-           qaDoneCards = 0,
-           completeCards = 0;
-         var result = [];
+    function (apiResult, lastRecord, _) {
+        var plannedCards = 0,
+            devCompleteCards = 0,
+            qaDoneCards = 0,
+            completeCards = 0;
+        var result = [];
 
-         var totalCards = apiResult.length;
-         apiResult.forEach(function (results) {
-             results.labels.forEach(function (label) {
-                 switch (label.name) {
-                     case 'Planned':
-                         plannedCards++;
-                         break;
-                     case 'Dev Complete':
-                         devCompleteCards++;
-                         break;
-                     case 'QA\'ed':
-                         qaDoneCards++;
-                         break;
-                     case 'Completed':
-                         completeCards++;
-                         break;
-                 }
-             })
-         });
+        var totalCards = apiResult.length;
+        apiResult.forEach(function (results) {
+            results.labels.forEach(function (label) {
+                switch (label.name) {
+                    case 'Planned':
+                        plannedCards++;
+                        break;
+                    case 'Dev Complete':
+                        devCompleteCards++;
+                        break;
+                    case 'QA\'ed':
+                        qaDoneCards++;
+                        break;
+                    case 'Completed':
+                        completeCards++;
+                        break;
+                }
+            });
+        });
 
-         function calculateResult() {
-             var lastCardsNumber = lastRecord.currentCards;
-             currentCards.forEach(function (currentCards) {
-                 lastCardsNumber.forEach(function (lastCards) {
-                     if (lastCards.metricType == currentCards.metricType && currentCards.metricValue > lastCards.metricValue) {
-                         result.push({
-                             metricType: currentCards.metricType,
-                             metricValue: currentCards.metricValue - lastCards.metricValue
-                         });
-                     }
-                 })
-             });
-         }
+        function currentCards() {
+            return [{metricType: 'Planned', metricValue: plannedCards},
+                {metricType: 'Dev Complete', metricValue: devCompleteCards},
+                {metricType: 'QA\'ed', metricValue: qaDoneCards},
+                {metricType: 'Completed', metricValue: completeCards},
+                {metricType: 'All', metricValue: totalCards}];
+        }
 
-         var currentCards = [{metricType: 'Planned', metricValue: plannedCards},
-             {metricType: 'Dev Complete', metricValue: devCompleteCards},
-             {metricType: 'QA\'ed', metricValue: qaDoneCards},
-             {metricType: 'Completed', metricValue: completeCards},
-             {metricType: 'All', metricValue: totalCards}];
+        if (lastRecord) {
+            var lastCardsNumber = lastRecord.currentCards;
+            result = currentCards().filter(function (currentCard) {
+                return _.find(lastCardsNumber, function (lastCard) {
+                    return lastCard.metricType == currentCard.metricType && currentCard.metricValue != lastCard.metricValue;
+                });
+            });
+        } else {
+            result = currentCards();
+        }
 
-         lastRecord ? calculateResult() : result = currentCards;
-         if (result.length == 0) {
-             return null;
-         }
-         result[result.length - 1].currentCards = currentCards;
-         return result;
-     }
+        if (result.length == 0) {
+            return null;
+        }
+        result[result.length - 1].currentCards = currentCards();
+        return result;
+    }
 
 
 
