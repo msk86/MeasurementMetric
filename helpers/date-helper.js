@@ -100,8 +100,8 @@ module.exports = (function() {
             return date;
         }
         var offsetDay = 0;
-        var t = (date.getTime() - startFrom.getTime()) / (({week: 7, fortnight: 14})[timeFrame] * 24 * 60 * 60 * 1000);
-        if(t - Math.floor(t) < 0.5) {
+        var t = (date.getTime() - startFrom.getTime()) / (24 * 60 * 60 * 1000);
+        if(t % 14 < 7) {
             offsetDay = 7;
         }
         date.setDate(date.getDate() + offsetDay);
