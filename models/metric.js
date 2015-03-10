@@ -77,9 +77,18 @@ module.exports = (function() {
     };
 
     Metric.lastRecord = function(team, metricName, cb) {
-        db.metric.find({team: team, metricName: metricName}).sort({createdTime: -1}).limit(1, function(e, metrics) {
-            if(e) return cb(e);
-            cb(null, metrics[0]);
+        MetricSettings.getInstance(team, metricName, function(err, settings) {
+            if (err) return cb(err);
+            if (!settings) return cb('No settings');
+
+            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), settings.timeFrame);
+
+            db.metric.find({
+                team: team, metricName: metricName, createdTime: {$gt: range.start, $lt: range.end}
+            }).sort({createdTime: -1}).limit(1, function(e, metrics) {
+                if(e) return cb(e);
+                cb(null, metrics[0]);
+            });
         });
     };
 
