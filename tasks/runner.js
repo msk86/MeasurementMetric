@@ -18,7 +18,12 @@ module.exports = (function() {
             } catch(e) {}
             Metric.lastRecord(scheduleMetric.team, scheduleMetric.metricName, function(e, lastRecord) {
                 if(e) return cb(e);
-                var result = $x(raw, lastRecord, _);
+                var result = null;
+                try {
+                    result = $x(raw, lastRecord, _);
+                } catch(e) {
+                    console.log('Script of [' + scheduleMetric.metricName + '] from [' + scheduleMetric.team + '] error.', e.message, e.stack.toString().replace(/\n/g, '\\n'));
+                }
                 if(result) {
                     (result instanceof Array)? saveResults(result,scheduleMetric, cb) : saveResult(result, scheduleMetric, cb);
                 }
