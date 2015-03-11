@@ -45,7 +45,7 @@ API Method:
       return results;
     }
 
-  cardsNumber:
+  CumulatedCardsNumber:
     function(apiResult, lastRecord, _) {
        var plannedCards = 0,
          devCompleteCards = 0,
@@ -73,24 +73,20 @@ API Method:
            });
        });
 
-       var currentCards = [{metricType: 'Planned', metricValue: plannedCards},
-           {metricType: 'Dev Complete', metricValue: devCompleteCards},
-           {metricType: 'QA\'ed', metricValue: qaDoneCards},
-           {metricType: 'Completed', metricValue: completeCards},
-           {metricType: 'All', metricValue: totalCards}];
+       var currentCardsStr = [totalCards, plannedCards, devCompleteCards, qaDoneCards, completeCards].join(';');
 
        function isDataChange() {
          if(!lastRecord) return true;
-         var lastCardsNumber = lastRecord.currentCards;
-         return currentCards.filter(function(currentCard) {
-           return _.find(lastCardsNumber, function(lastCard) {
-             return lastCard.metricType == currentCard.metricType && currentCard.metricValue != lastCard.metricValue;
-           });
-         }).length > 0;
+         var lastCardsStr = lastRecord.currentCards;
+         return lastCardsStr != currentCardsStr;
        }
 
        if(isDataChange()) {
-         return currentCards;
+         return [{metricType: 'Planned', metricValue: plannedCards},
+             {metricType: 'Dev Complete', metricValue: devCompleteCards},
+             {metricType: 'QA\'ed', metricValue: qaDoneCards},
+             {metricType: 'Completed', metricValue: completeCards},
+             {metricType: 'All', metricValue: totalCards, currentCards: currentCardsStr}];
        }
     }
 
