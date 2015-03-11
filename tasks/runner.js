@@ -22,7 +22,7 @@ module.exports = (function() {
                 try {
                     result = $x(raw, lastRecord, _);
                 } catch(e) {
-                    console.log('Script of [' + scheduleMetric.metricName + '] from [' + scheduleMetric.team + '] error.', e.message, e.stack.toString().replace(/\n/g, '\\n'));
+                    console.log('Script of [' + scheduleMetric.metricName + '] from [' + scheduleMetric.team + '] error.', e.stack.toString().replace(/\n/g, '\\n'));
                 }
                 if(result) {
                     (result instanceof Array)? saveResults(result,scheduleMetric, cb) : saveResult(result, scheduleMetric, cb);
