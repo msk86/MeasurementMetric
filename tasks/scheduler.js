@@ -16,8 +16,11 @@ module.exports = (function() {
 
     function runJob(settings) {
         if(settings.category != 'schedule') return;
-        Runner.loadScheduleMetric(settings, function(err, result) {
-            if(!err) Metric.create(settings.team, result);
+        Runner.loadScheduleMetric(settings, function(err, results) {
+            if(err) return console.log(err);
+            Metric.createInBatch(settings.team, settings.metricName, results, function(err) {
+                if(err) console.log(err);
+            });
         });
     }
 

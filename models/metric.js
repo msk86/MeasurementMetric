@@ -66,7 +66,7 @@ module.exports = (function() {
     Metric.create = function(team, options, cb) {
         MetricSettings.getInstance(team, options.metricName, function(err, settings) {
             if(err) return cb(err);
-            if(!settings) return cb('Metric settings not exist');
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             options.createdTime = new Date();
             options.createdDate = dateHelper.formatDate(options.createdTime);
@@ -76,10 +76,26 @@ module.exports = (function() {
         });
     };
 
+    Metric.createInBatch = function(team, metricName, optionArray, cb) {
+        MetricSettings.getInstance(team, metricName, function(err, settings) {
+            if (err) return cb(err);
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
+
+            var metrics = optionArray.map(function (options) {
+                options.createdTime = new Date();
+                options.createdDate = dateHelper.formatDate(options.createdTime);
+                options.team = team;
+                return new Metric(options);
+            });
+
+            db.metric.insert(metrics, cb);
+        });
+    };
+
     Metric.lastRecord = function(team, metricName, cb) {
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if (err) return cb(err);
-            if (!settings) return cb('No settings');
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), settings.timeFrame);
 
@@ -95,7 +111,7 @@ module.exports = (function() {
     Metric.recordsInTimeFrame = function(team, metricName, timeFrame, cb) {
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
-            if(!settings) return cb('No settings');
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
             db.metric.find({
@@ -112,7 +128,7 @@ module.exports = (function() {
     Metric.generalInTimeFrame = function(team, metricName, timeFrame, cb) {
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
-            if(!settings) return cb('No settings');
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
             var processMethod = settings.processMethod;
@@ -155,7 +171,7 @@ module.exports = (function() {
     Metric.trendsInTimeFrame = function(team, metricName, timeFrame, cb) {
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
-            if(!settings) return cb('No settings');
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             var ranges = dateHelper.sixTrendRanges(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
             var processMethod = settings.processMethod;

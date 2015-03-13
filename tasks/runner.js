@@ -18,30 +18,29 @@ module.exports = (function() {
             } catch(e) {}
             Metric.lastRecord(scheduleMetric.team, scheduleMetric.metricName, function(e, lastRecord) {
                 if(e) return cb(e);
-                var result = null;
+                var results = null;
                 try {
-                    result = $x(raw, lastRecord, _);
+                    results = $x(raw, lastRecord, _);
                 } catch(e) {
-                    console.log('Script of [' + scheduleMetric.metricName + '] from [' + scheduleMetric.team + '] error.', e.stack.toString().replace(/\n/g, '\\n'));
+                    cb('Script of [' + scheduleMetric.metricName + '] from [' + scheduleMetric.team + '] error.', e.stack.toString().replace(/\n/g, '\\n'));
                 }
-                if(result) {
-                    (result instanceof Array)? saveResults(result,scheduleMetric, cb) : saveResult(result, scheduleMetric, cb);
+                if(results) {
+                    if(!(results instanceof Array)) {
+                        results = [results];
+                    }
+                    setMetricProp(results, scheduleMetric);
+                    cb(null, results);
                 }
             });
         });
     }
 
-    function saveResults(results, scheduleMetric, cb){
+    function setMetricProp(results, scheduleMetric) {
         results.forEach(function(result) {
-            saveResult(result, scheduleMetric, cb)
+            result.team = scheduleMetric.team;
+            result.metricName = scheduleMetric.metricName;
+            result.metricValue = result.metricValue == null ? 1 : result.metricValue;
         });
-    }
-
-    function saveResult(result, scheduleMetric, cb){
-        result.team = scheduleMetric.team;
-        result.metricName = scheduleMetric.metricName;
-        result.metricValue = result.metricValue == null ? 1 : result.metricValue;
-        cb(null, result);
     }
 
     return {
