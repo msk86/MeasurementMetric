@@ -4,6 +4,7 @@ module.exports = (function() {
     }
 
     function getPreviousMonday(date, howMany) {
+        curr(date);
         howMany = howMany || 0;
         var dayDiff = (date.getDay() || 7) - 1 + 7 * howMany;
 
@@ -13,6 +14,7 @@ module.exports = (function() {
     }
 
     function getNextSunday(date, howMany) {
+        curr(date);
         howMany = howMany || 0;
         var dayDiff = 7 - (date.getDay() || 7) + 7 * howMany + 1;
 
@@ -23,12 +25,14 @@ module.exports = (function() {
     }
 
     function getFirstDayThisMonth(date) {
+        curr(date);
         var result = new Date(date.getTime());
         result.setDate(1);
         return result;
     }
 
     function getLastDayThisMonth(date) {
+        curr(date);
         var result = new Date(date.getTime());
         result.setDate(1);
         result.setMonth(date.getMonth() + 1);
@@ -37,6 +41,7 @@ module.exports = (function() {
     }
 
     function getFirstDayThisYear(date) {
+        curr(date);
         var result = new Date(date.getTime());
         result.setMonth(0);
         result.setDate(1);
@@ -44,6 +49,7 @@ module.exports = (function() {
     }
 
     function getLastDayThisYear(date) {
+        curr(date);
         var result = new Date(date.getTime());
         result.setYear(date.getFullYear() + 1);
         result.setMonth(0);
@@ -60,7 +66,6 @@ module.exports = (function() {
     }
 
     function getDateRange(date, timeFrame) {
-        curr(date);
         if(timeFrame == 'week') {
             return {
                 start: getPreviousMonday(date),
@@ -96,6 +101,7 @@ module.exports = (function() {
     }
 
     function standardDay(date, startFrom, timeFrame) {
+        curr(date);
         if(!startFrom || timeFrame != 'fortnight') {
             return date;
         }
@@ -106,7 +112,7 @@ module.exports = (function() {
             offsetDay = 7;
         }
         date.setDate(date.getDate() + offsetDay);
-        return date;
+        return getPreviousMonday(date);
     }
 
     return {
