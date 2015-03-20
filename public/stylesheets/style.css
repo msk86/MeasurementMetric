@@ -202,6 +202,10 @@ header .container, .banner .container {
     position: relative;
     width: 100%;
     height: 100%; }
+    .metric .metric-form input {
+      width: 155px; }
+    .metric .metric-form .type-alias-input {
+      width: 60px; }
   .metric .confirm-buttons {
     margin: 5px;
     text-align: center; }

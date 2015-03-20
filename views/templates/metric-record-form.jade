@@ -4,7 +4,7 @@ form
         input(ng-model="metric.metricValue")
         span {{settings.metricUnit}}
     div(ng-if="settings.metricTypes.length")
-        label Type
+        label {{settings.metricTypeAlias || 'Type'}}
         select(ng-model="metric.metricType" ng-options="t for t in settings.metricTypes")
     div(ng-repeat="field in settings.fields")
         label {{field}}

@@ -1,13 +1,13 @@
 table.records-table
     thead
         tr
-            th(ng-if="settings.metricTypes.length") Type
             th Value
+            th(ng-if="settings.metricTypes.length") {{settings.metricTypeAlias || 'Type'}}
             th(ng-repeat="field in settings.fields") {{field}}
             th Date
     tbody
         tr(ng-repeat="record in records")
-            td(ng-if="settings.metricTypes.length") {{record.metricType}}
             td {{record.metricValue}}
+            td(ng-if="settings.metricTypes.length") {{record.metricType}}
             td(ng-repeat="field in settings.fields") {{record[field]}}
             td {{record.createdDate}}
