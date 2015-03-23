@@ -178,6 +178,21 @@
     }
   }
 
+  ul.metric-context-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    border: $border-gray solid 1px;
+    padding: 5px 10px;
+    width: 100px;
+    text-align: left;
+
+    li:hover {
+      background: $border-gray;
+    }
+  }
+
   .metric-form {
     position: relative;
     width: 100%;

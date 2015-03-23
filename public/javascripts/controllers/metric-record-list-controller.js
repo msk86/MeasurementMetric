@@ -1,8 +1,8 @@
 (function (angular) {
 
     angular.module('metric').controller('MetricRecordListController',
-        ['$scope', 'MetricDataService',
-            function ($scope, MetricDataService) {
+        ['$scope', 'MetricDataService', 'MetricRecordService',
+            function ($scope, MetricDataService, MetricRecordService) {
                 $scope.records = [];
 
                 function getRecords(metricName, timeFrame) {
@@ -20,6 +20,12 @@
                 });
 
                 getRecords($scope.metricName, $scope.timeFrame);
+
+                $scope.deleteMetric = function(metricName, id) {
+                    return MetricRecordService.deleteMetric(metricName, id).then(function(){
+                        getRecords($scope.metricName, $scope.timeFrame);
+                    });
+                }
             }
         ]);
 

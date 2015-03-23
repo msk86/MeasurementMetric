@@ -51,7 +51,7 @@ router.post('/:metricName', function (req, res) {
 });
 
 router.delete('/:metricName/:id', function(req, res) {
-    Metric.remove(req.params.team, req.params.metricName, req.params.id, function(err) {
+    Metric.remove(req.params.team, req.params.metricName, req.params.id, function(e) {
         if(e) return res.json({error: e});
         res.json({});
     });

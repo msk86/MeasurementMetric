@@ -1,2 +1,2 @@
-var metricApp = angular.module('metric', []);
+var metricApp = angular.module('metric', ['ngContextMenu']);
 

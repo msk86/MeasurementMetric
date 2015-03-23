@@ -198,6 +198,17 @@ header .container, .banner .container {
       font-size: 12px; }
     .metric .records-table tbody tr:nth-child(2n+1) {
       background-color: #E7E7E7; }
+  .metric ul.metric-context-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    border: #c3c8ce solid 1px;
+    padding: 5px 10px;
+    width: 100px;
+    text-align: left; }
+    .metric ul.metric-context-menu li:hover {
+      background: #c3c8ce; }
   .metric .metric-form {
     position: relative;
     width: 100%;
