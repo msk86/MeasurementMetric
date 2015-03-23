@@ -92,6 +92,10 @@ module.exports = (function() {
         });
     };
 
+    Metric.remove = function(team, metricName, id, cb) {
+        db.metric.remove({team: team, metricName: metricName, _id: mongojs.ObjectId(id)}, cb);
+    };
+
     Metric.lastRecord = function(team, metricName, cb) {
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if (err) return cb(err);

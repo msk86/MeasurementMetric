@@ -1,6 +1,6 @@
 (function (angular, $) {
 
-    angular.module('metric').factory('MetricDataService', ['$timeout', '$q', function ($timeout, $q) {
+    angular.module('metric').factory('MetricDataService', ['DataService', function (DataService) {
         function dataPromise(url) {
             var deferred = $q.defer();
             $.ajax({
@@ -36,16 +36,16 @@
 
         return {
             getGeneralData: function (metricName, timeFrame) {
-                return dataPromise(generalDataUrl(metricName, timeFrame));
+                return DataService.get(generalDataUrl(metricName, timeFrame));
             },
             getTrendsData: function (metricName, timeFrame) {
-                return dataPromise(trendsDataUrl(metricName, timeFrame));
+                return DataService.get(trendsDataUrl(metricName, timeFrame));
             },
             getPieData: function (metricName, timeFrame) {
-                return dataPromise(pieDataUrl(metricName, timeFrame));
+                return DataService.get(pieDataUrl(metricName, timeFrame));
             },
             getRecords: function(metricName, timeFrame) {
-                return dataPromise(recordsUrl(metricName, timeFrame));
+                return DataService.get(recordsUrl(metricName, timeFrame));
             }
         }
 

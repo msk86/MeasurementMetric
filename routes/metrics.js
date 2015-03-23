@@ -12,14 +12,14 @@ router.get('/settings', function(req, res, next) {
     });
 });
 
-router.get('/:metric/settings', function (req, res, next) {
-    MetricSettings.getInstance(req.params.team, req.params.metric, function (err, settings) {
+router.get('/:metricName/settings', function (req, res, next) {
+    MetricSettings.getInstance(req.params.team, req.params.metricName, function (err, settings) {
         res.json(settings);
     });
 });
 
 /* create metric setting */
-router.post('/:metric/settings', function (req, res) {
+router.post('/:metricName/settings', function (req, res) {
     var params = req.body;
     if(!params.metricName) {return res.json({error: 'No metric name specified.'});}
     try {Scheduler.validScheduleJob(params);} catch(e) { return res.json({error: e}); }
@@ -30,7 +30,7 @@ router.post('/:metric/settings', function (req, res) {
     });
 });
 /* update metric setting */
-router.put('/:metric/settings', function (req, res) {
+router.put('/:metricName/settings', function (req, res) {
     var params = req.body;
     if(!params._id) return res.json({error: 'No id specified.'});
     if(!params.metricName) {return res.json({error: 'No metric name specified.'});}
@@ -42,11 +42,18 @@ router.put('/:metric/settings', function (req, res) {
     });
 });
 
-router.post('/:metric', function (req, res) {
+router.post('/:metricName', function (req, res) {
     var params = req.body;
-    params.metricName = req.params.metric;
+    params.metricName = req.params.metricName;
     Metric.create(req.params.team, params, function(e) {
         res.json({error: e});
+    });
+});
+
+router.delete('/:metricName/:id', function(req, res) {
+    Metric.remove(req.params.team, req.params.metricName, req.params.id, function(err) {
+        if(e) return res.json({error: e});
+        res.json({});
     });
 });
 
