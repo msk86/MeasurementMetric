@@ -99,6 +99,7 @@ module.exports = (function() {
         if(!startFrom || timeFrame != 'fortnight') {
             return date;
         }
+        startFrom = getPreviousMonday(startFrom);
         var offsetDay = 0;
         var t = (date.getTime() - startFrom.getTime()) / (24 * 60 * 60 * 1000);
         if(t % 14 < 7) {
