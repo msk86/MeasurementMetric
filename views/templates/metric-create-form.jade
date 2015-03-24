@@ -17,11 +17,16 @@ form.metric-form
     div
         label Types
         input(ng-model="form.metricTypes" placeholder="type1;type2")
-        input(ng-model="form.metricTypeAlias" placeholder="Alias" class="type-alias-input")
-
+        input(ng-model="form.metricTypeAlias" placeholder="Alias" class="type-alias-input" ng-if="form.metricTypes")
     div
         label Fields
         input(ng-model="form.fields" placeholder="field1;field2")
+        input(ng-model="form.stsField" placeholder="sts by" class="type-alias-input" ng-if="!form.metricTypes && form.fields")
+    div
+        label stsAll
+        select(ng-model="form.stsAll")
+            option(value="1") Yes
+            option(value="0") No
     schedule-metric-form(ng-if="form.category=='schedule'")
     div
         label TimeFrame

@@ -17,6 +17,8 @@ module.exports = (function() {
         this.metricTypes = options.metricTypes ? (options.metricTypes).replace(/[,;:|]+/g, ';').replace(/^;/, '').replace(/;$/, '').split(/;/).map(function(t) {return t.trim();}) : [];
         this.metricTypeAlias = options.metricTypeAlias;
         this.fields = options.fields ? (options.fields).replace(/[,;:|]+/g, ';').replace(/^;/, '').replace(/;$/, '').split(/;/).map(function(f) {return f.trim().replace(/\s/g, '');}) : [];
+        this.stsField = options.stsField;
+        this.stsAll = (options.stsAll == undefined || options.stsAll == '') ? 1 : options.stsAll;
         this.timeFrame = options.timeFrame;
         if(this.timeFrame == 'fortnight') {
             var startFrom = new Date();

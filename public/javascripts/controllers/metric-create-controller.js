@@ -10,6 +10,7 @@
 
                 var defaultFormValue = angular.extend({
                     category: 'normal',
+                    stsAll: 1,
                     timeFrame: 'week',
                     processMethod: 'total',
                     startFrom: 'thisweek'

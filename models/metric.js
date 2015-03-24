@@ -16,51 +16,6 @@ module.exports = (function() {
         if(Number.isNaN(this.metricValue)) {
             this.metricValue = 1;
         }
-
-    }
-
-    function reduceData(metricData, processMethod) {
-        var processor = {
-            total: function(metricData) {
-                return _.reduce(metricData, function(m, d) {
-                    return m + parseInt(d.metricValue);
-                }, 0);
-            },
-            avg: function(metricData) {
-                if(!metricData.length) return 0;
-                return Math.floor(this.total(metricData) / metricData.length);
-            },
-            max: function(metricData) {
-                return _.max(metricData, function(d) {
-                    return parseInt(d.metricValue);
-                }).metricValue;
-            },
-            min: function(metricData) {
-                return _.min(metricData, function(d) {
-                    return parseInt(d.metricValue);
-                }).metricValue;
-            },
-            last: function(metricData) {
-                return (_.last(metricData) || {}).metricValue;
-            }
-        };
-
-        return processor[processMethod](metricData) || 0;
-    }
-
-    function rangeReduceData(metricData, ranges, processMethod) {
-        var rangeMetrics = {};
-        _.forEach(metricData, function(m) {
-            _.forEach(ranges, function(r) {
-                rangeMetrics[dateHelper.formatDate(r.start)] = rangeMetrics[dateHelper.formatDate(r.start)] || [];
-                if(m.createdTime.getTime() >= r.start.getTime() && m.createdTime.getTime() <= r.end.getTime()) {
-                    rangeMetrics[dateHelper.formatDate(r.start)].push(m);
-                }
-            });
-        });
-        return _.map(rangeMetrics, function(metrics, range) {
-            return {x: range, y: reduceData(metrics, processMethod)};
-        });
     }
 
     Metric.create = function(team, options, cb) {
@@ -129,34 +84,83 @@ module.exports = (function() {
         });
     };
 
+    function reduceData(metricData, processMethod) {
+        var processor = {
+            total: function(metricData) {
+                return _.reduce(metricData, function(m, d) {
+                    return m + parseInt(d.metricValue);
+                }, 0);
+            },
+            avg: function(metricData) {
+                if(!metricData.length) return 0;
+                return Math.floor(this.total(metricData) / metricData.length);
+            },
+            max: function(metricData) {
+                return _.max(metricData, function(d) {
+                    return parseInt(d.metricValue);
+                }).metricValue;
+            },
+            min: function(metricData) {
+                return _.min(metricData, function(d) {
+                    return parseInt(d.metricValue);
+                }).metricValue;
+            },
+            last: function(metricData) {
+                return (_.last(metricData) || {}).metricValue;
+            }
+        };
+
+        return processor[processMethod](metricData) || 0;
+    }
+
+    function rangeReduceData(metricData, processMethod, ranges) {
+        var rangeMetrics = {};
+        _.forEach(ranges, function(r) {
+            rangeMetrics[dateHelper.formatDate(r.start)] = [];
+            _.forEach(metricData, function(m) {
+                if(m.createdTime.getTime() >= r.start.getTime() && m.createdTime.getTime() <= r.end.getTime()) {
+                    rangeMetrics[dateHelper.formatDate(r.start)].push(m);
+                }
+            });
+            rangeMetrics[dateHelper.formatDate(r.start)] = reduceData(rangeMetrics[dateHelper.formatDate(r.start)], processMethod)
+        });
+        return rangeMetrics;
+    }
+
+    var CHART = {
+        general : {
+            reducer: reduceData,
+            formatter: function (metrics) {
+                return metrics;
+            }
+        },
+        trends : {
+            reducer: rangeReduceData,
+            formatter: function (metrics) {
+                return _.map(metrics, function(m, range) {
+                    return {x: range, y: m};
+                });
+            }
+        },
+        pie : {
+            reducer: reduceData,
+            formatter: function (metrics) {
+                return [{x: "", y: metrics}];
+            }
+        }
+    };
+
+
     Metric.generalInTimeFrame = function(team, metricName, timeFrame, cb) {
         MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
             if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
-            var processMethod = settings.processMethod;
-            db.metric.find({
-                team: team,
-                metricName: metricName,
-                createdTime: {$gt: range.start, $lt: range.end}
-            }, function(err, metricData) {
+
+            processData('general', settings, range.start, range.end, range, function(err, value) {
                 if(err) return cb(err);
-                var grouped = _.groupBy(metricData, function(d) {
-                    return d.metricType || '';
-                });
-
-                var value = _.reduce(grouped, function(memo, groupData, group) {
-                    var groupValue = reduceData(groupData, processMethod);
-                    if(group) {
-                        memo[group] = groupValue;
-                    }
-                    return memo;
-                }, {});
-
-                value.all = reduceData(metricData, processMethod);
-
-                var data = {
+                cb(null, {
                     metricName: metricName,
                     metricDesc: settings.metricDesc,
                     timeFrame: timeFrame,
@@ -165,9 +169,7 @@ module.exports = (function() {
                         end: dateHelper.formatDate(range.end)
                     },
                     value: value
-                };
-
-                cb(null, data);
+                });
             });
         });
     };
@@ -178,51 +180,84 @@ module.exports = (function() {
             if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
             var ranges = dateHelper.sixTrendRanges(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
-            var processMethod = settings.processMethod;
-            db.metric.find({
-                team: team,
-                metricName: metricName,
-                createdTime: {$gt: _.first(ranges).start, $lt: _.last(ranges).end}
-            }, function(err, metricData) {
-                if(err) return cb(err);
-                var value = {};
-                if(settings.metricTypes.length) {
-                    var grouped = _.groupBy(metricData, function(d) {
-                        return d.metricType || '';
-                    });
-                    _.forEach(grouped, function(gm, g) {
-                        value[g] = rangeReduceData(gm, ranges, processMethod);
-                    });
-                }
-                if(!settings.metricTypes.length || (settings.metricTypes.length >= 2 && !(_.contains(settings.metricTypes, 'All') || _.contains(settings.metricTypes, 'all')))) {
-                    value.all = rangeReduceData(metricData, ranges, processMethod);
-                }
 
-                var data = {
+            processData('trends', settings, _.first(ranges).start, _.last(ranges).end, ranges, function(err, value) {
+                if(err) return cb(err);
+                cb(null, {
                     metricName: metricName,
                     metricDesc: settings.metricDesc,
                     timeFrame: timeFrame,
                     trends: value
-                };
-
-                cb(null, data);
+                });
             });
         });
     };
 
 
     Metric.pieInTimeFrame = function(team, metricName, timeFrame, cb) {
-        Metric.generalInTimeFrame(team, metricName, timeFrame, function(err, data) {
+        MetricSettings.getInstance(team, metricName, function(err, settings) {
             if(err) return cb(err);
-            data.pie = {};
-            _.forEach(data.value, function(v, type) {
-                data.pie[type] = [{x: "", y: v}];
-            });
+            if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
-            cb(null, data);
+            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, timeFrame), timeFrame);
+
+            processData('pie', settings, range.start, range.end, range, function(err, value) {
+                if(err) return cb(err);
+                cb(null, {
+                    metricName: metricName,
+                    metricDesc: settings.metricDesc,
+                    timeFrame: timeFrame,
+                    timeRange: {
+                        start: dateHelper.formatDate(range.start),
+                        end: dateHelper.formatDate(range.end)
+                    },
+                    pie: value
+                });
+            });
         });
     };
 
+    function dataNeedGroup(settings) {
+        return settings.metricTypes.length || settings.stsField;
+    }
+
+    function isShowAll(chart, settings) {
+        if(chart == 'general') return true;
+        if(settings.metricTypes.length || settings.stsField) {
+            return parseInt(settings.stsAll);
+        } else {
+            return true;
+        }
+    }
+
+    function processData(chart, settings, createdAfter, createdBefore, ranges, cb) {
+        var processMethod = settings.processMethod;
+
+        var reducer = CHART[chart].reducer;
+        var formatter = CHART[chart].formatter;
+
+        db.metric.find({
+            team: settings.team,
+            metricName: settings.metricName,
+            createdTime: {$gt: createdAfter, $lt: createdBefore}
+        }, function(err, metricData) {
+            if(err) return cb(err);
+            var value = {};
+            if(dataNeedGroup(settings)) {
+                var grouped = _.groupBy(metricData, function(d) {
+                    return d.metricType || d[settings.stsField] || '';
+                });
+                _.forEach(grouped, function(gm, g) {
+                    value[g] = formatter(reducer(gm, processMethod, ranges));
+                });
+            }
+            if(isShowAll(chart, settings)) {
+                value.all = formatter(reducer(metricData, processMethod, ranges));
+            }
+
+            cb(null, value);
+        });
+    }
 
     return Metric;
 })();
