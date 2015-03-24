@@ -39,6 +39,8 @@ Measurement & Metric is this tool which can easily:
 * Types: Define the types of the metric. Such as the **Story** metric have 2 types, `UserStory` and `Bug`, we put `UserStory;Bug` here. The analysis is based on this metric type. Can be empty.
 * Alias: Give a alias field name for Type, which make the field `Type` has more sense, such as `StoryType`. Can be empty, default to `Type`.
 * Fields: Define additional fields for te metric. We we want to store a `StoryNo` and a `StoryName` of **Story** metric, we can put `StoryNo;StoryName` here. Can be empty.
+* StsField: Statistics data (Group data to show the charts) by field value, such as `StoryNo`. Can be empty.
+* StsAll: Does the trend chart show the line `All`.
 * API(`Schedule` only): API url of schedule job, the schedule job will hit this API automatically. Can be empty, that means this job doesn't require any API.
 * Username(`Schedule` only): Username for base authentication. Can be empty.
 * Password(`Schedule` only): Password for base authentication. Can be empty.

@@ -22,7 +22,7 @@ form.metric-form
         label Fields
         input(ng-model="form.fields" placeholder="field1;field2")
         input(ng-model="form.stsField" placeholder="sts by" class="type-alias-input" ng-if="!form.metricTypes && form.fields")
-    div
+    div(ng-if="form.metricTypes || form.stsField")
         label stsAll
         select(ng-model="form.stsAll")
             option(value="1") Yes
