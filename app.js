@@ -68,6 +68,6 @@ scheduler.startAllScheduleMetric();
 
 var port = parseInt(process.env.MM_PORT) || 4000;
 app.listen(port);
-console.log('server is running at', port);
+console.log('server is running at', port, ', env is', app.get('env'));
 
 module.exports = app;

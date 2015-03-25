@@ -2,27 +2,31 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        uglify: {
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        dot: true,
-                        cwd: './',
-                        dest: 'dist/',
-                        src: [
-                            'public/javascripts/**/*.js',
-                            'app.js'
-                        ]
-                    }
-                ]
+        concat: {
+            options: {
+                separator: ' '
             },
-            build: {
-                src: 'public/javascripts/*.js',
-                dest: 'dist/MeasureMetric.min.js'
+            dist: {
+                src: [
+                    'public/vendor/**/*.js',
+                    'public/javascripts/*.js',
+                    'public/javascripts/libs/*.js',
+                    'public/javascripts/helpers/*.js',
+                    'public/javascripts/services/*.js',
+                    'public/javascripts/directives/*.js',
+                    'public/javascripts/controllers/*.js'
+                ],
+                dest: 'public/javascripts/mm.js',
+                nonull: true
             }
         },
-        clean: ['build', 'dist', 'test-data/assets'],
+        uglify: {
+            build: {
+                src: 'public/javascripts/mm.js',
+                dest: 'public/javascripts/mm.min.js'
+            }
+        },
+        clean: ['build', 'dist', 'public/javascripts/mm.js', 'public/javascripts/mm.min.js'],
         watch: {
             source: {
                 files: ['sass/**/*.scss'],
@@ -56,6 +60,7 @@ module.exports = function(grunt) {
     });
 
     // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -64,9 +69,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
 
 
-    grunt.registerTask('compile-assets', ['shell:compile', 'shell:css2js']);
-    grunt.registerTask('package', ['compile-assets', 'uglify']);
-
+    grunt.registerTask('compile-assets', ['sass']);
+    grunt.registerTask('package', ['compile-assets', 'concat', 'uglify']);
 
     // Default task(s).
     grunt.registerTask('default', ['bower']);

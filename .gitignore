@@ -4,3 +4,7 @@ node_modules
 sass/.DS_Store
 bower_components
 test/
+build/
+dist/
+mm.js
+mm.min.js
