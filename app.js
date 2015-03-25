@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var templates = require('./routes/templates');
 var metrics = require('./routes/metrics');
 var helpers = require('./routes/helpers');
+var sts = require('./routes/sts');
 
 var scheduler = require('./tasks/scheduler');
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/sts', sts);
 app.use('/templates', templates);
 app.use('/helpers', helpers);
 app.use('/:team/metrics', metrics);
