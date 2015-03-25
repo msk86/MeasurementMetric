@@ -56,10 +56,8 @@ module.exports = (function() {
             if (err) return cb(err);
             if (!settings) return cb('No settings for team:[' + team + '] and metricName:[' + metricName + ']');
 
-            var range = dateHelper.getDateRange(dateHelper.standardDay(new Date(), settings.startFrom, settings.timeFrame), settings.timeFrame);
-
             db.metric.find({
-                team: team, metricName: metricName, createdTime: {$gt: range.start, $lt: range.end}
+                team: team, metricName: metricName
             }).sort({createdTime: -1}).limit(1, function(e, metrics) {
                 if(e) return cb(e);
                 cb(null, metrics[0]);
