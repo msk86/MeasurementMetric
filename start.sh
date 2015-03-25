@@ -12,7 +12,7 @@ function start() {
 
 function setup() {
     npm install
-    ./node_modules/.bin/grunt clean package
+    ./node_modules/.bin/grunt package
 }
 
 function main() {

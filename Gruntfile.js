@@ -3,21 +3,17 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            options: {
-                separator: ' '
-            },
             dist: {
                 src: [
                     'public/vendor/**/*.js',
-                    'public/javascripts/*.js',
                     'public/javascripts/libs/*.js',
+                    'public/javascripts/*.js',
                     'public/javascripts/helpers/*.js',
                     'public/javascripts/services/*.js',
                     'public/javascripts/directives/*.js',
                     'public/javascripts/controllers/*.js'
                 ],
-                dest: 'public/javascripts/mm.js',
-                nonull: true
+                dest: 'public/javascripts/mm.js'
             }
         },
         uglify: {
@@ -70,7 +66,7 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask('compile-assets', ['sass']);
-    grunt.registerTask('package', ['compile-assets', 'concat', 'uglify']);
+    grunt.registerTask('package', ['clean', 'compile-assets', 'concat', 'uglify']);
 
     // Default task(s).
     grunt.registerTask('default', ['bower']);
