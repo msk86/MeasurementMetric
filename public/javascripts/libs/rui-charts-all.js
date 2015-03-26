@@ -251,8 +251,8 @@
                 backgroundColor: '#fcfcfc',
                 height: options.height,
                 borderWidth: 0,
-                marginLeft: 60,
-                marginTop: 45,
+                marginLeft: 50,
+                marginTop: 15,
                 marginRight: options.marginRight,
                 style: {
                     fontFamily: 'Museo-Sans-300, Helvetica, Arial, sans-serif',
@@ -325,7 +325,7 @@
                     y: 4
                 },
                 offset: 25,
-                tickPixelInterval: (options.height - 15) / 3,
+                tickPixelInterval: (options.height - 15) / 4,
                 gridLineColor: '#e8e8e8'
             },
             tooltip: {

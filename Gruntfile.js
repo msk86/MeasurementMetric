@@ -5,8 +5,14 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [
-                    'public/vendor/**/*.js',
+                    'public/vendor/jquery/*.js',
+                    'public/vendor/highcharts/*.js',
+                    'public/vendor/angularjs/*.js',
+                    'public/vendor/moment/*.js',
+                    'public/vendor/ng-contextmenu/*.js',
+
                     'public/javascripts/libs/*.js',
+
                     'public/javascripts/*.js',
                     'public/javascripts/helpers/*.js',
                     'public/javascripts/services/*.js',
