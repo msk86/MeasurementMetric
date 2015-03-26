@@ -59,5 +59,5 @@ Measurement & Metric is this tool which can easily:
     * lastRecord: `JsonObject`, the latest record of this metric, usually this object can provide some useful data.
     * _: `underscore` object.
     * return value: null / an object / an array. If return `null`, no record will be stored. If return `Object`, the object will be stored. If return `Array`, all elements will be stored. `metricValue` is the number we need count, default to 1. `metricType` is the type defined in `Types`, also can store what every you want.
-* Frequency(`Schedule` only): A cron pattern to define the schedule.
+* Frequency(`Schedule` only): A cron pattern to define the schedule, UTC time.
 * TimeFrame: A default time window, metric analysis based on this TimeFrame.
