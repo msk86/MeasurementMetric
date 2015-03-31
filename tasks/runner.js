@@ -9,6 +9,7 @@ module.exports = (function() {
             return cb('Api Method is not a function.');
         }
         httpHelper.get(scheduleMetric.api, scheduleMetric.username, scheduleMetric.password, function(e, raw) {
+            if(e) {return cb(e);}
             try {
                 raw = JSON.parse(raw);
             } catch(e) {}
@@ -25,6 +26,7 @@ module.exports = (function() {
             return cb('Api Method is not a function.');
         }
         httpHelper.get(scheduleMetric.api, scheduleMetric.username, scheduleMetric.password, function(e, raw) {
+            if(e) {return cb(e);}
             try {
                 raw = JSON.parse(raw);
             } catch(e) {}

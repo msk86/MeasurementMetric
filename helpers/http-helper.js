@@ -18,6 +18,10 @@ module.exports = (function() {
             };
             if(username) httpOptions.auth = username + ":" + password;
 
+            if(!httpOptions.protocol || !httpOptions.hostname || !httpOptions.path) {
+                return cb('Url is incorrect!');
+            }
+
             client.get(httpOptions, function (res) {
                 var data = [];
                 res.on('data', function (d) {
