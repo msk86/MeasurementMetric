@@ -55,6 +55,8 @@ module.exports = (function() {
             }
             setMetricProp(results, scheduleMetric);
             cb(null, results);
+        } else {
+            cb(null, []);
         }
     }
 

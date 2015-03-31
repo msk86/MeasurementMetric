@@ -18,7 +18,7 @@ module.exports = (function() {
             };
             if(username) httpOptions.auth = username + ":" + password;
 
-            if(!httpOptions.protocol || !httpOptions.hostname || !httpOptions.path) {
+            if(!httpOptions.hostname || !httpOptions.path) {
                 return cb('Url is incorrect!');
             }
 
