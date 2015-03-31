@@ -75,7 +75,7 @@ module.exports = (function() {
                 team: team,
                 metricName: metricName,
                 createdTime: {$gt: range.start, $lt: range.end}
-            }, function(err, metricData) {
+            }).sort({createdTime: 1}, function(err, metricData) {
                 if (err) return cb(err);
                 cb(null, metricData);
             });
@@ -246,6 +246,7 @@ module.exports = (function() {
                     return d.metricType || d[settings.stsField] || '';
                 });
                 _.forEach(grouped, function(gm, g) {
+                    g = g || 'Other';
                     value[g] = formatter(reducer(gm, processMethod, ranges));
                 });
             }
