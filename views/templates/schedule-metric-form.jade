@@ -11,6 +11,7 @@ div
     div
         label JS Method
         textarea(ng-model='form.apiMethod' placeholder="function(apiResult, lastRecord, _) { return {metricValue: 1};}")
+        button(ng-if="form.apiMethod" ng-click="clickTestApi()") Test
     div
         label Frequency
         input(ng-model="form.frequency" placeholder="Cron Pattern(UTC Time)")

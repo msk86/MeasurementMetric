@@ -34,7 +34,11 @@
                             $scope.$emit('NEW_METRIC_CREATED');
                         });
                     }
-                }
+                };
+
+                $scope.testApi = function() {
+                    return MetricCreateService.testApi($scope.form);
+                };
             }
         ]);
 

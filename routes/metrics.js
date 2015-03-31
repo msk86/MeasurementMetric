@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router({mergeParams: true});
 
 var MetricSettings = require('../models/metric-settings');
+var ScheduleMetricSettings = require('../models/schedule-metric-settings');
 var Metric = require('../models/metric');
 
 var Scheduler = require('../tasks/scheduler');
+var Runner = require('../tasks/runner');
 
 router.get('/settings', function(req, res, next) {
     MetricSettings.all(req.params.team, function(err, settingses) {
@@ -15,6 +17,19 @@ router.get('/settings', function(req, res, next) {
 router.get('/:metricName/settings', function (req, res, next) {
     MetricSettings.getInstance(req.params.team, req.params.metricName, function (err, settings) {
         res.json(settings);
+    });
+});
+
+router.post('/:metricName/testApi', function (req, res) {
+    var params = req.body;
+    params.team = req.params.team;
+    params.frequency = '* * * * *';
+    try {Scheduler.validScheduleJob(params);} catch(e) { return res.json({error: e}); }
+
+    var tempSettings = new ScheduleMetricSettings(params);
+    Runner.testTask(tempSettings, function(e, data) {
+        if(e) {return res.json({error: e});}
+        res.json(data);
     });
 });
 
