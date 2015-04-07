@@ -31,6 +31,14 @@
                     return {series: series, colors: colors};
                 }
 
+                function pointFormatter(point){
+                  var template = '{{name}}  <span class="legend-point-value" style="color: {{color}}">{{label}}</span><br/>';
+                  return template
+                    .replace("{{color}}", point.series.color)
+                    .replace("{{name}}", point.series.name)
+                    .replace("{{label}}", point.y);
+                }
+
                 function drawGraph(series, colors) {
                     var xAxisTickPixelInterval = 68;
 
@@ -41,6 +49,8 @@
                         dateTimeLabelFormats: {
                             day: '%a'
                         },
+                        min: 0,
+                        pointFormatter: pointFormatter,
                         xAxisTickPixelInterval: xAxisTickPixelInterval,
                         colors: colors
                     });

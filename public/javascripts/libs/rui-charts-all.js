@@ -73,7 +73,7 @@
         var s = [];
 
         s.push('<div class="rui-chart-legend-item">');
-        s.push(buildLegendLabel(pointData.name, pointData.color));
+        //s.push(buildLegendLabel(pointData.name, pointData.color));
         s.push(buildLegendText(pointData.point, pointFormatter));
         s.push('</div>');
 
@@ -307,6 +307,7 @@
                 title: {
                     text: ''
                 },
+                min: options.min,
                 labels: {
                     style: {
                         color: '#777',
@@ -324,7 +325,7 @@
                     y: 4
                 },
                 offset: 25,
-                tickPixelInterval: (options.height - 45) / 2,
+                tickPixelInterval: (options.height - 15) / 3,
                 gridLineColor: '#e8e8e8'
             },
             tooltip: {
