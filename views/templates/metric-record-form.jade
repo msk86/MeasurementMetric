@@ -1,16 +1,17 @@
-form
-    div
+form.metric-form
+    div.form-item
         label Value
         input(ng-model="metric.metricValue")
-        span {{settings.metricUnit}}
-    div(ng-if="settings.metricTypes.length")
+        span.position-right {{settings.metricUnit}}
+    div.form-item(ng-if="settings.metricTypes.length")
         label {{settings.metricTypeAlias || 'Type'}}
         select(ng-model="metric.metricType" ng-options="t for t in settings.metricTypes")
-    div(ng-repeat="field in settings.fields")
+    div.form-item(ng-repeat="field in settings.fields")
         label {{field}}
         input(ng-model="metric[field]")
-    div
-        button(ng-click="submit()") Submit
-        button(ng-click="cancelMethod()") Close
+    div.form-item.confirm-buttons
+        label
+        button(class="submit" ng-click="submit()") Submit
+        a(class="position-right cancel" ng-click="cancelMethod()") Cancel
 
 

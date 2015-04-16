@@ -197,9 +197,10 @@
     position: relative;
     width: 100%;
     height: 100%;
+    text-align: left;
 
     input, textarea {
-      width: 155px;
+      width: 130px;
       padding: 2px 4px;
       border: 1px solid #ccc;
     }
@@ -221,7 +222,10 @@
       width: 60px;
     }
   }
-
+  .position-right {
+    display: block;
+    margin-left: 125px;
+  }
   .confirm-buttons {
     padding-top: 10px;
 
@@ -238,6 +242,8 @@
     .cancel {
       color: #666;
       font-size: 0.9em;
+      display: block;
+      margin-top: 10px;
     }
   }
 }
