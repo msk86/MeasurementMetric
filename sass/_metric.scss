@@ -24,7 +24,7 @@
   }
 
   .metric-title {
-    border: 1px solid $border-gray;
+    border: 1px dotted $border-gray;
     margin: 0;
     border-bottom: 0;
     text-align: center;
@@ -108,7 +108,7 @@
   .metric-content {
     min-height: 364px;
     display: flex;
-    border: 1px solid $border-gray;
+    border: 1px dotted $border-gray;
   }
   .metric-desc {
     border-top: 1px solid #c3c8ce;
