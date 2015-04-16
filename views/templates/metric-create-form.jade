@@ -1,40 +1,41 @@
 form.metric-form
-    div(class="form-category")
+    div(class="form-item form-category")
         label Category
         select(ng-model="form.category" ng-options="c.category as c.display for c in categories")
-    div(ng-if="submitAction=='create'")
+    div(class="form-item" ng-if="submitAction=='create'")
         label Name
         input(ng-model="form.metricName")
-    div
+    div.form-item
         label Unit
         input(ng-model="form.metricUnit")
-    div
+    div.form-item
         label Description
         input(ng-model="form.metricDesc")
-    div
+    div.form-item
         label CountMethod
         select(ng-model="form.processMethod" ng-options="m.method as m.display for m in processMethods")
-    div
+    div.form-item
         label Types
         input(ng-model="form.metricTypes" placeholder="type1;type2")
         input(ng-model="form.metricTypeAlias" placeholder="Alias" class="type-alias-input" ng-if="form.metricTypes")
-    div
+    div.form-item
         label Fields
         input(ng-model="form.fields" placeholder="field1;field2")
         input(ng-model="form.stsField" placeholder="sts by" class="type-alias-input" ng-if="!form.metricTypes && form.fields")
-    div(ng-if="form.metricTypes || form.stsField")
+    div(class="form-item" ng-if="form.metricTypes || form.stsField")
         label stsAll
         select(ng-model="form.stsAll")
             option(value="1") Yes
             option(value="0") No
     schedule-metric-form(ng-if="form.category=='schedule'")
-    div
+    div.form-item
         label TimeFrame
         select(ng-model="form.timeFrame" ng-options="f.frame as f.display for f in timeFrames")
         span(ng-if="form.timeFrame=='fortnight'")
             label from
             select(ng-model="form.startFrom" ng-options="m.startFrom as m.display for m in fortnightStartFrom")
-    div.confirm-buttons
-        button(ng-click="submit()") Submit
-        button(ng-click="cancelMethod()") Close
+    div.form-item.confirm-buttons
+        label
+        button(class="submit" ng-click="submit()") Submit
+        a(class="cancel" ng-click="cancelMethod()") Cancel
 

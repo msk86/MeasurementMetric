@@ -1,17 +1,17 @@
 div
-    div
+    div.form-item
         label API
         input(ng-model="form.api")
-    div
+    div.form-item
         label Username
         input(ng-model="form.username")
-    div
+    div.form-item
         label Password
         input(ng-model="form.password" type="password")
-    div
+    div.form-item
         label JS Method
         textarea(ng-model='form.apiMethod' placeholder="function(apiResult, lastRecord, _) { return {metricValue: 1};}")
         button(ng-if="form.apiMethod" ng-click="clickTestApi()") Test
-    div
+    div.form-item
         label Frequency
         input(ng-model="form.frequency" placeholder="Cron Pattern(UTC Time)")

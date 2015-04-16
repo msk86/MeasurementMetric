@@ -106,7 +106,7 @@
     padding-top: 55px;
   }
   .metric-content {
-    height: 364px;
+    min-height: 364px;
     display: flex;
     border: 1px solid $border-gray;
   }
@@ -198,8 +198,23 @@
     width: 100%;
     height: 100%;
 
-    input {
+    input, textarea {
       width: 155px;
+      padding: 2px 4px;
+      border: 1px solid #ccc;
+    }
+    .type-alias-input {
+      margin-left: 125px;
+      margin-top: 10px;
+    }
+    .form-item {
+      margin: 10px 0;
+    }
+    label {
+      min-width: 110px;
+      display: inline-block;
+      text-align: right;
+      padding-right: 16px;
     }
 
     .type-alias-input {
@@ -208,11 +223,21 @@
   }
 
   .confirm-buttons {
-    margin: 5px;
-    text-align: center;
+    padding-top: 10px;
 
     button {
-      margin: 0 5px;
+      margin-right: 5px;
+    }
+    .submit {
+      background-color: #319B42;
+      border: none;
+      width: 100px;
+      padding: 6px 0;
+      color: white;
+    }
+    .cancel {
+      color: #666;
+      font-size: 0.9em;
     }
   }
 }
